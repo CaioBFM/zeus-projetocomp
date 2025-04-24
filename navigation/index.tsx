@@ -2,9 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
 
-import Login from '../screens/Login';
-import ForgotPassword from '../screens/ForgotPassword';
-import Dashboard from '../screens/Dashboard';
+import Login from '../screens/Login/Login';
+import ForgotPassword from '../screens/ForgotPassword/ForgotPassword';
+import Dashboard from '../screens/Dashboard/Dashboard';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

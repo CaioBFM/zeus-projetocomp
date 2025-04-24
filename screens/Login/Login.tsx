@@ -2,12 +2,12 @@ import { useState } from 'react'; // "hook" pra guardar valores (email, senha)
 import { View, Text, Alert, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // navegar entre telas
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/navigation';
+import { RootStackParamList } from '../../types/navigation';
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
-import Input from '../components/Input';
-import PrimaryButton from '../components/PrimaryButton';
+import Input from '../../components/Input';
+import PrimaryButton from '../../components/PrimaryButton';
 import styles from './Login.styles';
 
 export default function Login() {

@@ -1,8 +1,8 @@
 import { View, Text, Alert } from 'react-native';
 import styles from './ForgotPassword.styles';
 
-import Input from '../components/Input';
-import PrimaryButton from '../components/PrimaryButton';
+import Input from '../../components/Input';
+import PrimaryButton from '../../components/PrimaryButton';
 
 export default function ForgotPassword() {
   const handleEnviarLink = () => {
