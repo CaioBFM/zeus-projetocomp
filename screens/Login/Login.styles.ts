@@ -1,11 +1,21 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  logo: {
+    width: 120,
+    height: 120,
+    resizeMode: 'contain',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     padding: 20,
     backgroundColor: 'white'
+  },
+  inner: {
+    flex: 1,
+    justifyContent: 'center',
   },
   title: {
     fontSize: 24,
