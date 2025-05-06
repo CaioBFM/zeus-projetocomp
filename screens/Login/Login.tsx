@@ -38,11 +38,13 @@ export default function Login() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
     >
-      <View style={styles.inner}>
+      <View style={styles.topContainer}>
         <Image
-          source={require('../../assets/images/compLogo.png')}
+          source={require('../../assets/images/Logo.png')}
           style={styles.logo}
         />
+      </View>
+      <View style={styles.container}>
         <Text style={styles.title}>Login</Text>
 
         <Input
