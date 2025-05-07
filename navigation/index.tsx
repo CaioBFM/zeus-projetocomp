@@ -5,7 +5,8 @@ import { RootStackParamList } from '../types/navigation';
 import Login from '../screens/Login/Login';
 import ForgotPassword from '../screens/ForgotPassword/ForgotPassword';
 import Dashboard from '../screens/Dashboard/Dashboard';
-import Welcome from '../screens/Welcome/Welcome'
+import Welcome from '../screens/Welcome/Welcome';
+import Register from '../screens/Register/Register';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,6 +20,7 @@ export default function AppNavigator() {
         
         <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
       </Stack.Navigator>

@@ -19,9 +19,9 @@ export default function Welcome() {
     >
       <View style={styles.overlay}>
         <Text style={styles.title}>Bem vindo ao ZEUS!</Text>
-
-        {/* <PrimaryButton title="Registrar" onPress={() => navigation.navigate('Register')} */}
-        
+        <View style={styles.container}>
+          <PrimaryButton title="Registrar" onPress={() => navigation.navigate('Register')} />
+        </View>
         <PrimaryButton title="Login" onPress={() => navigation.navigate('Login')} />
 
 

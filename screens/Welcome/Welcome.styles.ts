@@ -19,6 +19,9 @@ export default StyleSheet.create({
     color: 'rgba(95, 187, 233, 0.73)',
     marginBottom: 30,
   },
+  container: {
+    alignItems: 'flex-start'
+  },
 
 
 
