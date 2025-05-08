@@ -23,3 +23,4 @@ export default StyleSheet.create({
     color: '#1e1e1e',
   },
 });
+ 
