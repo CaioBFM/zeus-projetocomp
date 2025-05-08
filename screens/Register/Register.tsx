@@ -8,17 +8,15 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Register'>
 
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
-import styles from './Register.styles';
-import Header from '../../components/Header';
+import styles, { getResponsivePadding, getResponsiveTitle } from './Register.styles';
 
 export default function Register() {
-  const { width, height } = useWindowDimensions();
-  const isLandscape = width > height;
-
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
+
+  const navigation = useNavigation<NavigationProps>();
 
   const handleRegister = () => {
     if (!nome || !email || !senha || !confirmarSenha) {
@@ -32,7 +30,11 @@ export default function Register() {
     }
 
     Alert.alert('Sucesso', 'Conta criada com sucesso!');
+    navigation.navigate('Login');
   };
+
+  const { width, height } = useWindowDimensions();
+  const isLandscape = width > height;
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -42,13 +44,8 @@ export default function Register() {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          <View style={[styles.content, { paddingHorizontal: isLandscape ? width * 0.15 : width * 0.06 }]}>
-            <Text
-              style={[
-                styles.title,
-                { fontSize: isLandscape ? 28 : 24, marginBottom: isLandscape ? 40 : 24 },
-              ]}
-            >
+          <View style={[styles.content, getResponsivePadding(isLandscape, width)]}>
+            <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
               Criar Conta
             </Text>
 

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useState } from 'react';
 
-import styles from './ForgotPassword.styles';
+import styles, { getResponsiveContainer, getResponsiveTitle } from './ForgotPassword.styles';
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
 
@@ -26,18 +26,15 @@ export default function ForgotPassword() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
-        style={[styles.container, { paddingHorizontal: isLandscape ? width * 0.15 : width * 0.06 }]}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        style={[styles.container, getResponsiveContainer(isLandscape, width)]}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          <Text
-            style={[
-              styles.title,
-              { fontSize: isLandscape ? 28 : 24, marginBottom: isLandscape ? 40 : 24 },
-            ]}
-          >
-            Recuperar Senha
-          </Text>
+
+        <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
+          Recuperar Senha
+        </Text>
+
 
           <Input
             placeholder="Digite seu e-mail"

@@ -18,7 +18,7 @@ export default StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
     marginVertical: 24,
   },
   link: {
@@ -26,5 +26,10 @@ export default StyleSheet.create({
     marginTop: 16,
     color: '#3b82f6',
     textDecorationLine: 'underline',
+  },
+  linkContainer: {
+    alignItems: 'flex-end',
+    marginTop: -20,
+    marginBottom: 26, 
   },
 });

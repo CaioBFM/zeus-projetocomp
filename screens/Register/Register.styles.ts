@@ -1,5 +1,14 @@
 import { StyleSheet } from 'react-native';
 
+export const getResponsivePadding = (isLandscape: boolean, width: number) => ({
+  paddingHorizontal: isLandscape ? width * 0.15 : width * 0.06,
+});
+
+export const getResponsiveTitle = (isLandscape: boolean) => ({
+  fontSize: isLandscape ? 28 : 24,
+  marginBottom: isLandscape ? 40 : 24,
+});
+
 export default StyleSheet.create({
   safeArea: {
     flex: 1,
@@ -14,7 +23,7 @@ export default StyleSheet.create({
   },
   content: {
     width: '100%',
-    maxWidth: 500, // limita em tablets grandes
+    maxWidth: 500,
     alignSelf: 'center',
   },
   title: {
@@ -23,4 +32,3 @@ export default StyleSheet.create({
     color: '#1e1e1e',
   },
 });
- 

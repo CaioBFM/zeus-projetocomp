@@ -9,7 +9,6 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Login'>; /
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
 import styles from './Login.styles';
-import Header from '../../components/Header';
 
 // Componente principal da tela de Login
 export default function Login() {
@@ -23,7 +22,7 @@ export default function Login() {
   // Função chamada ao pressionar o botão de login
   const handleLogin = () => {
 
-    if (email == 'caio@zeus.com' && senha === 'cedos') {
+    if (email == 'Caio@zeus.com' && senha === 'Cedos') {
 
       navigation.navigate('Dashboard');
     } else {
@@ -36,10 +35,9 @@ export default function Login() {
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          <Header />
 
           <Text style={styles.title}>Login</Text>
 
@@ -54,13 +52,16 @@ export default function Login() {
             secureTextEntry
             value={senha}
             onChangeText={setSenha}
-          />
+          /> 
+
+          <View style={styles.linkContainer}>
+            <Text style={styles.link} onPress={() => navigation.navigate('ForgotPassword')}>
+              Esqueci minha senha
+            </Text>
+          </View>
 
           <PrimaryButton title="Entrar" onPress={handleLogin} />
 
-          <Text style={styles.link} onPress={() => navigation.navigate('ForgotPassword')}>
-            Esqueci minha senha
-          </Text>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
