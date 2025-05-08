@@ -25,7 +25,10 @@ export default function Register() {
       Alert.alert('Erro', 'Preencha todos os campos.');
       return false;
     }
-
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      Alert.alert('Erro', 'E-mail inválido.');
+      return;
+    }
     if (senha !== confirmarSenha) {
       Alert.alert('Erro', 'As senhas não coincidem.');
       return false;
