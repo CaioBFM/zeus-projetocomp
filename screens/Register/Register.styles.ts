@@ -12,6 +12,11 @@ export default StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
   },
+  content: {
+    width: '100%',
+    maxWidth: 500, // limita em tablets grandes
+    alignSelf: 'center',
+  },
   title: {
     fontWeight: 'bold',
     textAlign: 'center',
