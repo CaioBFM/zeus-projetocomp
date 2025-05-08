@@ -1,15 +1,22 @@
+// Welcome screen component
+// Provides navigation options for users to log in or register
 import { View, Text, ImageBackground, ScrollView, SafeAreaView, Platform, KeyboardAvoidingView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation';
 
-type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Welcome'>;
-
 import PrimaryButton from '../../components/PrimaryButton';
 import styles from './Welcome.styles';
 
+type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Welcome'>;
+
 export default function Welcome() {
   const navigation = useNavigation<NavigationProps>();
+
+  // Navigate to a specific screen
+  const navigateTo = (screen: keyof RootStackParamList) => {
+    navigation.navigate(screen);
+  };
 
   return (
     <ImageBackground
@@ -24,18 +31,18 @@ export default function Welcome() {
             style={styles.container}
           >
             <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-
               <Text style={styles.title}>Bem-vindo ao ZEUS</Text>
 
+              {/* Buttons for navigation */}
               <View style={styles.buttonRow}>
                 <PrimaryButton
                   title="Entrar"
-                  onPress={() => navigation.navigate('Login')}
+                  onPress={() => navigateTo('Login')}
                   style={styles.button}
                 />
                 <PrimaryButton
                   title="Criar Conta"
-                  onPress={() => navigation.navigate('Register')}
+                  onPress={() => navigateTo('Register')}
                   style={styles.button}
                 />
               </View>

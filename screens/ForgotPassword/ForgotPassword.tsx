@@ -1,3 +1,5 @@
+// Forgot Password screen component
+// Allows users to request a password recovery link
 import {
   View,
   Text,
@@ -20,6 +22,16 @@ export default function ForgotPassword() {
   const isLandscape = width > height;
 
   const handleEnviarLink = () => {
+    if (!email) {
+      Alert.alert('Erro', 'Por favor, insira seu e-mail.');
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      Alert.alert('Erro', 'E-mail inválido.');
+      return;
+    }
+
     Alert.alert('Recuperação de Senha', 'Enviamos um link para seu e-mail.');
   };
 
@@ -30,11 +42,9 @@ export default function ForgotPassword() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-
-        <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
-          Recuperar Senha
-        </Text>
-
+          <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
+            Recuperar Senha
+          </Text>
 
           <Input
             placeholder="Digite seu e-mail"

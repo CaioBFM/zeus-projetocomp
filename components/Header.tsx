@@ -1,7 +1,9 @@
+// Header component
+// Displays a logo with safe area padding
 import { Image, StyleSheet, SafeAreaView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export default function LogoHeader() {
+export default function Header() {
   const insets = useSafeAreaInsets();
 
   return (

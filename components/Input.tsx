@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet, TextInputProps } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
-interface InputProps extends TextInputProps {}
+interface InputProps extends TextInputProps {
+  style?: object;
+}
 
-export default function Input(props: InputProps) {
+export default function Input({ style, secureTextEntry, ...props }: InputProps) {
   const [senhaVisivel, setSenhaVisivel] = useState(false);
 
-  const isPassword = props.secureTextEntry !== undefined;
+  const isPassword = secureTextEntry !== undefined;
 
   return (
     <View style={styles.container}>
       <TextInput
         {...props}
-        style={[styles.input, props.style]}
+        style={[styles.input, style]}
         secureTextEntry={isPassword && !senhaVisivel}
       />
 
@@ -37,11 +39,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#ccc',
     paddingVertical: 8,
-    marginBottom: 16
+    marginBottom: 16,
   },
   input: {
     flex: 1,
     fontSize: 16,
-    paddingRight: 8
-  }
+    paddingRight: 8,
+  },
 });

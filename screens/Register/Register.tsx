@@ -1,14 +1,16 @@
+// Register screen component
+// Handles user registration and navigation to the Login screen
 import { View, Text, Alert, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView, useWindowDimensions } from 'react-native';
-import { useState } from 'react'; 
+import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../types/navigation'; 
-
-type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Register'>; 
+import { RootStackParamList } from '../../types/navigation';
 
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
 import styles, { getResponsivePadding, getResponsiveTitle } from './Register.styles';
+
+type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Register'>;
 
 export default function Register() {
   const [nome, setNome] = useState('');
@@ -18,16 +20,23 @@ export default function Register() {
 
   const navigation = useNavigation<NavigationProps>();
 
-  const handleRegister = () => {
+  const validateInputs = () => {
     if (!nome || !email || !senha || !confirmarSenha) {
       Alert.alert('Erro', 'Preencha todos os campos.');
-      return;
+      return false;
     }
 
     if (senha !== confirmarSenha) {
       Alert.alert('Erro', 'As senhas não coincidem.');
-      return;
+      return false;
     }
+
+    return true;
+  };
+
+  // Handle user registration logic
+  const handleRegister = () => {
+    if (!validateInputs()) return;
 
     Alert.alert('Sucesso', 'Conta criada com sucesso!');
     navigation.navigate('Login');
@@ -49,16 +58,18 @@ export default function Register() {
               Criar Conta
             </Text>
 
+            {/* Input fields for user details */}
             <Input placeholder="Nome completo" value={nome} onChangeText={setNome} />
             <Input placeholder="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" />
             <Input placeholder="Senha" value={senha} onChangeText={setSenha} secureTextEntry />
             <Input placeholder="Confirmar Senha" value={confirmarSenha} onChangeText={setConfirmarSenha} secureTextEntry />
 
+            {/* Register button */}
             <PrimaryButton title="Registrar" onPress={handleRegister} />
-            <View style={{ height: 80 }} />
+            <View style={{ height: 80 }}></View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
-} 
+}

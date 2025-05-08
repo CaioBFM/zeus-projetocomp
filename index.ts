@@ -1,3 +1,5 @@
+// Entry point for the app registration
+// Ensures the app is set up correctly for both Expo Go and native builds
 import { registerRootComponent } from 'expo';
 
 import App from './App';
