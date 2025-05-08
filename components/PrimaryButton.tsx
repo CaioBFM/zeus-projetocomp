@@ -4,9 +4,9 @@ interface Props extends TouchableOpacityProps {
   title: string;
 }
 
-export default function PrimaryButton({ title, ...rest }: Props) {
+export default function PrimaryButton({ title, onPress, style }: { title: string; onPress: () => void; style?: any }) {
   return (
-    <TouchableOpacity style={styles.button} {...rest}>
+    <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );

@@ -1,15 +1,20 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
+  },
+  scroll: {
+    flexGrow: 1,
     justifyContent: 'center',
-    padding: 20,
   },
   title: {
-    fontSize: 24,
-    marginBottom: 30,
-    textAlign: 'center',
     fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#1e1e1e',
   },
 });

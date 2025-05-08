@@ -1,5 +1,5 @@
+import { View, Text, Alert, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView, useWindowDimensions } from 'react-native';
 import { useState } from 'react'; 
-import { View, Text, Alert, TouchableOpacity, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation'; 
@@ -9,9 +9,11 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Register'>
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
 import styles from './Register.styles';
+import Header from '../../components/Header';
 
 export default function Register() {
-  const navigation = useNavigation<NavigationProps>();
+  const { width, height } = useWindowDimensions();
+  const isLandscape = width > height;
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -23,39 +25,39 @@ export default function Register() {
       Alert.alert('Erro', 'Preencha todos os campos.');
       return;
     }
+
     if (senha !== confirmarSenha) {
-      Alert.alert('Erro', 'Senhas não coincidem.');
+      Alert.alert('Erro', 'As senhas não coincidem.');
       return;
     }
 
-    // seria a chamada para api ou banco de dados etc... implementar se der tempo
-    Alert.alert('Sucesso', 'Conta criada com sucesso.');
-    navigation.navigate
-
+    Alert.alert('Sucesso', 'Conta criada com sucesso!');
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
-    >
-      <View style={styles.topContainer}>
-        <Image
-          source={require('../../assets/images/Logo.png')}
-          style={styles.logo}
-        />
-      </View>
-      
-      <Text style={styles.title}> Criar conta</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <KeyboardAvoidingView
+        style={[styles.container, { paddingHorizontal: isLandscape ? width * 0.15 : width * 0.06 }]}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      >
+        <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
+          <Text
+            style={[
+              styles.title,
+              { fontSize: isLandscape ? 28 : 24, marginBottom: isLandscape ? 40 : 24 },
+            ]}
+          >
+            Criar Conta
+          </Text>
 
-      <Input placeholder="Nome completo" value={nome} onChangeText={setNome} />
-      <Input placeholder="E-mail" value={email} onChangeText={setEmail} />
-      <Input placeholder="Senha" value={senha} onChangeText={setSenha} />
-      <Input placeholder="Confirmar senha" value={confirmarSenha} onChangeText={setConfirmarSenha} />
+          <Input placeholder="Nome completo" value={nome} onChangeText={setNome} />
+          <Input placeholder="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" />
+          <Input placeholder="Senha" value={senha} onChangeText={setSenha} secureTextEntry />
+          <Input placeholder="Confirmar Senha" value={confirmarSenha} onChangeText={setConfirmarSenha} secureTextEntry />
 
-      <PrimaryButton title="Registrar" onPress={handleRegister} />
-
-    </KeyboardAvoidingView>
+          <PrimaryButton title="Registrar" onPress={handleRegister} />
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }

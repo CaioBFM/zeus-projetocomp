@@ -1,32 +1,30 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
-  logo: {
-    width: 100,
-    height: 100,
-    resizeMode: 'contain',
-    justifyContent: 'center',
-  },
-  topContainer: {
-    marginTop: 0,
-    alignItems: 'flex-start',
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
   container: {
     flex: 1,
+    paddingHorizontal: width * 0.06, // ~24px em celulares, aumenta suavemente em tablets
+  },
+  scroll: {
+    flexGrow: 1,
     justifyContent: 'center',
-    padding: 20,
-    backgroundColor: 'white'
   },
   title: {
-    fontSize: 24,
-    marginBottom: 30,
-    textAlign: 'center',
+    fontSize: 26,
     fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 24,
   },
   link: {
-    color: 'gray',
-    marginTop: 15,
     textAlign: 'center',
+    marginTop: 16,
+    color: '#3b82f6',
     textDecorationLine: 'underline',
   },
 });

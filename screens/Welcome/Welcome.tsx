@@ -1,4 +1,4 @@
-import { View, Text, Image, ImageBackground } from 'react-native';
+import { View, Text, ImageBackground, ScrollView, SafeAreaView, Platform, KeyboardAvoidingView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation';
@@ -15,17 +15,33 @@ export default function Welcome() {
     <ImageBackground
       source={require('../../assets/images/WelcomeImagem.jpeg')}
       style={styles.background}
-      resizeMode='cover'
+      resizeMode="cover"
     >
       <View style={styles.overlay}>
-        <Text style={styles.title}>Bem vindo ao ZEUS!</Text>
-        <View style={styles.container}>
-          <PrimaryButton title="Registrar" onPress={() => navigation.navigate('Register')} />
-        </View>
-        <PrimaryButton title="Login" onPress={() => navigation.navigate('Login')} />
+        <SafeAreaView style={styles.safeArea}>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            style={styles.container}
+          >
+            <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
 
+              <Text style={styles.title}>Bem-vindo ao ZEUS</Text>
 
-        
+              <View style={styles.buttonRow}>
+                <PrimaryButton
+                  title="Entrar"
+                  onPress={() => navigation.navigate('Login')}
+                  style={styles.button}
+                />
+                <PrimaryButton
+                  title="Criar Conta"
+                  onPress={() => navigation.navigate('Register')}
+                  style={styles.button}
+                />
+              </View>
+            </ScrollView>
+          </KeyboardAvoidingView>
+        </SafeAreaView>
       </View>
     </ImageBackground>
   );
