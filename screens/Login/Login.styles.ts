@@ -18,7 +18,7 @@ export default StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: 'bold',
-    textAlign: 'left',
+    textAlign: 'center',
     marginVertical: 24,
   },
   link: {
