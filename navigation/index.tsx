@@ -9,6 +9,8 @@ import ForgotPassword from '../screens/ForgotPassword/ForgotPassword';
 import Dashboard from '../screens/Dashboard/Dashboard';
 import Welcome from '../screens/Welcome/Welcome';
 import Register from '../screens/Register/Register';
+import VerifyCode from '../screens/VerifyCode/VerifyCode'
+import NewPassword from '../screens/NewPassword/NewPassword'
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -29,6 +31,8 @@ export default function AppNavigator() {
         <Stack.Screen name="Register" component={Register} options={{ headerShown: true }} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: true }} />
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: true }} />
+        <Stack.Screen name="VerifyCode" component={VerifyCode} options={{ headerShown: true }} />
+        <Stack.Screen name="NewPassword" component={NewPassword} options={{ headerShown: true }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
