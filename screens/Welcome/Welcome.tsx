@@ -7,6 +7,7 @@ import { RootStackParamList } from '../../types/navigation';
 
 import PrimaryButton from '../../components/PrimaryButton';
 import styles from './Welcome.styles';
+import AppLogo from '../../components/Logo';
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Welcome'>;
 
@@ -31,20 +32,27 @@ export default function Welcome() {
             style={styles.container}
           >
             <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-              <Text style={styles.title}>Bem-vindo ao ZEUS</Text>
+              {/* Logo posicionada no topo direito, mas um pouco mais para baixo */}
+              <View style={styles.logoContainer}>
+                <AppLogo />
+              </View>
+              {/* Conteúdo centralizado permanece centralizado */}
+              <View style={styles.centralContent}>
+                <Text style={styles.title}>Bem-vindo ao ZEUS</Text>
 
-              {/* Buttons for navigation */}
-              <View style={styles.buttonRow}>
-                <PrimaryButton
-                  title="Entrar"
-                  onPress={() => navigateTo('Login')}
-                  style={styles.button}
-                />
-                <PrimaryButton
-                  title="Criar Conta"
-                  onPress={() => navigateTo('Register')}
-                  style={styles.button}
-                />
+                {/* Buttons for navigation */}
+                <View style={styles.buttonRow}>
+                  <PrimaryButton
+                    title="Entrar"
+                    onPress={() => navigateTo('Login')}
+                    style={styles.button}
+                  />
+                  <PrimaryButton
+                    title="Criar Conta"
+                    onPress={() => navigateTo('Register')}
+                    style={styles.button}
+                  />
+                </View>
               </View>
             </ScrollView>
           </KeyboardAvoidingView>

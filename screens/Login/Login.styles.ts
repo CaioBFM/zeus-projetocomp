@@ -32,4 +32,10 @@ export default StyleSheet.create({
     marginTop: -20,
     marginBottom: 26, 
   },
+  logoContainer: {
+    position: 'absolute',
+    top: 32, // valor menor para subir a logo
+    right: 16,
+    zIndex: 10,
+  },
 });

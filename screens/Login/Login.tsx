@@ -9,6 +9,7 @@ import { RootStackParamList } from '../../types/navigation';
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
 import styles from './Login.styles';
+import AppLogo from '../../components/Logo';
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -58,6 +59,10 @@ export default function Login() {
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
           keyboardShouldPersistTaps="handled"
         >
+          {/* Logo azul no topo direito */}
+          <View style={styles.logoContainer}>
+            <AppLogo variant="azul" />
+          </View>
           <Text style={styles.title}>Login</Text>
 
           {/* Input fields for email and password */}

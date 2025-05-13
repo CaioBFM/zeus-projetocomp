@@ -9,6 +9,7 @@ import { RootStackParamList } from '../../types/navigation';
 import styles, { getResponsiveContainer, getResponsiveTitle } from './ForgotPassword.styles';
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
+import AppLogo from '../../components/Logo';
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -40,6 +41,10 @@ export default function ForgotPassword() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
+          {/* Logo azul no topo direito */}
+          <View style={styles.logoContainer}>
+            <AppLogo variant="azul" />
+          </View>
           <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
             Recuperar Senha
           </Text>

@@ -40,4 +40,10 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
+  logoContainer: {
+    position: 'absolute',
+    top: 32,
+    right: 16,
+    zIndex: 10,
+  },
 });

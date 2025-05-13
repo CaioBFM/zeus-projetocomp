@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export default StyleSheet.create({
   background: {
@@ -40,5 +40,16 @@ export default StyleSheet.create({
   overlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // escurece o fundo com transparência
+  },
+  logoContainer: {
+    position: 'absolute',
+    top: height * 0.08, // 8% da altura da tela
+    right: width * 0.04, // 4% da largura da tela
+    zIndex: 10,
+  },
+  centralContent: {
+    width: '100%',
+    alignItems: 'center',
+    marginTop: height * 0.08, // 8% da altura da tela
   },
 });

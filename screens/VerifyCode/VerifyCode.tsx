@@ -8,6 +8,7 @@ import { RootStackParamList } from '../../types/navigation';
 
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
+import AppLogo from '../../components/Logo';
 import styles, { getResponsiveContainer, getResponsiveTitle } from '../VerifyCode/VerifyCode.styles';
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'VerifyCode'>;
@@ -55,6 +56,10 @@ export default function VerifyCode() {
             contentContainerStyle={styles.scroll}
             keyboardShouldPersistTaps="handled"
           >
+            {/* Logo azul no topo direito */}
+            <View style={styles.logoContainer}>
+              <AppLogo variant="azul" />
+            </View>
             <View style={styles.content}>
               <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>Verificação</Text>
               <Text style={styles.subtitle}>Digite o código que enviamos para seu e-mail</Text>
@@ -76,4 +81,3 @@ export default function VerifyCode() {
       </SafeAreaView>
     );
   }
-  

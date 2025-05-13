@@ -8,6 +8,7 @@ import { RootStackParamList } from '../../types/navigation';
 
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
+import AppLogo from '../../components/Logo';
 import styles, { getResponsivePadding, getResponsiveTitle } from './Register.styles';
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Register'>;
@@ -56,6 +57,10 @@ export default function Register() {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
+          {/* Logo azul no topo direito */}
+          <View style={styles.logoContainer}>
+            <AppLogo variant="azul" />
+          </View>
           <View style={[styles.content, getResponsivePadding(isLandscape, width)]}>
             <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
               Criar Conta

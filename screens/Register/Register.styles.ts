@@ -31,4 +31,10 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#1e1e1e',
   },
+  logoContainer: {
+    position: 'absolute',
+    top: 32,
+    right: 16,
+    zIndex: 10,
+  },
 });
