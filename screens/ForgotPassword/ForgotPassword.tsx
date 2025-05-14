@@ -43,20 +43,23 @@ export default function ForgotPassword() {
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
           {/* Logo azul no topo direito */}
           <View style={styles.logoContainer}>
-            <AppLogo variant="azul" />
+            <AppLogo variant="branca" />
           </View>
-          <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
-            Recuperar Senha
-          </Text>
+          {/* Card branco centralizado */}
+          <View style={styles.card}>
+            <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
+              Recuperar Senha
+            </Text>
 
-          <Input
-            placeholder="Digite seu e-mail"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-          />
+            <Input
+              placeholder="Digite seu e-mail"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+            />
 
-          <PrimaryButton title="Enviar código" onPress={handleEnviarLink} />
+            <PrimaryButton title="Enviar código" onPress={handleEnviarLink} />
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

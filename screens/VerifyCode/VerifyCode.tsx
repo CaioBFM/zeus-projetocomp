@@ -58,23 +58,26 @@ export default function VerifyCode() {
           >
             {/* Logo azul no topo direito */}
             <View style={styles.logoContainer}>
-              <AppLogo variant="azul" />
+              <AppLogo variant="branca" />
             </View>
-            <View style={styles.content}>
-              <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>Verificação</Text>
-              <Text style={styles.subtitle}>Digite o código que enviamos para seu e-mail</Text>
-  
-              {/* Input for verification code */}
-              <Input
-                placeholder="Código"
-                keyboardType="numeric"
-                value={codigo}
-                onChangeText={setCodigo}
-                maxLength={6}
-              />
-  
-              {/* Confirm button */}
-              <PrimaryButton title="Confirmar" onPress={handleVerificarCodigo} />
+            {/* Card branco centralizado */}
+            <View style={styles.card}>
+              <View style={styles.content}>
+                <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>Verificação</Text>
+                <Text style={styles.subtitle}>Digite o código que enviamos para seu e-mail</Text>
+    
+                {/* Input for verification code */}
+                <Input
+                  placeholder="Código"
+                  keyboardType="numeric"
+                  value={codigo}
+                  onChangeText={setCodigo}
+                  maxLength={6}
+                />
+    
+                {/* Confirm button */}
+                <PrimaryButton title="Confirmar" onPress={handleVerificarCodigo} />
+              </View>
             </View>
           </ScrollView>
         </KeyboardAvoidingView>

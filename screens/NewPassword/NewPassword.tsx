@@ -58,27 +58,30 @@ export default function VerifyCode() {
         >
           {/* Logo azul no topo direito */}
           <View style={styles.logoContainer}>
-            <AppLogo variant="azul" />
+            <AppLogo variant="branca" />
           </View>
-          <View style={styles.content}>
-            <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>Nova Senha</Text>
-            <Text style={styles.subtitle}>Crie sua nova senha para acessar o app</Text>
+          {/* Card branco centralizado */}
+          <View style={styles.card}>
+            <View style={styles.content}>
+              <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>Nova Senha</Text>
+              <Text style={styles.subtitle}>Crie sua nova senha para acessar o app</Text>
 
-            <Input
-              placeholder="Nova senha"
-              secureTextEntry
-              value={senha}
-              onChangeText={setSenha}
-            />
+              <Input
+                placeholder="Nova senha"
+                secureTextEntry
+                value={senha}
+                onChangeText={setSenha}
+              />
 
-            <Input
-              placeholder="Confirmar nova senha"
-              secureTextEntry
-              value={confirmarSenha}
-              onChangeText={setConfirmarSenha}
-            />
+              <Input
+                placeholder="Confirmar nova senha"
+                secureTextEntry
+                value={confirmarSenha}
+                onChangeText={setConfirmarSenha}
+              />
 
-            <PrimaryButton title="Confirmar" onPress={HandleDefinePassword} />
+              <PrimaryButton title="Confirmar" onPress={HandleDefinePassword} />
+            </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

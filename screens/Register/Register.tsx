@@ -59,9 +59,10 @@ export default function Register() {
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
           {/* Logo azul no topo direito */}
           <View style={styles.logoContainer}>
-            <AppLogo variant="azul" />
+            <AppLogo variant="branca" />
           </View>
-          <View style={[styles.content, getResponsivePadding(isLandscape, width)]}>
+          {/* Card branco centralizado */}
+          <View style={styles.card}>
             <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
               Criar Conta
             </Text>
@@ -74,7 +75,7 @@ export default function Register() {
 
             {/* Register button */}
             <PrimaryButton title="Registrar" onPress={handleRegister} />
-            <View style={{ height: 80 }}></View>
+            <View style={{ height: 30 }}></View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

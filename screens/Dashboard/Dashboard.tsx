@@ -9,7 +9,7 @@ export default function Dashboard() {
     <View style={styles.container}>
       {/* Logo azul no topo direito */}
       <View style={styles.logoContainer}>
-        <AppLogo variant="azul" />
+        <AppLogo variant="branca" />
       </View>
       <Text style={styles.text}>Bem-vindo ao Dashboard!</Text>
     </View>
