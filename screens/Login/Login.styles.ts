@@ -3,9 +3,19 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
+  
   safeArea: {
     flex: 1,
     backgroundColor: '#06213D', // ciano escuro sólido
+  logo: {
+    width: 120,
+    height: 120,
+    resizeMode: 'contain',
+    justifyContent: 'center',
+  },
+  topContainer: {
+    marginTop: 40,
+    alignItems: 'flex-start',
   },
   container: {
     flex: 1,
@@ -14,6 +24,10 @@ export default StyleSheet.create({
   },
   scroll: {
     flexGrow: 1,
+    justifyContent: 'center',
+  },
+  inner: {
+    flex: 1,
     justifyContent: 'center',
   },
   title: {
