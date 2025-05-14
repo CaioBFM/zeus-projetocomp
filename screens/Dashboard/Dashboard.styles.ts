@@ -10,4 +10,10 @@ export default StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
   },
+  logoContainer: {
+    position: 'absolute',
+    top: 32,
+    right: 16,
+    zIndex: 10,
+  },
 });

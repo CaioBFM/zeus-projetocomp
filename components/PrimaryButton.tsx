@@ -1,12 +1,15 @@
+// PrimaryButton component
+// A reusable button with customizable title and styles
 import { TouchableOpacity, Text, StyleSheet, TouchableOpacityProps } from 'react-native';
 
-interface Props extends TouchableOpacityProps {
+interface PrimaryButtonProps extends TouchableOpacityProps {
   title: string;
+  style?: object;
 }
 
-export default function PrimaryButton({ title, ...rest }: Props) {
+export default function PrimaryButton({ title, style, ...props }: PrimaryButtonProps) {
   return (
-    <TouchableOpacity style={styles.button} {...rest}>
+    <TouchableOpacity {...props} style={[styles.button, style]}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
