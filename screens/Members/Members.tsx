@@ -7,12 +7,62 @@ import styles from './Members.styles';
 import AppLogo from '../../components/Logo';
 import Sidebar from '../../components/Sidebar';
 import { RootStackParamList } from '../../types/navigation';
-import CardMembro from '../../components/Card';
+import Card from '../../components/Card';
 import PrimaryButton from '../../components/PrimaryButton';
 import Feather from 'react-native-vector-icons/Feather';
+import React, { useState } from 'react';
 
 export default function Members() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  // Lista de membros (mock)
+  const [membros, setMembros] = useState([
+    {
+      id: '1',
+      nome: 'Caio',
+      imagem: 'https://wallpapers.com/images/hd/cute-anime-profile-pictures-dfgqyw4wcfhurbkk.jpg',
+      email: 'caio@email.com',
+      idade: 22,
+      matricula: '12345',
+    },
+    {
+      id: '2',
+      nome: 'Enzo',
+      imagem: 'https://i.pinimg.com/originals/66/b3/24/66b3247f3e0ed3fa5279221874f628ac.jpg',
+      email: 'enzo@email.com',
+      idade: 21,
+      matricula: '23456',
+    },
+    {
+      id: '3',
+      nome: 'Menezes',
+      imagem: 'https://i.pinimg.com/736x/9d/57/c0/9d57c0de79ae1db10982d1a7b70b9ab9.jpg',
+      email: 'menezes@email.com',
+      idade: 23,
+      matricula: '34567',
+    },
+    {
+      id: '4',
+      nome: 'Chapolin',
+      imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNytxh56jwPUhoM9CfIoAaqx8sp4UGPkBpXw&s',
+      email: 'chapolin@email.com',
+      idade: 25,
+      matricula: '45678',
+    },
+    {
+      id: '5',
+      nome: 'Mayron',
+      imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ5YBx5noU3Gn4ier4-3XHy3P0_rIjGxYPqw&s',
+      email: 'mayron@email.com',
+      idade: 24,
+      matricula: '56789',
+    },
+  ]);
+
+  // Função para excluir membro
+  const handleDeleteMember = (id: string) => {
+    setMembros(prev => prev.filter(m => m.id !== id));
+  };
 
   return (
     <View style={styles.container}>
@@ -26,7 +76,7 @@ export default function Members() {
         </View>
         {/* Linha com título e botão à direita */}
         <View style={styles.headerRow}>
-          <Text style={styles.text}>Funcionários</Text>
+          <Text style={styles.text}>Membros</Text>
           <TouchableOpacity style={styles.headerButton} onPress={() => alert('Adicionar funcionário!')}>
             <Feather name="plus" size={26} color="#fff" />
           </TouchableOpacity>
@@ -34,31 +84,18 @@ export default function Members() {
         <View style={styles.linha} />
         {/* Lista de cards centralizada */}
         <ScrollView contentContainerStyle={styles.cardsContainer}>
-          <CardMembro
-            nome="Caio"
-            imagem="https://wallpapers.com/images/hd/cute-anime-profile-pictures-dfgqyw4wcfhurbkk.jpg"
-            onPress={() => alert('ola')}
-          />
-          <CardMembro
-            nome="Enzo"
-            imagem="https://i.pinimg.com/originals/66/b3/24/66b3247f3e0ed3fa5279221874f628ac.jpg"
-            onPress={() => alert('ola')}
-          />
-          <CardMembro
-            nome="Menezes"
-            imagem="https://i.pinimg.com/736x/9d/57/c0/9d57c0de79ae1db10982d1a7b70b9ab9.jpg"
-            onPress={() => alert('ola')}
-          />
-          <CardMembro
-            nome="Chapolin"
-            imagem="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNytxh56jwPUhoM9CfIoAaqx8sp4UGPkBpXw&s"
-            onPress={() => alert('ola')}
-          />
-          <CardMembro
-            nome="Mayron"
-            imagem="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ5YBx5noU3Gn4ier4-3XHy3P0_rIjGxYPqw&s"
-            onPress={() => alert('ola')}
-          />
+          {membros.map(membro => (
+            <Card
+              key={membro.id}
+              nome={membro.nome}
+              imagem={membro.imagem}
+              email={membro.email}
+              idade={membro.idade}
+              matricula={membro.matricula}
+              onPress={() => {}}
+              onDelete={() => handleDeleteMember(membro.id)}
+            />
+          ))}
         </ScrollView>
       </View>
     </View>
