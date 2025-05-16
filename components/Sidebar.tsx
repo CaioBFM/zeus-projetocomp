@@ -25,7 +25,7 @@ export default function Sidebar({ navigation }: SidebarProps) {
         <Text style={[styles.sidebarItem, { fontSize }]}>Dashboard</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => { setSidebarOpen(false); navigation.navigate('Members'); }}>
-        <Text style={[styles.sidebarItem, { fontSize }]}>Funcionários</Text>
+        <Text style={[styles.sidebarItem, { fontSize }]}>Membros</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => { setSidebarOpen(false); navigation.navigate('Budget'); }}>
         <Text style={[styles.sidebarItem, { fontSize }]}>Orçamentos</Text>
@@ -33,12 +33,12 @@ export default function Sidebar({ navigation }: SidebarProps) {
       <TouchableOpacity onPress={() => {
         Alert.alert('Confirmação', 'Você realmente deseja sair?', 
           [
+            {text: 'Cancelar', style: 'destructive'}, // fica vermelho em ios (nao funciona para android)
             {text: 'Sim', onPress: () => {
               setSidebarOpen(false);
               navigation.navigate('Welcome');
               }
             },
-            {text: 'Cancelar', style: 'destructive'}, // fica vermelho em ios (nao funciona para android)
           ],
           { cancelable: true }
         );
