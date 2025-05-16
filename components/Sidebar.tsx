@@ -1,5 +1,5 @@
 // Sidebar component reutilizável
-import { View, TouchableOpacity, Text, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, useWindowDimensions, Alert } from 'react-native';
 import { useState } from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -12,22 +12,39 @@ interface SidebarProps {
 export default function Sidebar({ navigation }: SidebarProps) {
   const { width } = useWindowDimensions();
   const isTablet = width > 600;
+  const sidebarWidth = isTablet ? Math.min(320, width * 0.28) : 220;
+  const sidebarPadding = isTablet ? 32 : 16;
+  const sidebarTop = isTablet ? 64 : 48;
+  const fontSize = isTablet ? 22 : 18;
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Conteúdo da Sidebar
   const SidebarContent = () => (
-    <View style={styles.sidebar}>
+    <View style={[styles.sidebar, { width: sidebarWidth, paddingHorizontal: sidebarPadding, paddingTop: sidebarTop }]}> 
       <TouchableOpacity onPress={() => { setSidebarOpen(false); navigation.navigate('Dashboard'); }}>
-        <Text style={styles.sidebarItem}>Dashboard</Text>
+        <Text style={[styles.sidebarItem, { fontSize }]}>Dashboard</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => { setSidebarOpen(false); navigation.navigate('Members'); }}>
-        <Text style={styles.sidebarItem}>Funcionários</Text>
+        <Text style={[styles.sidebarItem, { fontSize }]}>Funcionários</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => { setSidebarOpen(false); navigation.navigate('Budget'); }}>
-        <Text style={styles.sidebarItem}>Orçamentos</Text>
+        <Text style={[styles.sidebarItem, { fontSize }]}>Orçamentos</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { setSidebarOpen(false); navigation.navigate('Welcome'); }}>
-        <Text style={styles.sidebarItem}>Sair</Text>
+      <TouchableOpacity onPress={() => {
+        Alert.alert('Confirmação', 'Você realmente deseja sair?', 
+          [
+            {text: 'Sim', onPress: () => {
+              setSidebarOpen(false);
+              navigation.navigate('Welcome');
+              }
+            },
+            {text: 'Cancelar', style: 'destructive'}, // fica vermelho em ios (nao funciona para android)
+          ],
+          { cancelable: true }
+        );
+        }} 
+      >
+        <Text style={[styles.sidebarItem, { fontSize }]}>Sair</Text>
       </TouchableOpacity>
     </View>
   );
@@ -40,15 +57,15 @@ export default function Sidebar({ navigation }: SidebarProps) {
   return (
     <>
       <TouchableOpacity
-        style={styles.menuButton}
+        style={[styles.menuButton, isTablet && { top: 64, left: 24 }]}
         onPress={() => setSidebarOpen(true)}
       >
-        <Feather name="menu" size={32} color="#fff" />
+        <Feather name="menu" size={isTablet ? 38 : 32} color="#fff" />
       </TouchableOpacity>
       {sidebarOpen && (
-        <View style={styles.sidebarDrawer}>
+        <View style={[styles.sidebarDrawer, { width: sidebarWidth, paddingTop: sidebarTop }] }>
           <TouchableOpacity onPress={() => setSidebarOpen(false)} style={styles.closeButton}>
-            <Feather name="x" size={28} color="#fff" />
+            <Feather name="x" size={isTablet ? 34 : 28} color="#fff" />
           </TouchableOpacity>
           <SidebarContent />
         </View>
