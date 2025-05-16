@@ -6,5 +6,6 @@ export type RootStackParamList = {
     Dashboard: undefined;
     VerifyCode: undefined;
     NewPassword: undefined;
+    Members: undefined;
+    Budget: undefined;
   };
-  

@@ -11,6 +11,8 @@ import Welcome from '../screens/Welcome/Welcome';
 import Register from '../screens/Register/Register';
 import VerifyCode from '../screens/VerifyCode/VerifyCode'
 import NewPassword from '../screens/NewPassword/NewPassword'
+import Members from '../screens/Members/Members';
+import Budget from '../screens/Budget/Budget';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,7 +21,7 @@ export default function AppNavigator() {
     <NavigationContainer>
       {/* Define the navigation stack and initial screen */}
       <Stack.Navigator
-        initialRouteName="Welcome"
+        initialRouteName="Dashboard"
         id={undefined}
         screenOptions={{
           headerShown: false, // Hide headers by default
@@ -33,6 +35,8 @@ export default function AppNavigator() {
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: true }} />
         <Stack.Screen name="VerifyCode" component={VerifyCode} options={{ headerShown: true }} />
         <Stack.Screen name="NewPassword" component={NewPassword} options={{ headerShown: true }} />
+        <Stack.Screen name="Members" component={Members} options={{ headerShown: true }} />
+        <Stack.Screen name="Budget" component={Budget} options={{ headerShown: true }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

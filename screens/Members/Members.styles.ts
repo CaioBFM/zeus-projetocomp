@@ -1,9 +1,16 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
+    container: {
     flex: 1,
     backgroundColor: '#06213D',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 22,
+    fontWeight: 'bold',
   },
   content: {
     flex: 1,
@@ -18,10 +25,5 @@ export default StyleSheet.create({
     right: 16,
     zIndex: 10,
   },
-  text: {
-    color: '#fff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginTop: 32,
-  },
 });
+
