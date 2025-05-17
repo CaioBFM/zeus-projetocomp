@@ -1,72 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, Alert, TextInput, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const { width, height } = Dimensions.get('window');
 
+interface CardField {
+  key: string;
+  label: string;
+  value: string;
+  editable?: boolean;
+  keyboardType?: 'default' | 'numeric' | 'email-address';
+}
+
 interface Props {
-  nome: string,
-  imagem: string,
-  email?: string,
-  idade?: number,
-  matricula?: string,
-  onPress?: (novoNome?: string) => void; // Permite passar o novo nome
+  imagem?: string; // Agora opcional
+  fields: CardField[];
+  onFieldChange?: (key: string, value: string) => void;
   onDelete?: () => void;
+  title?: string;
+  expandable?: boolean;
+  cardSize?: 'default' | 'small' | 'large'; // Novo prop para tamanho
+  hideImage?: boolean; // Novo prop para esconder imagem
 }
 
 // Altere o nome do componente para Card
-const Card: React.FC<Props> = ({ nome, imagem, email, idade, matricula, onPress, onDelete }) => {
+const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title, expandable = true, cardSize = 'default', hideImage = false }) => {
   const [expanded, setExpanded] = useState(false);
   const [editField, setEditField] = useState<string | null>(null);
-  const [editValues, setEditValues] = useState({
-    nome: nome,
-    email: email || '',
-    idade: idade !== undefined ? String(idade) : '',
-    matricula: matricula || '',
+  const [editValues, setEditValues] = useState(() => {
+    const obj: Record<string, string> = {};
+    fields.forEach(f => { obj[f.key] = f.value; });
+    return obj;
   });
 
-  const handleEdit = (field: string) => {
-    setEditField(field);
-  };
+  useEffect(() => {
+    // Atualiza editValues se fields mudar
+    setEditValues(() => {
+      const obj: Record<string, string> = {};
+      fields.forEach(f => { obj[f.key] = f.value; });
+      return obj;
+    });
+  }, [fields]);
 
-  const handleChange = (field: string, value: string) => {
-    setEditValues(prev => ({ ...prev, [field]: value }));
+  const handleEdit = (key: string) => setEditField(key);
+  const handleChange = (key: string, value: string) => {
+    setEditValues(prev => ({ ...prev, [key]: value }));
   };
-
-  const handleEditEnd = () => {
-    if (editField === 'nome' && typeof onPress === 'function') {
-      onPress(editValues.nome); // Atualiza o nome no componente pai
-    }
+  const handleEditEnd = (key: string) => {
     setEditField(null);
+    if (onFieldChange) onFieldChange(key, editValues[key]);
   };
-
   const handleDelete = () => {
-    // Exibe o Alert de confirmação
     Alert.alert(
-      'Excluir Perfil',
-      'Tem certeza que deseja excluir este perfil?',
+      'Excluir',
+      'Tem certeza que deseja excluir?',
       [
         { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'Excluir',
-          style: 'destructive',
-          onPress: () => {
-            if (onDelete) onDelete();
-          },
-        },
+        { text: 'Excluir', style: 'destructive', onPress: () => onDelete && onDelete() },
       ],
       { cancelable: true }
     );
   };
 
+  // O título principal do card (ex: nome)
+  const mainTitle = title || (fields[0]?.value ?? '');
+
+  // Ajusta estilos dinamicamente
+  const cardStyle = [
+    styles.card,
+    cardSize === 'small' && { width: CARD_WIDTH * 0.8, minHeight: CARD_HEIGHT * 0.7, paddingVertical: 10, paddingHorizontal: 8 },
+    cardSize === 'large' && { width: CARD_WIDTH * 1.1, minHeight: CARD_HEIGHT * 1.2, paddingVertical: 32, paddingHorizontal: 24 },
+  ];
+
   return (
-    <View style={styles.card}>
+    <View style={cardStyle}>
       <View style={styles.rowTop}>
-        <Image source={{ uri: imagem }} style={styles.imagem} />
-        <Text style={styles.nome}>{editValues.nome}</Text>
-        <TouchableOpacity onPress={() => setExpanded(!expanded)}>
-          <Icon name={expanded ? 'chevron-up' : 'chevron-down'} size={28} color="#222" style={styles.iconExpand} />
-        </TouchableOpacity>
+        {!hideImage && imagem && <Image source={{ uri: imagem }} style={styles.imagem} />}
+        <Text style={styles.nome}>{mainTitle}</Text>
+        {expandable && (
+          <TouchableOpacity onPress={() => setExpanded(!expanded)}>
+            <Icon name={expanded ? 'chevron-up' : 'chevron-down'} size={28} color="#222" style={styles.iconExpand} />
+          </TouchableOpacity>
+        )}
       </View>
       {expanded && (
         <KeyboardAvoidingView
@@ -77,90 +92,37 @@ const Card: React.FC<Props> = ({ nome, imagem, email, idade, matricula, onPress,
         >
           <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
             <View style={styles.infoContainer}>
-              <View style={styles.infoRow}>
-                <Text style={styles.infoLabelBold}>Nome:</Text>
-                {editField === 'nome' ? (
-                  <View style={{ flex: 1 }}>
-                    <TextInput
-                      value={editValues.nome}
-                      onChangeText={v => handleChange('nome', v)}
-                      onBlur={handleEditEnd}
-                      autoFocus
-                      style={[styles.infoLabel, { borderBottomWidth: 1, borderColor: '#ccc', minWidth: 60 }]}
-                    />
-                  </View>
-                ) : (
-                  <Text style={styles.infoLabel}>{editValues.nome}</Text>
-                )}
-                <TouchableOpacity style={styles.editIcon} onPress={() => handleEdit('nome')}>
-                  <Icon name="pencil" size={18} color="#888" />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.infoRow}>
-                <Text style={styles.infoLabelBold}>Email:</Text>
-                {editField === 'email' ? (
-                  <View style={{ flex: 1 }}>
-                    <TextInput
-                      value={editValues.email}
-                      onChangeText={v => handleChange('email', v)}
-                      onBlur={handleEditEnd}
-                      autoFocus
-                      style={[styles.infoLabel, { borderBottomWidth: 1, borderColor: '#ccc', minWidth: 60 }]}
-                      keyboardType="email-address"
-                    />
-                  </View>
-                ) : (
-                  <Text style={styles.infoLabel}>{editValues.email}</Text>
-                )}
-                <TouchableOpacity style={styles.editIcon} onPress={() => handleEdit('email')}>
-                  <Icon name="pencil" size={18} color="#888" />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.infoRow}>
-                <Text style={styles.infoLabelBold}>Idade:</Text>
-                {editField === 'idade' ? (
-                  <View style={{ minWidth: 40 }}>
-                    <TextInput
-                      value={editValues.idade}
-                      onChangeText={v => handleChange('idade', v.replace(/[^0-9]/g, ''))}
-                      onBlur={handleEditEnd}
-                      autoFocus
-                      style={[styles.infoLabel, { borderBottomWidth: 1, borderColor: '#ccc', minWidth: 40 }]}
-                      keyboardType="numeric"
-                      maxLength={3}
-                    />
-                  </View>
-                ) : (
-                  <Text style={styles.infoLabel}>{editValues.idade}</Text>
-                )}
-                <TouchableOpacity style={styles.editIcon} onPress={() => handleEdit('idade')}>
-                  <Icon name="pencil" size={18} color="#888" />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.infoRow}>
-                <Text style={styles.infoLabelBold}>Matrícula:</Text>
-                {editField === 'matricula' ? (
-                  <View style={{ minWidth: 60 }}>
-                    <TextInput
-                      value={editValues.matricula}
-                      onChangeText={v => handleChange('matricula', v)}
-                      onBlur={handleEditEnd}
-                      autoFocus
-                      style={[styles.infoLabel, { borderBottomWidth: 1, borderColor: '#ccc', minWidth: 60 }]}
-                    />
-                  </View>
-                ) : (
-                  <Text style={styles.infoLabel}>{editValues.matricula}</Text>
-                )}
-                <TouchableOpacity style={styles.editIcon} onPress={() => handleEdit('matricula')}>
-                  <Icon name="pencil" size={18} color="#888" />
-                </TouchableOpacity>
-              </View>
+              {fields.map(field => (
+                <View style={styles.infoRow} key={field.key}>
+                  <Text style={styles.infoLabelBold}>{field.label}:</Text>
+                  {editField === field.key && field.editable ? (
+                    <View style={{ flex: 1 }}>
+                      <TextInput
+                        value={editValues[field.key]}
+                        onChangeText={v => handleChange(field.key, v)}
+                        onBlur={() => handleEditEnd(field.key)}
+                        autoFocus
+                        style={[styles.infoLabel, { borderBottomWidth: 1, borderColor: '#ccc', minWidth: 60 }]}
+                        keyboardType={field.keyboardType || 'default'}
+                      />
+                    </View>
+                  ) : (
+                    <Text style={styles.infoLabel}>{editValues[field.key]}</Text>
+                  )}
+                  {field.editable && (
+                    <TouchableOpacity style={styles.editIcon} onPress={() => handleEdit(field.key)}>
+                      <Icon name="pencil" size={18} color="#888" />
+                    </TouchableOpacity>
+                  )}
+                </View>
+              ))}
               <View style={{ height: 10 }} />
-              <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
-                <Icon name="trash" size={18} color="#fff" style={{ marginRight: 6 }} />
-                <Text style={styles.deleteButtonText}>Excluir Perfil</Text>
-              </TouchableOpacity>
+              {onDelete && (
+                <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
+                  <Icon name="trash" size={18} color="#fff" style={{ marginRight: 6 }} />
+                  <Text style={styles.deleteButtonText}>Excluir</Text>
+                </TouchableOpacity>
+              )}
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -205,7 +167,7 @@ const styles = StyleSheet.create({
   },
   nome: {
     flex: 1,
-    fontSize: width > 900 ? 32 : width > 600 ? 24 : 0.055 * width,
+    fontSize: width > 900 ? 32 : width > 600 ? 24 : 0.050 * width,
     fontWeight: '700',
     color: '#1e293b',
   },
