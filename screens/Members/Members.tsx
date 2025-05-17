@@ -19,45 +19,50 @@ export default function Members() {
   const [membros, setMembros] = useState([
     {
       id: '1',
-      nome: 'Caio',
       imagem: 'https://wallpapers.com/images/hd/cute-anime-profile-pictures-dfgqyw4wcfhurbkk.jpg',
+      nome: 'Caio',
       email: 'caio@email.com',
       idade: 22,
       matricula: '12345',
     },
     {
       id: '2',
-      nome: 'Enzo',
       imagem: 'https://i.pinimg.com/originals/66/b3/24/66b3247f3e0ed3fa5279221874f628ac.jpg',
+      nome: 'Enzo',
       email: 'enzo@email.com',
       idade: 21,
       matricula: '23456',
     },
     {
       id: '3',
-      nome: 'Menezes',
       imagem: 'https://i.pinimg.com/736x/9d/57/c0/9d57c0de79ae1db10982d1a7b70b9ab9.jpg',
+      nome: 'Menezes',
       email: 'menezes@email.com',
       idade: 23,
       matricula: '34567',
     },
     {
       id: '4',
-      nome: 'Chapolin',
       imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNytxh56jwPUhoM9CfIoAaqx8sp4UGPkBpXw&s',
+      nome: 'Chapolin',
       email: 'chapolin@email.com',
       idade: 25,
       matricula: '45678',
     },
     {
       id: '5',
-      nome: 'Mayron',
       imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ5YBx5noU3Gn4ier4-3XHy3P0_rIjGxYPqw&s',
+      nome: 'Mayron',
       email: 'mayron@email.com',
       idade: 24,
       matricula: '56789',
     },
   ]);
+
+  // Atualiza campo editado do membro
+  const handleFieldChange = (id: string, key: string, value: string) => {
+    setMembros(prev => prev.map(m => m.id === id ? { ...m, [key]: key === 'idade' ? Number(value) : value } : m));
+  };
 
   // Função para excluir membro
   const handleDeleteMember = (id: string) => {
@@ -87,12 +92,15 @@ export default function Members() {
           {membros.map(membro => (
             <Card
               key={membro.id}
-              nome={membro.nome}
               imagem={membro.imagem}
-              email={membro.email}
-              idade={membro.idade}
-              matricula={membro.matricula}
-              onPress={() => {}}
+              title={membro.nome}
+              fields={[
+                { key: 'nome', label: 'Nome', value: membro.nome, editable: true },
+                { key: 'email', label: 'Email', value: membro.email, editable: true, keyboardType: 'email-address' },
+                { key: 'idade', label: 'Idade', value: String(membro.idade), editable: true, keyboardType: 'numeric' },
+                { key: 'matricula', label: 'Matrícula', value: membro.matricula, editable: true },
+              ]}
+              onFieldChange={(key, value) => handleFieldChange(membro.id, key, value)}
               onDelete={() => handleDeleteMember(membro.id)}
             />
           ))}
