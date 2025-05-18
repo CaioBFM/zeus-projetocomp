@@ -20,8 +20,10 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'AddMember'
 export default function AddMember() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [idade, setIdade] = useState('');
-  const [matricula, setMatricula] = useState('');
+  const [habilidades, setHabilidades] = useState('');
+  const [genero, setGenero] = useState('');
+  const [cargo, setCargo] = useState('');
+  const [telefone, setTelefone] = useState('');
   const [imagem, setImagem] = useState<string | null>(null);
   const [dataNascimento, setDataNascimento] = useState('');
   const { addMember } = useMembers();
@@ -54,16 +56,12 @@ export default function AddMember() {
   };
 
   const validateInputs = () => {
-    if (!nome || !email || !idade || !matricula || !dataNascimento) {
+    if (!nome || !email || !cargo || !telefone || !dataNascimento || !genero || !habilidades) {
       Alert.alert('Erro', 'Preencha todos os campos.');
       return false;
     }
     if (!/\S+@\S+\.\S+/.test(email)) {
       Alert.alert('Erro', 'E-mail inválido.');
-      return false;
-    }
-    if (isNaN(Number(idade))) {
-      Alert.alert('Erro', 'Idade inválida.');
       return false;
     }
     // Validação da data de nascimento com a data atual
@@ -90,12 +88,18 @@ export default function AddMember() {
 
   const handleAddMember = () => {
     if (!validateInputs()) return;
+    const hoje = new Date();
+    const dataFormatada = hoje.toLocaleDateString('pt-BR');
     addMember({
       id: Date.now().toString(),
       nome,
+      dataNascimento,
       email,
-      idade: Number(idade),
-      matricula,
+      cargo,
+      telefone,
+      genero,
+      dataIngresso: dataFormatada,
+      habilidades,
       imagem: imagem || undefined,
     });
     Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
@@ -128,16 +132,13 @@ export default function AddMember() {
                 </View>
               )}
             </TouchableOpacity>
-            <Input placeholder="Nome completo" value={nome} onChangeText={setNome} />
-            <Input placeholder="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" />
-            <Input placeholder='Gênero' />
-            <Input placeholder='Cargo' />
-            <Input placeholder='Área' />
+            <Input placeholder="Nome completo" value={nome} onChangeText={setNome} /> 
             <Input placeholder='Data de nascimento DD/MM/YYYY' value={dataNascimento} onChangeText={setDataNascimento} />
-            <Input placeholder='Data de ingresso DD/MM/YYYY' />
-            <Input placeholder='Número de telefone' />
-            <Input placeholder="Idade" value={idade} onChangeText={setIdade} keyboardType="numeric" />
-            <Input placeholder="Matrícula" value={matricula} onChangeText={setMatricula} />
+            <Input placeholder="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" />
+            <Input placeholder='Cargo' value={cargo} onChangeText={setCargo} />
+            <Input placeholder='Telefone' value={telefone} onChangeText={setTelefone} />
+            <Input placeholder='Gênero' value={genero} onChangeText={setGenero} />
+            <Input placeholder='Habilidades' value={habilidades} onChangeText={setHabilidades} />
             <View style={styles.buttonRow}>
               <PrimaryButton
                 title="Cancelar"

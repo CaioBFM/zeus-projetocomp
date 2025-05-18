@@ -43,9 +43,13 @@ export default function Members() {
               title={membro.nome}
               fields={[
                 { key: 'nome', label: 'Nome', value: membro.nome, editable: true },
+                { key: 'dataNascimento', label: 'Data Nascimento', value: membro.dataNascimento, editable: true },
                 { key: 'email', label: 'Email', value: membro.email, editable: true, keyboardType: 'email-address' },
-                { key: 'idade', label: 'Idade', value: String(membro.idade), editable: true, keyboardType: 'numeric' },
-                { key: 'matricula', label: 'Matrícula', value: membro.matricula, editable: true },
+                { key: 'cargo', label: 'Cargo', value: String(membro.cargo), editable: true, keyboardType: 'numeric' },
+                { key: 'telefone', label: 'Telefone', value: membro.telefone, editable: true },
+                { key: 'genero', label: 'Genero', value: membro.genero, editable: true },
+                { key: 'dataIngresso', label: 'Data de Ingresso', value: membro.dataIngresso, editable: false },
+                { key: 'habilidades', label: 'Habilidades', value: membro.habilidades, editable: true },
               ]}
               onFieldChange={(key, value) => {/* opcional: implementar edição global */}}
               onDelete={() => removeMember(membro.id)}
