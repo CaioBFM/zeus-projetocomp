@@ -16,6 +16,7 @@ interface BudgetContextType {
   Budget: Budget[];
   addBudget: (b: Budget) => void;
   removeBudget: (id: string) => void;
+  updateBudgetStatus: (id: string, status: string) => void;
 }
 
 const BudgetContext = createContext<BudgetContextType | undefined>(undefined);
@@ -25,9 +26,12 @@ export function BudgetProvider({ children }: { children: ReactNode }) {
 
   const addBudget = (b: Budget) => setBudget(prev => [...prev, b]);
   const removeBudget = (id: string) => setBudget(prev => prev.filter(b => b.id !== id));
+  const updateBudgetStatus = (id: string, status: string) => {
+    setBudget(prev => prev.map(b => b.id === id ? { ...b, status } : b));
+  };
 
   return (
-    <BudgetContext.Provider value={{ Budget, addBudget, removeBudget }}>
+    <BudgetContext.Provider value={{ Budget, addBudget, removeBudget, updateBudgetStatus }}>
       {children}
     </BudgetContext.Provider>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, Alert, TextInput, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import PrimaryButton from './PrimaryButton'; // Importe o componente PrimaryButton
 
 const { width, height } = Dimensions.get('window');
 
@@ -21,10 +22,13 @@ interface Props {
   expandable?: boolean;
   cardSize?: 'default' | 'small' | 'large'; // Novo prop para tamanho
   hideImage?: boolean; // Novo prop para esconder imagem
+  isBudgetCard?: boolean; // Novo prop para identificar card de orçamento
+  status?: string; // Status do orçamento
+  onStatusChange?: (status: string) => void; // Handler para mudar status
 }
 
 // Altere o nome do componente para Card
-const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title, expandable = true, cardSize = 'default', hideImage = false }) => {
+const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title, expandable = true, cardSize = 'default', hideImage = false, isBudgetCard = false, status, onStatusChange }) => {
   const [expanded, setExpanded] = useState(false);
   const [editField, setEditField] = useState<string | null>(null);
   const [editValues, setEditValues] = useState(() => {
@@ -65,11 +69,18 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
   // O título principal do card (ex: nome)
   const mainTitle = title || (fields[0]?.value ?? '');
 
-  // Ajusta estilos dinamicamente
+  // Cores de fundo para status de orçamento
+  let statusBg = {};
+  if (isBudgetCard) {
+    if (status === 'Em análise') statusBg = { backgroundColor: '#FFED83' };
+    else if (status === 'Reprovado') statusBg = { backgroundColor: '#F87171' };
+    else if (status === 'Aprovado') statusBg = { backgroundColor: '#90ee90' };
+  }
   const cardStyle = [
     styles.card,
-    cardSize === 'small' && { width: CARD_WIDTH * 0.8, minHeight: CARD_HEIGHT * 0.7, paddingVertical: 10, paddingHorizontal: 8 },
-    cardSize === 'large' && { width: CARD_WIDTH * 1.1, minHeight: CARD_HEIGHT * 1.2, paddingVertical: 32, paddingHorizontal: 24 },
+    cardSize === 'small' && { width: CARD_WIDTH * 0.8, minHeight: CARD_HEIGHT * 0.7, paddingVertical: 10, paddingHorizontal: 8 }, // Orçamentos
+    cardSize === 'large' && { width: CARD_WIDTH * 1.1, minHeight: CARD_HEIGHT * 1.2, paddingVertical: 32, paddingHorizontal: 24 }, // Membros
+    statusBg,
   ];
 
   return (
@@ -122,6 +133,21 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
                   <Icon name="trash" size={18} color="#fff" style={{ marginRight: 6 }} />
                   <Text style={styles.deleteButtonText}>Excluir</Text>
                 </TouchableOpacity>
+              )}
+              {/* Botões Aprovar/Reprovar para orçamento em análise */}
+              {isBudgetCard && status === 'Em análise' && onStatusChange && (
+                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 16, gap: 8 }}>
+                  <PrimaryButton
+                    title="Reprovar"
+                    onPress={() => onStatusChange('Reprovado')}
+                    style={{ flex: 1, backgroundColor: '#ef4444' }}
+                  />
+                  <PrimaryButton
+                    title="Aprovar"
+                    onPress={() => onStatusChange('Aprovado')}
+                    style={{ flex: 1, backgroundColor: '#22c55e', marginRight: 8 }}
+                  />
+                </View>
               )}
             </View>
           </ScrollView>
@@ -227,6 +253,18 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: width > 900 ? 19 : width > 600 ? 16 : 15,
+  },
+  statusButton: {
+    flex: 1,
+    paddingVertical: width > 600 ? 14 : 10,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginHorizontal: 4,
+  },
+  statusButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: width > 600 ? 18 : 15,
   },
 });
 
