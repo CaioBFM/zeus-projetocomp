@@ -44,9 +44,12 @@ export default function Budget() {
               fields={[
                 { key: 'numero', label: 'Número', value: Budget.numero, editable: true , keyboardType: 'numeric' },
                 { key: 'descricao', label: 'Descrição', value: Budget.descricao, editable: true },
+                { key: 'cliente', label: 'Cliente', value: Budget.cliente, editable: true },
+                { key: 'membro', label: 'Membro', value: Budget.membro, editable: true },
                 { key: 'valorEstimado', label: 'Valor estimado', value: String(Budget.valorEstimado), editable: true, keyboardType: 'numeric' },
-                { key: 'status', label: 'Status', value: Budget.status, editable: true },
-                { key: 'cliente', label: 'Cliente', value: Budget.cliente, editable: true }, 
+                { key: 'DataCriacao', label: 'Data de criação', value: Budget.dataCriacaoOrcamento, editable: false },
+                { key: 'CustosPrevistos', label: 'Custos previstos', value: Budget.custosPrevistos, editable: true },
+                { key: 'status', label: 'Status', value: Budget.status, editable: true }, 
               ]}
               onFieldChange={(key, value) => {/* Poderia implementar açao global depois */}}
               onDelete={() => removeBudget(Budget.id)}

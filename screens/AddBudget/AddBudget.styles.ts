@@ -42,8 +42,8 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#1e1e1e',
-    fontSize: isTablet ? 30 : 22,
-    marginBottom: isTablet ? 32 : 18,
+    fontSize: isTablet ? 30 : 24,
+    marginBottom: isTablet ? 40 : 24,
   },
   input: {
     fontSize: isTablet ? 18 : 15,

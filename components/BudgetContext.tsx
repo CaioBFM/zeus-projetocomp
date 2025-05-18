@@ -4,26 +4,27 @@ export interface Budget {
   id: string;
   numero: string;
   descricao: string;
-  valorEstimado: string;
-  status: string;
   cliente: string;
+  membro: string;
+  valorEstimado: string;
+  custosPrevistos: string;
+  dataCriacaoOrcamento: string;
+  status: string;
 }
 
 interface BudgetContextType {
   Budget: Budget[];
-  addBudget: (m: Budget) => void;
+  addBudget: (b: Budget) => void;
   removeBudget: (id: string) => void;
 }
 
 const BudgetContext = createContext<BudgetContextType | undefined>(undefined);
 
 export function BudgetProvider({ children }: { children: ReactNode }) {
-  const [Budget, setBudget] = useState<Budget[]>([
-    // Budget iniciais podem ser colocados aqui se quiser
-  ]);
+  const [Budget, setBudget] = useState<Budget[]>([]);
 
-  const addBudget = (m: Budget) => setBudget(prev => [...prev, m]);
-  const removeBudget = (id: string) => setBudget(prev => prev.filter(m => m.id !== id));
+  const addBudget = (b: Budget) => setBudget(prev => [...prev, b]);
+  const removeBudget = (id: string) => setBudget(prev => prev.filter(b => b.id !== id));
 
   return (
     <BudgetContext.Provider value={{ Budget, addBudget, removeBudget }}>

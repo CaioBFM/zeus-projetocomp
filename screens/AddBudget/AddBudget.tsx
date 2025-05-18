@@ -18,9 +18,12 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'AddMember'
 export default function AddBudget() {
   const [numero, setNumero] = useState('');
   const [descricao, setDescricao] = useState('');
-  const [valorEstimado, setValorEstimado] = useState('');
-  const [status, setStatus] = useState('');
   const [cliente, setCliente] = useState('');
+  const [membro, setMembro] = useState('');
+  const [valorEstimado, setValorEstimado] = useState('');
+  const [custosPrevistos, setCustosPrevistos] = useState('');
+  const [status, setStatus] = useState('');
+  
   const { addBudget } = useBudget();
   const navigation = useNavigation<NavigationProps>();
 
@@ -31,23 +34,24 @@ export default function AddBudget() {
     }
     return true;
   }
-
   const handleAddBudget = () => {
     if (!validateInputs()) return;
+    const hoje = new Date();
+    const dataFormatada = hoje.toLocaleDateString('pt-BR'); 
     addBudget({
       id: Date.now().toString(),
       numero,
       descricao,
-      valorEstimado,
-      status,
       cliente,
+      membro,
+      valorEstimado,
+      custosPrevistos,
+      dataCriacaoOrcamento: dataFormatada,
+      status,
     });
     Alert.alert('Sucesso', 'Orçamento cadastrado com sucesso!');
     navigation.goBack();
   };
-
-  const { width, height } = useWindowDimensions();
-  const isLandscape = width > height;
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -58,21 +62,22 @@ export default function AddBudget() {
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
           {/* Logo no topo do conteúdo, com espaçamento */}
-          <View style={[styles.logoContainer, { marginBottom: 32 }]}> 
+          <View style={[styles.logoContainer]}> 
             <AppLogo variant="branca" />
           </View>
           <View style={styles.card}>
-            <Text style={[styles.title, { fontSize: isLandscape ? 28 : 24, marginBottom: isLandscape ? 40 : 24 }]}>Adicionar Orçamento</Text>
+            <Text style={styles.title}>Adicionar Orçamento</Text>
             <Input placeholder="Número" value={numero} onChangeText={setNumero} keyboardType='numeric' />
             <Input placeholder="Descrição" value={descricao} onChangeText={setDescricao} />
+            <Input placeholder="Cliente" value={cliente} onChangeText={setCliente} />
+            <Input placeholder='Membro' value={membro} onChangeText={setMembro} />
             <Input placeholder='Valor estimado' value={valorEstimado} onChangeText={setValorEstimado} />
-            <Input placeholder='Custos previstos' />
-            <Input placeholder="Cliente Associado" value={cliente} onChangeText={setCliente} />
+            <Input placeholder='Custos previstos' value={custosPrevistos} onChangeText={setCustosPrevistos} />
             <Input placeholder="Status" value={status} onChangeText={setStatus} />
-            <View style={styles.buttonRow} >
+            <View style={styles.buttonRow}>
               <PrimaryButton 
                 title="Cancelar" 
-                onPress= {() => {
+                onPress={() => {
                   Alert.alert(
                     'Cancelar',
                     'Seus dados serão perdidos, deseja mesmo cancelar?',
