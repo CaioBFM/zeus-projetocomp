@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation';
 import { useBudget } from '../../components/BudgetContext';
+import { useMembers } from '../../components/MembersContext';
+import { Modal, TouchableOpacity, FlatList } from 'react-native';
 
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
@@ -22,9 +24,11 @@ export default function AddBudget() {
   const [membro, setMembro] = useState('');
   const [valorEstimado, setValorEstimado] = useState('');
   const [custosPrevistos, setCustosPrevistos] = useState('');
+  const { membros } = useMembers();
   
   const { addBudget } = useBudget();
   const navigation = useNavigation<NavigationProps>();
+  const [membroModalVisible, setMembroModalVisible] = useState(false);
 
   function validateInputs() {
     if (!numero || !descricao || !valorEstimado || !cliente || !membro || !valorEstimado || !custosPrevistos) {
@@ -69,7 +73,51 @@ export default function AddBudget() {
             <Input placeholder="Número" value={numero} onChangeText={setNumero} keyboardType='numeric' />
             <Input placeholder="Descrição" value={descricao} onChangeText={setDescricao} />
             <Input placeholder="Cliente" value={cliente} onChangeText={setCliente} />
-            <Input placeholder='Membro' value={membro} onChangeText={setMembro} />
+            <TouchableOpacity
+              onPress={() => setMembroModalVisible(true)}
+              accessibilityLabel="Selecionar membro"
+              style={{ marginBottom: 16 }}
+            >
+              <Input
+                placeholder='Membro'
+                value={membro}
+                editable={false}
+                pointerEvents="none"
+                style={{ backgroundColor: '#f3f4f6' }}
+              />
+            </TouchableOpacity>
+            <Modal
+              visible={membroModalVisible}
+              animationType="slide"
+              transparent
+              onRequestClose={() => setMembroModalVisible(false)}
+            >
+              <TouchableOpacity
+                style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' }}
+                activeOpacity={1}
+                onPressOut={() => setMembroModalVisible(false)}
+              >
+                <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#fff', borderTopLeftRadius: 18, borderTopRightRadius: 18, padding: 24, maxHeight: 400 }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 16, color: '#222' }}>Selecione o membro</Text>
+                  <FlatList
+                    data={membros}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => (
+                      <TouchableOpacity
+                        onPress={() => {
+                          setMembro(item.nome);
+                          setMembroModalVisible(false);
+                        }}
+                        style={{ paddingVertical: 14, borderBottomWidth: 1, borderColor: '#eee' }}
+                        accessibilityLabel={`Selecionar membro ${item.nome}`}
+                      >
+                        <Text style={{ fontSize: 17, color: '#222' }}>{item.nome}</Text>
+                      </TouchableOpacity>
+                    )}
+                  />
+                </View>
+              </TouchableOpacity>
+            </Modal>
             <Input placeholder='Valor estimado' value={valorEstimado} onChangeText={setValorEstimado} />
             <Input placeholder='Custos previstos' value={custosPrevistos} onChangeText={setCustosPrevistos} />
             <View style={styles.buttonRow}>
