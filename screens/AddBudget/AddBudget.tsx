@@ -5,8 +5,6 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation';
-import * as ImagePicker from 'expo-image-picker';
-import { Image, TouchableOpacity } from 'react-native';
 import { useBudget } from '../../components/BudgetContext';
 
 import Input from '../../components/Input';
@@ -26,13 +24,13 @@ export default function AddBudget() {
   const { addBudget } = useBudget();
   const navigation = useNavigation<NavigationProps>();
 
-  const validateInputs = () => {
+  function validateInputs() {
     if (!numero || !descricao || !valorEstimado || !status) {
       Alert.alert('Erro', 'Preencha todos os campos.');
       return false;
     }
     return true;
-  };
+  }
 
   const handleAddBudget = () => {
     if (!validateInputs()) return;
@@ -44,6 +42,7 @@ export default function AddBudget() {
       status,
       cliente,
     });
+    Alert.alert('Sucesso', 'Orçamento cadastrado com sucesso!');
     navigation.goBack();
   };
 
@@ -70,7 +69,24 @@ export default function AddBudget() {
             <Input placeholder='Custos previstos' />
             <Input placeholder="Cliente Associado" value={cliente} onChangeText={setCliente} />
             <Input placeholder="Status" value={status} onChangeText={setStatus} />
-            <PrimaryButton title="Adicionar" onPress={handleAddBudget} />
+            <View style={styles.buttonRow} >
+              <PrimaryButton title="Adicionar" onPress={handleAddBudget} style={styles.addButton} />
+              <PrimaryButton 
+                title="Cancelar" 
+                onPress= {() => {
+                  Alert.alert(
+                    'Cancelar',
+                    'Seus dados serão perdidos, deseja mesmo cancelar?',
+                    [
+                      { text: 'Não', style: 'cancel' },
+                      { text: 'Sim', style: 'destructive', onPress: () => navigation.goBack() },
+                    ],
+                    { cancelable: true }
+                  );
+                }}
+                style={styles.cancelButton}
+              />
+            </View>
             <View style={styles.bottomSpacing}></View>
           </View>
         </ScrollView>

@@ -51,4 +51,16 @@ export default StyleSheet.create({
   bottomSpacing: {
     height: isTablet ? 48 : 30,
   },
+  buttonRow: {
+    flexDirection: 'row',
+    gap: isTablet ? 20 : 12,
+    marginTop: isTablet ? 16 : 8,
+  },
+  addButton: {
+    flex: 1,
+  },
+  cancelButton: {
+    flex: 1,
+    backgroundColor: 'red',
+  },
 });

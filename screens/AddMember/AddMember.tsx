@@ -64,6 +64,7 @@ export default function AddMember() {
       matricula,
       imagem: imagem || undefined,
     });
+    Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
     navigation.goBack();
   };
 
@@ -103,7 +104,28 @@ export default function AddMember() {
             <Input placeholder='Número de telefone' />
             <Input placeholder="Idade" value={idade} onChangeText={setIdade} keyboardType="numeric" />
             <Input placeholder="Matrícula" value={matricula} onChangeText={setMatricula} />
-            <PrimaryButton title="Adicionar" onPress={handleAddMember} />
+            <View style={styles.buttonRow}>
+              <PrimaryButton
+                title="Adicionar"
+                onPress={handleAddMember}
+                style={styles.addButton}
+              />
+              <PrimaryButton
+                title="Cancelar"
+                onPress={() => {
+                  Alert.alert(
+                    'Cancelar',
+                    'Seus dados serão perdidos, deseja mesmo cancelar?',
+                    [
+                      { text: 'Não', style: 'cancel' },
+                      { text: 'Sim', style: 'destructive', onPress: () => navigation.goBack() },
+                    ],
+                    { cancelable: true }
+                  );
+                }}
+                style={styles.cancelButton}
+              />
+            </View>
             <View style={styles.bottomSpacing}></View>
           </View>
         </ScrollView>
