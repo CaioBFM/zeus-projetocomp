@@ -1,5 +1,4 @@
-// Handles the navigation structure of the app
-// Uses a stack navigator to manage screen transitions
+// Usa o Stack Navigator para garantir a navegação entre telas (em pilha)
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
@@ -21,15 +20,14 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      {/* Define the navigation stack and initial screen */}
       <Stack.Navigator
         initialRouteName="Welcome"
         id={undefined}
         screenOptions={{
-          headerShown: false, // Hide headers by default
+          headerShown: false,
         }}
       >
-        {/* Define individual screens */}
+        {/* Definição das telas individualmente */}
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: true }} />
         <Stack.Screen name="Register" component={Register} options={{ headerShown: true }} />

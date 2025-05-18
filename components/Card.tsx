@@ -1,4 +1,4 @@
-// Exibir informações de membros e orçamentos
+// Componente que exibe informações de membros e orçamentos
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, Alert, TextInput, KeyboardAvoidingView, Platform, ScrollView, AccessibilityInfo } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';

@@ -43,7 +43,11 @@ export default function Login() {
     if (!validateInputs()) return;
 
     if (email === 'Caio@zeus.com' && senha === 'Cedos') {
-      navigation.navigate('Dashboard');
+      // Reseta a pilha quando em login bem sucedido
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Dashboard' }],
+      });
     } else {
       Alert.alert('Erro', 'Login inválido, tente novamente.');
     }

@@ -1,5 +1,4 @@
-// PrimaryButton component
-// A reusable button with customizable title and styles
+// Componente de um botão reutilizável
 import { TouchableOpacity, Text, StyleSheet, TouchableOpacityProps, Dimensions } from 'react-native';
 
 interface PrimaryButtonProps extends TouchableOpacityProps {

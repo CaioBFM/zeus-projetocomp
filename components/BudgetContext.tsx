@@ -25,7 +25,30 @@ interface BudgetContextType {
 const BudgetContext = createContext<BudgetContextType | undefined>(undefined);
 
 export function BudgetProvider({ children }: { children: ReactNode }) {
-  const [Budget, setBudget] = useState<Budget[]>([]); // state que guarda todos os orçamentos
+  const [Budget, setBudget] = useState<Budget[]>([
+    {
+      id: '1',
+      numero: '1001',
+      descricao: 'Orçamento para projeto X',
+      cliente: 'Empresa ABC',
+      membro: 'Maria Silva',
+      valorEstimado: '5000',
+      custosPrevistos: '3000',
+      dataCriacaoOrcamento: '18/05/2025',
+      status: 'Em análise',
+    },
+    {
+      id: '2',
+      numero: '1002',
+      descricao: 'Orçamento para evento Y',
+      cliente: 'Empresa XYZ',
+      membro: 'João Souza',
+      valorEstimado: '8000',
+      custosPrevistos: '5000',
+      dataCriacaoOrcamento: '18/05/2025',
+      status: 'Aprovado',
+    },
+  ]); 
 
   const addBudget = (b: Budget) => setBudget(prev => [...prev, b]);
   const removeBudget = (id: string) => setBudget(prev => prev.filter(b => b.id !== id));

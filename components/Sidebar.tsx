@@ -21,28 +21,43 @@ export default function Sidebar({ navigation }: SidebarProps) {
   // Conteúdo da Sidebar
   const SidebarContent = () => (
     <View style={[styles.sidebar, { width: sidebarWidth, paddingHorizontal: sidebarPadding, paddingTop: sidebarTop }]}> 
-      <TouchableOpacity onPress={() => { setSidebarOpen(false); navigation.navigate('Dashboard'); }}>
+      <TouchableOpacity
+        onPress={() => { setSidebarOpen(false); navigation.navigate('Dashboard'); }}
+        accessibilityLabel="Ir para Dashboard"
+      >
         <Text style={[styles.sidebarItem, { fontSize }]}>Dashboard</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { setSidebarOpen(false); navigation.navigate('Members'); }}>
+      <TouchableOpacity
+        onPress={() => { setSidebarOpen(false); navigation.navigate('Members'); }}
+        accessibilityLabel="Ir para Membros"
+      >
         <Text style={[styles.sidebarItem, { fontSize }]}>Membros</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { setSidebarOpen(false); navigation.navigate('Budget'); }}>
+      <TouchableOpacity
+        onPress={() => { setSidebarOpen(false); navigation.navigate('Budget'); }}
+        accessibilityLabel="Ir para Orçamentos"
+      >
         <Text style={[styles.sidebarItem, { fontSize }]}>Orçamentos</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {
-        Alert.alert('Confirmação', 'Você realmente deseja sair?', 
-          [
-            {text: 'Cancelar', style: 'destructive'}, // fica vermelho em ios (nao funciona para android)
-            {text: 'Sim', onPress: () => {
-              setSidebarOpen(false);
-              navigation.navigate('Welcome');
-              }
-            },
-          ],
-          { cancelable: true }
-        );
-        }} 
+      <TouchableOpacity
+        onPress={() => {
+          Alert.alert('Confirmação', 'Você realmente deseja sair?', 
+            [
+              {text: 'Cancelar', style: 'destructive'}, // fica vermelho em ios (nao funciona para android)
+              {text: 'Sim', onPress: () => {
+                setSidebarOpen(false);
+                // Reseta a pilha ao voltar para Welcome (logout)
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Welcome' }],
+                });
+                }
+              },
+            ],
+            { cancelable: true }
+          );
+        }}
+        accessibilityLabel="Sair do aplicativo"
       >
         <Text style={[styles.sidebarItem, { fontSize }]}>Sair</Text>
       </TouchableOpacity>
