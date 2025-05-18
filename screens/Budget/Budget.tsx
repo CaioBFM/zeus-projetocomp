@@ -33,6 +33,7 @@ export default function Budget() {
             <Feather name="plus" size={26} color="#fff" />
           </TouchableOpacity>
         </View>
+        <Text style={styles.info}>🟡Em análise   🟢Aprovado   🔴Reprovado </Text>
         <View style={styles.linha} />
         {/* Lista de cards centralizada */}
         <ScrollView contentContainerStyle={styles.cardsContainer}>

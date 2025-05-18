@@ -18,6 +18,14 @@ export default StyleSheet.create({
     textAlign: 'left',
     alignSelf: 'flex-start',
   },
+  info: {
+    color: '#fff',
+    fontSize: isTablet ? 22 : 16,
+    fontWeight: 'bold',
+    marginBottom: 0,
+    textAlign: 'center',
+    alignSelf: 'center',
+  },
   content: {
     flex: 1,
     paddingHorizontal: isTablet ? width * 0.08 : width * 0.04,
