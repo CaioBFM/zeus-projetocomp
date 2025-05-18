@@ -28,14 +28,28 @@ export default function AddMember() {
   const navigation = useNavigation<NavigationProps>();
 
   const pickImage = async () => {
+    // Usa a nova API: mediaTypes como array de MediaType
+    // Aceita apenas imagens (jpeg, jpg, png, etc)
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images, // mantém compatível com a versão instalada
+      mediaTypes: ['images'],
       allowsEditing: true,
       aspect: [1, 1],
       quality: 0.7,
     });
     if (!result.canceled && result.assets && result.assets.length > 0) {
-      setImagem(result.assets[0].uri);
+      const asset = result.assets[0];
+      // Verifica extensão
+      const ext = asset.uri.split('.').pop()?.toLowerCase();
+      if (ext !== 'jpg' && ext !== 'jpeg' && ext !== 'png') {
+        Alert.alert('Erro', 'Apenas imagens JPG, JPEG ou PNG são permitidas.');
+        return;
+      }
+      // Verifica tamanho (em bytes)
+      if (asset.fileSize && asset.fileSize > 2 * 1024 * 1024) {
+        Alert.alert('Erro', 'A imagem deve ter no máximo 2MB.');
+        return;
+      }
+      setImagem(asset.uri);
     }
   };
 
