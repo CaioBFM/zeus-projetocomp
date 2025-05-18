@@ -70,7 +70,6 @@ export default function AddBudget() {
             <Input placeholder="Cliente Associado" value={cliente} onChangeText={setCliente} />
             <Input placeholder="Status" value={status} onChangeText={setStatus} />
             <View style={styles.buttonRow} >
-              <PrimaryButton title="Adicionar" onPress={handleAddBudget} style={styles.addButton} />
               <PrimaryButton 
                 title="Cancelar" 
                 onPress= {() => {
@@ -86,6 +85,7 @@ export default function AddBudget() {
                 }}
                 style={styles.cancelButton}
               />
+              <PrimaryButton title="Adicionar" onPress={handleAddBudget} style={styles.addButton} />
             </View>
             <View style={styles.bottomSpacing}></View>
           </View>

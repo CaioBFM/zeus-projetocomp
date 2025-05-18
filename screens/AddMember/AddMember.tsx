@@ -23,6 +23,7 @@ export default function AddMember() {
   const [idade, setIdade] = useState('');
   const [matricula, setMatricula] = useState('');
   const [imagem, setImagem] = useState<string | null>(null);
+  const [dataNascimento, setDataNascimento] = useState('');
   const { addMember } = useMembers();
   const navigation = useNavigation<NavigationProps>();
 
@@ -39,7 +40,7 @@ export default function AddMember() {
   };
 
   const validateInputs = () => {
-    if (!nome || !email || !idade || !matricula) {
+    if (!nome || !email || !idade || !matricula || !dataNascimento) {
       Alert.alert('Erro', 'Preencha todos os campos.');
       return false;
     }
@@ -49,6 +50,25 @@ export default function AddMember() {
     }
     if (isNaN(Number(idade))) {
       Alert.alert('Erro', 'Idade inválida.');
+      return false;
+    }
+    // Validação da data de nascimento com a data atual
+    const partes = dataNascimento.split('/');
+    if (partes.length !== 3) {
+      Alert.alert('Erro', 'Data de nascimento deve estar no formato DD/MM/YYYY.');
+      return false;
+    }
+    const [dia, mes, ano] = partes;
+    const data = new Date(`${ano}-${mes}-${dia}`);
+    const hoje = new Date();
+    hoje.setHours(0,0,0,0);
+    if (
+      isNaN(data.getTime()) ||
+      Number(dia) < 1 || Number(dia) > 31 ||
+      Number(mes) < 1 || Number(mes) > 12 ||
+      Number(ano) < 1900 || data >= hoje
+    ) {
+      Alert.alert('Erro', 'A data de nascimento deve ser válida e anterior à data atual.');
       return false;
     }
     return true;
@@ -99,17 +119,12 @@ export default function AddMember() {
             <Input placeholder='Gênero' />
             <Input placeholder='Cargo' />
             <Input placeholder='Área' />
-            <Input placeholder='Data de nascimento DD/MM/YYYY' />
+            <Input placeholder='Data de nascimento DD/MM/YYYY' value={dataNascimento} onChangeText={setDataNascimento} />
             <Input placeholder='Data de ingresso DD/MM/YYYY' />
             <Input placeholder='Número de telefone' />
             <Input placeholder="Idade" value={idade} onChangeText={setIdade} keyboardType="numeric" />
             <Input placeholder="Matrícula" value={matricula} onChangeText={setMatricula} />
             <View style={styles.buttonRow}>
-              <PrimaryButton
-                title="Adicionar"
-                onPress={handleAddMember}
-                style={styles.addButton}
-              />
               <PrimaryButton
                 title="Cancelar"
                 onPress={() => {
@@ -124,6 +139,11 @@ export default function AddMember() {
                   );
                 }}
                 style={styles.cancelButton}
+              />
+              <PrimaryButton
+                title="Adicionar"
+                onPress={handleAddMember}
+                style={styles.addButton}
               />
             </View>
             <View style={styles.bottomSpacing}></View>
