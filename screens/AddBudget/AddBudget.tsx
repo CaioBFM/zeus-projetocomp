@@ -22,13 +22,12 @@ export default function AddBudget() {
   const [membro, setMembro] = useState('');
   const [valorEstimado, setValorEstimado] = useState('');
   const [custosPrevistos, setCustosPrevistos] = useState('');
-  const [status, setStatus] = useState('');
   
   const { addBudget } = useBudget();
   const navigation = useNavigation<NavigationProps>();
 
   function validateInputs() {
-    if (!numero || !descricao || !valorEstimado || !status) {
+    if (!numero || !descricao || !valorEstimado || !cliente || !membro || !valorEstimado || !custosPrevistos) {
       Alert.alert('Erro', 'Preencha todos os campos.');
       return false;
     }
@@ -47,9 +46,9 @@ export default function AddBudget() {
       valorEstimado,
       custosPrevistos,
       dataCriacaoOrcamento: dataFormatada,
-      status,
+      status: 'Em análise',
     });
-    Alert.alert('Sucesso', 'Orçamento cadastrado com sucesso!');
+    Alert.alert('Sucesso', 'Orçamento criado com sucesso!');
     navigation.goBack();
   };
 
@@ -73,7 +72,6 @@ export default function AddBudget() {
             <Input placeholder='Membro' value={membro} onChangeText={setMembro} />
             <Input placeholder='Valor estimado' value={valorEstimado} onChangeText={setValorEstimado} />
             <Input placeholder='Custos previstos' value={custosPrevistos} onChangeText={setCustosPrevistos} />
-            <Input placeholder="Status" value={status} onChangeText={setStatus} />
             <View style={styles.buttonRow}>
               <PrimaryButton 
                 title="Cancelar" 
@@ -90,7 +88,7 @@ export default function AddBudget() {
                 }}
                 style={styles.cancelButton}
               />
-              <PrimaryButton title="Adicionar" onPress={handleAddBudget} style={styles.addButton} />
+              <PrimaryButton title="Criar" onPress={handleAddBudget} style={styles.addButton} />
             </View>
             <View style={styles.bottomSpacing}></View>
           </View>
