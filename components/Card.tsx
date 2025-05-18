@@ -1,10 +1,12 @@
+// Exibir informações de membros e orçamentos
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, Alert, TextInput, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, Alert, TextInput, KeyboardAvoidingView, Platform, ScrollView, AccessibilityInfo } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import PrimaryButton from './PrimaryButton'; // Importe o componente PrimaryButton
+import PrimaryButton from './PrimaryButton';
 
 const { width, height } = Dimensions.get('window');
 
+// Define o formato de cada campo exibido no card
 interface CardField {
   key: string;
   label: string;
@@ -13,21 +15,22 @@ interface CardField {
   keyboardType?: 'default' | 'numeric' | 'email-address';
 }
 
+// Propriedades aceitas pelo Card
 interface Props {
-  imagem?: string; // Agora opcional
-  fields: CardField[];
+  imagem?: string;
+  fields: CardField[]; 
   onFieldChange?: (key: string, value: string) => void;
-  onDelete?: () => void;
-  title?: string;
-  expandable?: boolean;
-  cardSize?: 'default' | 'small' | 'large'; // Novo prop para tamanho
-  hideImage?: boolean; // Novo prop para esconder imagem
-  isBudgetCard?: boolean; // Novo prop para identificar card de orçamento
-  status?: string; // Status do orçamento
+  onDelete?: () => void; 
+  title?: string; 
+  expandable?: boolean; 
+  cardSize?: 'default' | 'small' | 'large';
+  hideImage?: boolean; 
+  isBudgetCard?: boolean; 
+  status?: string; 
   onStatusChange?: (status: string) => void; // Handler para mudar status
 }
 
-// Altere o nome do componente para Card
+// Componente Card reutilizável
 const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title, expandable = true, cardSize = 'default', hideImage = false, isBudgetCard = false, status, onStatusChange }) => {
   const [expanded, setExpanded] = useState(false);
   const [editField, setEditField] = useState<string | null>(null);
@@ -37,8 +40,8 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
     return obj;
   });
 
+  // Atualiza valores editáveis se os campos mudarem
   useEffect(() => {
-    // Atualiza editValues se fields mudar
     setEditValues(() => {
       const obj: Record<string, string> = {};
       fields.forEach(f => { obj[f.key] = f.value; });
@@ -66,30 +69,31 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
     );
   };
 
-  // O título principal do card (ex: nome)
   const mainTitle = title || (fields[0]?.value ?? '');
 
-  // Cores de fundo para status de orçamento
+  // Define cor de fundo conforme status do orçamento
   let statusBg = {};
   if (isBudgetCard) {
     if (status === 'Em análise') statusBg = { backgroundColor: '#FFED83' };
     else if (status === 'Reprovado') statusBg = { backgroundColor: '#F87171' };
     else if (status === 'Aprovado') statusBg = { backgroundColor: '#90ee90' };
   }
+  // Estilo do card (responsivo)
   const cardStyle = [
     styles.card,
-    cardSize === 'small' && { width: CARD_WIDTH * 0.8, minHeight: CARD_HEIGHT * 0.7, paddingVertical: 10, paddingHorizontal: 8 }, // Orçamentos
-    cardSize === 'large' && { width: CARD_WIDTH * 1.1, minHeight: CARD_HEIGHT * 1.2, paddingVertical: 32, paddingHorizontal: 24 }, // Membros
+    cardSize === 'small' && { width: CARD_WIDTH * 0.8, minHeight: CARD_HEIGHT * 0.7, paddingVertical: 10, paddingHorizontal: 8 },
+    cardSize === 'large' && { width: CARD_WIDTH * 1.1, minHeight: CARD_HEIGHT * 1.2, paddingVertical: 32, paddingHorizontal: 24 },
     statusBg,
   ];
 
   return (
     <View style={cardStyle}>
       <View style={styles.rowTop}>
+        {/* Imagem e título */}
         {!hideImage && imagem && <Image source={{ uri: imagem }} style={styles.imagem} />}
         <Text style={styles.nome}>{mainTitle}</Text>
         {expandable && (
-          <TouchableOpacity onPress={() => setExpanded(!expanded)}>
+          <TouchableOpacity onPress={() => setExpanded(!expanded)} accessibilityLabel="Expandir Card/ Retrair Card">
             <Icon name={expanded ? 'chevron-up' : 'chevron-down'} size={28} color="#222" style={styles.iconExpand} />
           </TouchableOpacity>
         )}
@@ -103,6 +107,7 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
         >
           <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
             <View style={styles.infoContainer}>
+              {/* Renderiza campos */}
               {fields.map(field => (
                 <View style={styles.infoRow} key={field.key}>
                   <Text style={styles.infoLabelBold}>{field.label}:</Text>
@@ -121,7 +126,7 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
                     <Text style={styles.infoLabel}>{editValues[field.key]}</Text>
                   )}
                   {field.editable && (
-                    <TouchableOpacity style={styles.editIcon} onPress={() => handleEdit(field.key)}>
+                    <TouchableOpacity style={styles.editIcon} onPress={() => handleEdit(field.key)} accessibilityLabel="Botão Editar Campos" >
                       <Icon name="pencil" size={18} color="#888" />
                     </TouchableOpacity>
                   )}
@@ -129,23 +134,24 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
               ))}
               <View style={{ height: 10 }} />
               {onDelete && (
-                <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
+                <TouchableOpacity style={styles.deleteButton} onPress={handleDelete} accessibilityLabel="Botão Deletar Orçamento" >
                   <Icon name="trash" size={18} color="#fff" style={{ marginRight: 6 }} />
                   <Text style={styles.deleteButtonText}>Excluir</Text>
                 </TouchableOpacity>
               )}
-              {/* Botões Aprovar/Reprovar para orçamento em análise */}
               {isBudgetCard && status === 'Em análise' && onStatusChange && (
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 16, gap: 8 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 16 }}>
                   <PrimaryButton
                     title="Reprovar"
                     onPress={() => onStatusChange('Reprovado')}
-                    style={{ flex: 1, backgroundColor: '#ef4444' }}
+                    style={{ flex: 1, backgroundColor: '#ef4444', marginRight: 8 }}
+                    accessibilityLabel="Botão Reprovar Orçamento"
                   />
                   <PrimaryButton
                     title="Aprovar"
                     onPress={() => onStatusChange('Aprovado')}
-                    style={{ flex: 1, backgroundColor: '#22c55e', marginRight: 8 }}
+                    style={{ flex: 1, backgroundColor: '#22c55e' }}
+                    accessibilityLabel="Botão Aprovar Orçamento"
                   />
                 </View>
               )}
@@ -157,10 +163,12 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
   );
 };
 
+// Constantes de tamanho responsivo
 const CARD_HEIGHT = height > 900 ? 0.12 * height : height > 700 ? 0.15 * height : 0.19 * height;
 const CARD_WIDTH = width > 900 ? width * 0.45 : width > 600 ? width * 0.65 : width * 0.93;
 const IMAGE_SIZE = CARD_HEIGHT * 0.9;
 
+// Estilos do Card
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
