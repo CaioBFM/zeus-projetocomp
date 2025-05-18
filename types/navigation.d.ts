@@ -8,4 +8,6 @@ export type RootStackParamList = {
     NewPassword: undefined;
     Members: undefined;
     Budget: undefined;
+    AddMember: undefined;
+    AddBudget: undefined;
   };

@@ -19,11 +19,10 @@ interface Props {
   onDelete?: () => void;
   title?: string;
   expandable?: boolean;
-  cardSize?: 'default' | 'small' | 'large'; // Novo prop para tamanho
+  cardSize?: 'default' | 'small' | 'large';
   hideImage?: boolean; // Novo prop para esconder imagem
 }
 
-// Altere o nome do componente para Card
 const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title, expandable = true, cardSize = 'default', hideImage = false }) => {
   const [expanded, setExpanded] = useState(false);
   const [editField, setEditField] = useState<string | null>(null);

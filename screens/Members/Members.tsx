@@ -10,64 +10,12 @@ import { RootStackParamList } from '../../types/navigation';
 import Card from '../../components/Card';
 import PrimaryButton from '../../components/PrimaryButton';
 import Feather from 'react-native-vector-icons/Feather';
-import React, { useState } from 'react';
+import React from 'react';
+import { useMembers } from '../../components/MembersContext';
 
 export default function Members() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-
-  // Lista de membros (mock)
-  const [membros, setMembros] = useState([
-    {
-      id: '1',
-      imagem: 'https://wallpapers.com/images/hd/cute-anime-profile-pictures-dfgqyw4wcfhurbkk.jpg',
-      nome: 'Caio',
-      email: 'caio@email.com',
-      idade: 22,
-      matricula: '12345',
-    },
-    {
-      id: '2',
-      imagem: 'https://i.pinimg.com/originals/66/b3/24/66b3247f3e0ed3fa5279221874f628ac.jpg',
-      nome: 'Enzo',
-      email: 'enzo@email.com',
-      idade: 21,
-      matricula: '23456',
-    },
-    {
-      id: '3',
-      imagem: 'https://i.pinimg.com/736x/9d/57/c0/9d57c0de79ae1db10982d1a7b70b9ab9.jpg',
-      nome: 'Menezes',
-      email: 'menezes@email.com',
-      idade: 23,
-      matricula: '34567',
-    },
-    {
-      id: '4',
-      imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNytxh56jwPUhoM9CfIoAaqx8sp4UGPkBpXw&s',
-      nome: 'Chapolin',
-      email: 'chapolin@email.com',
-      idade: 25,
-      matricula: '45678',
-    },
-    {
-      id: '5',
-      imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ5YBx5noU3Gn4ier4-3XHy3P0_rIjGxYPqw&s',
-      nome: 'Mayron',
-      email: 'mayron@email.com',
-      idade: 24,
-      matricula: '56789',
-    },
-  ]);
-
-  // Atualiza campo editado do membro
-  const handleFieldChange = (id: string, key: string, value: string) => {
-    setMembros(prev => prev.map(m => m.id === id ? { ...m, [key]: key === 'idade' ? Number(value) : value } : m));
-  };
-
-  // Função para excluir membro
-  const handleDeleteMember = (id: string) => {
-    setMembros(prev => prev.filter(m => m.id !== id));
-  };
+  const { membros, addMember, removeMember } = useMembers();
 
   return (
     <View style={styles.container}>
@@ -82,7 +30,7 @@ export default function Members() {
         {/* Linha com título e botão à direita */}
         <View style={styles.headerRow}>
           <Text style={styles.text}>Membros</Text>
-          <TouchableOpacity style={styles.headerButton} onPress={() => alert('Adicionar funcionário!')}>
+          <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('AddMember')}>
             <Feather name="plus" size={26} color="#fff" />
           </TouchableOpacity>
         </View>
@@ -100,8 +48,8 @@ export default function Members() {
                 { key: 'idade', label: 'Idade', value: String(membro.idade), editable: true, keyboardType: 'numeric' },
                 { key: 'matricula', label: 'Matrícula', value: membro.matricula, editable: true },
               ]}
-              onFieldChange={(key, value) => handleFieldChange(membro.id, key, value)}
-              onDelete={() => handleDeleteMember(membro.id)}
+              onFieldChange={(key, value) => {/* opcional: implementar edição global */}}
+              onDelete={() => removeMember(membro.id)}
             />
           ))}
         </ScrollView>

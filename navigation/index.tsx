@@ -13,6 +13,8 @@ import VerifyCode from '../screens/VerifyCode/VerifyCode'
 import NewPassword from '../screens/NewPassword/NewPassword'
 import Members from '../screens/Members/Members';
 import Budget from '../screens/Budget/Budget';
+import AddMember from '../screens/AddMember/AddMember';
+import AddBudget from '../screens/AddBudget/AddBudget';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -37,6 +39,8 @@ export default function AppNavigator() {
         <Stack.Screen name="NewPassword" component={NewPassword} options={{ headerShown: true }} />
         <Stack.Screen name="Members" component={Members} options={{ headerShown: true }} />
         <Stack.Screen name="Budget" component={Budget} options={{ headerShown: true }} />
+        <Stack.Screen name="AddMember" component={AddMember} options={{ headerShown: true }} />
+        <Stack.Screen name="AddBudget" component={AddBudget} options={{ headerShown: true }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
