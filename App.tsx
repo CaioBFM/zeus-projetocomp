@@ -2,11 +2,14 @@
 // AppNavigator handles the navigation between screens
 import AppNavigator from './navigation';
 import { MembersProvider } from './components/MembersContext';
+import { BudgetProvider } from './components/BudgetContext';
 
 export default function App() {
   return (
     <MembersProvider>
-      <AppNavigator />
+      <BudgetProvider>
+        <AppNavigator />
+      </BudgetProvider>
     </MembersProvider>
   );
 }

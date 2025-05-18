@@ -48,4 +48,24 @@ export default StyleSheet.create({
   input: {
     fontSize: isTablet ? 18 : 15,
   },
+  photoButton: {
+    alignSelf: 'center',
+    marginBottom: isTablet ? 24 : 16,
+  },
+  photo: {
+    width: isTablet ? 140 : 100,
+    height: isTablet ? 140 : 100,
+    borderRadius: isTablet ? 70 : 50,
+  },
+  photoPlaceholder: {
+    width: isTablet ? 140 : 100,
+    height: isTablet ? 140 : 100,
+    borderRadius: isTablet ? 70 : 50,
+    backgroundColor: '#eee',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomSpacing: {
+    height: isTablet ? 48 : 30,
+  },
 });

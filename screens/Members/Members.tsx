@@ -8,7 +8,6 @@ import AppLogo from '../../components/Logo';
 import Sidebar from '../../components/Sidebar';
 import { RootStackParamList } from '../../types/navigation';
 import Card from '../../components/Card';
-import PrimaryButton from '../../components/PrimaryButton';
 import Feather from 'react-native-vector-icons/Feather';
 import React from 'react';
 import { useMembers } from '../../components/MembersContext';

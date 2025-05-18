@@ -84,11 +84,11 @@ export default function AddMember() {
           </View>
           <View style={styles.card}>
             <Text style={[styles.title, { fontSize: isLandscape ? 28 : 24, marginBottom: isLandscape ? 40 : 24 }]}>Adicionar Funcionário</Text>
-            <TouchableOpacity onPress={pickImage} style={{ alignSelf: 'center', marginBottom: 16 }}>
+            <TouchableOpacity onPress={pickImage} style={styles.photoButton}>
               {imagem ? (
-                <Image source={{ uri: imagem }} style={{ width: 100, height: 100, borderRadius: 50 }} />
+                <Image source={{ uri: imagem }} style={styles.photo} />
               ) : (
-                <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: '#eee', justifyContent: 'center', alignItems: 'center' }}>
+                <View style={styles.photoPlaceholder}>
                   <Text>Carregar foto</Text>
                 </View>
               )}
@@ -104,7 +104,7 @@ export default function AddMember() {
             <Input placeholder="Idade" value={idade} onChangeText={setIdade} keyboardType="numeric" />
             <Input placeholder="Matrícula" value={matricula} onChangeText={setMatricula} />
             <PrimaryButton title="Adicionar" onPress={handleAddMember} />
-            <View style={{ height: 30 }}></View>
+            <View style={styles.bottomSpacing}></View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

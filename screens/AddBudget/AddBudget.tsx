@@ -1,49 +1,50 @@
-// Register screen component
-// Handles user registration and navigation to the Login screen
+// AddMember screen component
+// Handles adding a new member (employee) and navigation to the Members screen
 import { View, Text, Alert, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView, useWindowDimensions } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation';
+import * as ImagePicker from 'expo-image-picker';
+import { Image, TouchableOpacity } from 'react-native';
+import { useBudget } from '../../components/BudgetContext';
 
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
 import AppLogo from '../../components/Logo';
-import styles, { getResponsivePadding, getResponsiveTitle } from './AddBudget.styles';
+import styles from './AddBudget.styles';
 
-type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Register'>;
+type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'AddMember'>;
 
-export default function Register() {
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
 
+export default function AddBudget() {
+  const [numero, setNumero] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [valorEstimado, setValorEstimado] = useState('');
+  const [status, setStatus] = useState('');
+  const [cliente, setCliente] = useState('');
+  const { addBudget } = useBudget();
   const navigation = useNavigation<NavigationProps>();
 
   const validateInputs = () => {
-    if (!nome || !email || !senha || !confirmarSenha) {
+    if (!numero || !descricao || !valorEstimado || !status) {
       Alert.alert('Erro', 'Preencha todos os campos.');
       return false;
     }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      Alert.alert('Erro', 'E-mail inválido.');
-      return;
-    }
-    if (senha !== confirmarSenha) {
-      Alert.alert('Erro', 'As senhas não coincidem.');
-      return false;
-    }
-
     return true;
   };
 
-  // Handle user registration logic
-  const handleRegister = () => {
+  const handleAddBudget = () => {
     if (!validateInputs()) return;
-
-    Alert.alert('Sucesso', 'Conta criada com sucesso!');
-    navigation.navigate('Login');
+    addBudget({
+      id: Date.now().toString(),
+      numero,
+      descricao,
+      valorEstimado,
+      status,
+      cliente,
+    });
+    navigation.goBack();
   };
 
   const { width, height } = useWindowDimensions();
@@ -57,25 +58,20 @@ export default function Register() {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          {/* Logo azul no topo direito */}
-          <View style={styles.logoContainer}>
+          {/* Logo no topo do conteúdo, com espaçamento */}
+          <View style={[styles.logoContainer, { marginBottom: 32 }]}> 
             <AppLogo variant="branca" />
           </View>
-          {/* Card branco centralizado */}
           <View style={styles.card}>
-            <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
-              Criar Conta
-            </Text>
-
-            {/* Input fields for user details */}
-            <Input placeholder="Nome completo" value={nome} onChangeText={setNome} />
-            <Input placeholder="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" />
-            <Input placeholder="Senha" value={senha} onChangeText={setSenha} secureTextEntry />
-            <Input placeholder="Confirmar Senha" value={confirmarSenha} onChangeText={setConfirmarSenha} secureTextEntry />
-
-            {/* Register button */}
-            <PrimaryButton title="Registrar" onPress={handleRegister} />
-            <View style={{ height: 30 }}></View>
+            <Text style={[styles.title, { fontSize: isLandscape ? 28 : 24, marginBottom: isLandscape ? 40 : 24 }]}>Adicionar Orçamento</Text>
+            <Input placeholder="Número" value={numero} onChangeText={setNumero} keyboardType='numeric' />
+            <Input placeholder="Descrição" value={descricao} onChangeText={setDescricao} />
+            <Input placeholder='Valor estimado' value={valorEstimado} onChangeText={setValorEstimado} />
+            <Input placeholder='Custos previstos' />
+            <Input placeholder="Cliente Associado" value={cliente} onChangeText={setCliente} />
+            <Input placeholder="Status" value={status} onChangeText={setStatus} />
+            <PrimaryButton title="Adicionar" onPress={handleAddBudget} />
+            <View style={styles.bottomSpacing}></View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
