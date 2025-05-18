@@ -1,4 +1,4 @@
-// Contexto global de orçamentos, usando o React Context API.
+// Contexto global de orçamentos, usando o React Context API (manipulação de dados na memória).
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 // Formato dos orçamentos

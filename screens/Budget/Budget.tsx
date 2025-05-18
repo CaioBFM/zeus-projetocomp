@@ -1,6 +1,6 @@
 // Members screen component
 // Displays a welcome message and a header
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import styles from './Budget.styles';
@@ -33,7 +33,7 @@ export default function Budget() {
             <Feather name="plus" size={26} color="#fff" />
           </TouchableOpacity>
         </View>
-        <Text style={styles.info}>🟡Em análise   🟢Aprovado   🔴Reprovado </Text>
+        <Text style={styles.info}>🟡Em análise     🟢Aprovado     🔴Reprovado </Text>
         <View style={styles.linha} />
         {/* Lista de cards centralizada */}
         <ScrollView contentContainerStyle={styles.cardsContainer}>
@@ -57,7 +57,17 @@ export default function Budget() {
               hideImage
               isBudgetCard
               status={Budget.status}
-              onStatusChange={status => updateBudgetStatus(Budget.id, status)}
+              onStatusChange={status => {
+                Alert.alert(
+                  status === 'Aprovado' ? 'Aprovar orçamento' : 'Reprovar orçamento',
+                  `Tem certeza que deseja ${status === 'Aprovado' ? 'aprovar' : 'reprovar'} este orçamento?`,
+                  [
+                    { text: 'Cancelar', style: 'cancel' },
+                    { text: status === 'Aprovado' ? 'Aprovar' : 'Reprovar', style: status === 'Aprovado' ? 'default' : 'destructive', onPress: () => updateBudgetStatus(Budget.id, status) },
+                  ],
+                  { cancelable: true }
+                );
+              }}
             />
           ))}
         </ScrollView>

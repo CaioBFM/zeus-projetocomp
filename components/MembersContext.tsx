@@ -1,4 +1,4 @@
-// Contexto gloabal de membros, usando o React Context API
+// Contexto gloabal de membros, usando o React Context API (manipulação de dados na memória).
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export interface Member {
@@ -28,7 +28,7 @@ export function MembersProvider({ children }: { children: ReactNode }) {
       id: '1',
       nome: 'Lady Gaga',
       dataNascimento: '01/01/1990',
-      email: 'maria@zeus.com',
+      email: 'gaga@zeus.com',
       cargo: 'Analista',
       telefone: '11999999999',
       genero: 'Feminino',
