@@ -16,8 +16,8 @@ Liste aqui as principais funcionalidades do seu aplicativo:
 
 * Login de usuário (com função esqueci minha senha)
 * Cadastro de usuário
-* Adição/Alteração/Remoçao de membros em tempo real
-* Adição/Alteração/Remoçao de orçamentos em tempo real
+* Adição/Alteração/Remoçao de membros
+* Adição/Alteração/Remoçao de orçamentos
 
 ## 🛠️ Como Executar
 
