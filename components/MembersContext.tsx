@@ -3,9 +3,13 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 export interface Member {
   id: string;
   nome: string;
+  dataNascimento: string;
   email: string;
-  idade: number;
-  matricula: string;
+  cargo: string;
+  telefone: string;
+  genero: string;
+  dataIngresso: string;
+  habilidades: string;
   imagem?: string;
 }
 

@@ -14,7 +14,7 @@ import { useBudget } from '../../components/BudgetContext';
 
 export default function Budget() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { Budget, addBudget, removeBudget } = useBudget();
+  const { Budget, addBudget, removeBudget, updateBudgetStatus } = useBudget();
 
   return (
     <View style={styles.container}>
@@ -40,7 +40,6 @@ export default function Budget() {
             <Card
               key={Budget.id}
               title={Budget.numero}
-              // 18 caracteres para evitar quebra de linha
               fields={[
                 { key: 'numero', label: 'Número', value: Budget.numero, editable: true , keyboardType: 'numeric' },
                 { key: 'descricao', label: 'Descrição', value: Budget.descricao, editable: true },
@@ -49,12 +48,15 @@ export default function Budget() {
                 { key: 'valorEstimado', label: 'Valor estimado', value: String(Budget.valorEstimado), editable: true, keyboardType: 'numeric' },
                 { key: 'DataCriacao', label: 'Data de criação', value: Budget.dataCriacaoOrcamento, editable: false },
                 { key: 'CustosPrevistos', label: 'Custos previstos', value: Budget.custosPrevistos, editable: true },
-                { key: 'status', label: 'Status', value: Budget.status, editable: true }, 
+                { key: 'status', label: 'Status', value: Budget.status, editable: false }, 
               ]}
               onFieldChange={(key, value) => {/* Poderia implementar açao global depois */}}
               onDelete={() => removeBudget(Budget.id)}
               cardSize="small"
               hideImage
+              isBudgetCard
+              status={Budget.status}
+              onStatusChange={status => updateBudgetStatus(Budget.id, status)}
             />
           ))}
         </ScrollView>
