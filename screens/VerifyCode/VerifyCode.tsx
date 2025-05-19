@@ -1,6 +1,6 @@
 // VerifyCode screen component
 // Handles verification of code sent to user email
-import { useState } from 'react';
+import React ,{ useState, useRef } from 'react';
 import { View, Text, Alert, KeyboardAvoidingView, ScrollView, Platform, SafeAreaView, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -63,8 +63,8 @@ export default function VerifyCode() {
             {/* Card branco centralizado */}
             <View style={styles.card}>
               <View style={styles.content}>
-                <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>Verificação</Text>
-                <Text style={styles.subtitle}>Digite o código que enviamos para seu e-mail</Text>
+                <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>Verificação de e-mail</Text>
+                <Text style={styles.subtitle}>Digite o código de 6 dígitos que foi enviado para seu e-mail.</Text>
     
                 {/* Input for verification code */}
                 <Input

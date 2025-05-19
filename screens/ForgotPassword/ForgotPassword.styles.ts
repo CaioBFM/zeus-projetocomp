@@ -1,4 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+const isTablet = width > 600;
+const isLandscape = width > height;
 
 export const getResponsiveTitle = (isLandscape: boolean) => ({
   fontSize: isLandscape ? 28 : 24,
@@ -36,9 +40,9 @@ export default StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 18,
-    paddingVertical: 48,
-    paddingHorizontal: 40,
-    marginHorizontal: 32,
+    paddingVertical: isTablet || isLandscape ? 48 : 32,
+    paddingHorizontal: isTablet || isLandscape ? 40 : 24,
+    marginHorizontal: isTablet || isLandscape ? 32 : 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.12,
@@ -46,12 +50,12 @@ export default StyleSheet.create({
     elevation: 6,
     alignSelf: 'center',
     width: '100%',
-    maxWidth: 500,
+    maxWidth: isTablet ? 500 : 400,
   },
   input: {
-    fontSize: 18,
-    marginBottom: 18,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
+    fontSize: isTablet ? 18 : 15,
+    marginBottom: isTablet ? 6 : 4,
+    paddingVertical: isTablet ? 14 : 10,
+    paddingHorizontal: isTablet ? 16 : 10,
   },
 });

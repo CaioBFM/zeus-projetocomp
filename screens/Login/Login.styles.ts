@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
+const isTablet = width > 600;
 
 export default StyleSheet.create({
   safeArea: {
@@ -17,10 +18,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 26,
+    fontSize: isTablet ? 32 : 26,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginVertical: 24,
+    marginVertical: isTablet ? 32 : 24,
   },
   link: {
     textAlign: 'center',
@@ -42,9 +43,9 @@ export default StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 18,
-    paddingVertical: 32,
-    paddingHorizontal: 24,
-    marginHorizontal: 16,
+    paddingVertical: isTablet ? 48 : 32,
+    paddingHorizontal: isTablet ? 40 : 24,
+    marginHorizontal: isTablet ? 32 : 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.12,
@@ -52,6 +53,6 @@ export default StyleSheet.create({
     elevation: 6,
     alignSelf: 'center',
     width: '100%',
-    maxWidth: 400,
+    maxWidth: isTablet ? 500 : 400,
   },
 });

@@ -14,11 +14,11 @@ export const getResponsiveTitle = (isLandscape: boolean) => ({
 export default StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#06213D', // ciano escuro sólido
+    backgroundColor: '#06213D', 
   },
   container: {
     flex: 1,
-    backgroundColor: '#06213D', // ciano escuro sólido
+    backgroundColor: '#06213D', 
   },
   scroll: {
     flexGrow: 1,
@@ -33,8 +33,8 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#1e1e1e',
-    fontSize: 22, // menor
-    marginBottom: 18, // menor
+    fontSize: isTablet ? 28 : 22,
+    marginBottom: isTablet ? 32 : 18,
   },
   logoContainer: {
     position: 'absolute',
@@ -45,9 +45,9 @@ export default StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 18,
-    paddingVertical: isTablet ? 32 : 15,
-    paddingHorizontal: isTablet ? 32 : 16,
-    marginHorizontal: 12,
+    paddingVertical: isTablet ? 40 : 20,
+    paddingHorizontal: isTablet ? 36 : 16,
+    marginHorizontal: isTablet ? 24 : 12,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.12,
@@ -55,10 +55,12 @@ export default StyleSheet.create({
     elevation: 6,
     alignSelf: 'center',
     width: '100%',
-    maxWidth: isTablet ? 400 : 320,
+    maxWidth: isTablet ? 500 : 320,
   },
   input: {
-    fontSize: 15, // menor
-    // ...adicione outros ajustes se necessário
+    fontSize: isTablet ? 18 : 15,
+    paddingVertical: isTablet ? 14 : 10,
+    paddingHorizontal: isTablet ? 16 : 10,
+    marginBottom: isTablet ? 18 : 12,
   },
 });

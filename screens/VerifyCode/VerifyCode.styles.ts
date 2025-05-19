@@ -50,9 +50,9 @@ export default StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 18,
-    paddingVertical: 32,
-    paddingHorizontal: 24,
-    marginHorizontal: 16,
+    paddingVertical: isTablet ? 48 : 32,
+    paddingHorizontal: isTablet ? 40 : 24,
+    marginHorizontal: isTablet ? 32 : 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.12,
@@ -60,6 +60,6 @@ export default StyleSheet.create({
     elevation: 6,
     alignSelf: 'center',
     width: '100%',
-    maxWidth: 400,
+    maxWidth: isTablet ? 500 : 400,
   },
 });
