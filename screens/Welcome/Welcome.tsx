@@ -34,7 +34,7 @@ export default function Welcome() {
             <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
               {/* Logo posicionada no topo direito, mas um pouco mais para baixo */}
               <View style={styles.logoContainer}>
-                <AppLogo />
+                <AppLogo variant='branca'/>
               </View>
               {/* Conteúdo centralizado permanece centralizado */}
               <View style={styles.centralContent}>
@@ -45,12 +45,14 @@ export default function Welcome() {
                   <PrimaryButton
                     title="Entrar"
                     onPress={() => navigateTo('Login')}
-                    style={styles.button}
+                    style={[styles.button, styles.buttonWhite]}
+                    textStyle={styles.buttonTextBlack}
                   />
                   <PrimaryButton
                     title="Criar Conta"
                     onPress={() => navigateTo('Register')}
-                    style={styles.button}
+                    style={[styles.button, styles.buttonWhite]}
+                    textStyle={styles.buttonTextBlack}
                   />
                 </View>
               </View>

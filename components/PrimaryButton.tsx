@@ -4,14 +4,15 @@ import { TouchableOpacity, Text, StyleSheet, TouchableOpacityProps, Dimensions }
 interface PrimaryButtonProps extends TouchableOpacityProps {
   title: string;
   style?: object;
+  textStyle?: object;
 }
 
 const { width } = Dimensions.get('window');
 
-export default function PrimaryButton({ title, style, ...props }: PrimaryButtonProps) {
+export default function PrimaryButton({ title, style, textStyle, ...props }: PrimaryButtonProps) {
   return (
     <TouchableOpacity {...props} style={[styles.button, style]}>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={[styles.text, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 }

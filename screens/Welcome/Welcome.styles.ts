@@ -36,6 +36,18 @@ export default StyleSheet.create({
   },
   button: {
     flex: 1,
+    paddingVertical: width > 600 ? 18 : 12,
+    paddingHorizontal: width > 600 ? 32 : 16,
+    borderRadius: width > 600 ? 14 : 8,
+    alignItems: 'center',
+    minWidth: width > 600 ? 180 : 0,
+  },
+  buttonWhite: {
+    backgroundColor: '#fff',
+  },
+  buttonTextBlack: {
+    color: '#111',
+    fontWeight: 'bold',
   },
   overlay: {
     flex: 1,

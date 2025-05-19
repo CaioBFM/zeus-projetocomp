@@ -1,7 +1,7 @@
 // Componente para a logo nas opções azul e branca
 import { useWindowDimensions, View, Image } from 'react-native';
 import LogoBranca from '../assets/images/logoBranca.png';
-import LogoAzul from '../assets/images/logoAzul.png';
+import LogoAzul from '../assets/images/compjunior_logo_branca_vazada.png';
 
 interface AppLogoProps {
   style?: object;
