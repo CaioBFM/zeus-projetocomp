@@ -100,6 +100,9 @@ O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript
 ## 📸 Telas do Aplicativo
 
 <!-- Exemplo de tela: Welcome -->
+
+### Tela Welcome
+
 <p align="center">
   <img src="./assets/screenshots/welcomeTELA.jpeg" alt="Tela Welcome" width="300" />
 </p>
@@ -109,6 +112,9 @@ O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript
 _Primeira tela do aplicativo._
 
 <!-- Exemplo de tela: Login -->
+
+### Tela Login
+
 <p align="center">
   <img src="./assets/screenshots/LoginTELA.jpeg" alt="Tela Login" width="300" />
 </p>
@@ -118,6 +124,9 @@ _Primeira tela do aplicativo._
 _A tela de login permite que o usuário acesse o aplicativo inserindo suas credenciais. Caso tenha esquecido a senha, é possível clicar na opção "Esqueci minha senha", onde será solicitado o código enviado por e-mail (123456). Além disso, é possível fazer login utilizando os dados "Teste@zeus.com" como e-mail e "Teste" como senha._
 
 <!-- Exemplo de tela: Dashboard -->
+
+### Tela Dashboard
+
 <p align="center">
   <img src="./assets/screenshots/dashboardTELA.jpeg" alt="Tela Dashboard" width="300" />
 </p>
