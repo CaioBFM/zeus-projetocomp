@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "react-native"  // ✅ ESSA LINHA HABILITA JSX
-  },
-  "extends": "expo/tsconfig.base"  // ✅ Remover essa linha se der erro!
+    "jsx": "react-native", // habilita jsx
+    "types": ["react-native", "expo"]
+  }
 }
