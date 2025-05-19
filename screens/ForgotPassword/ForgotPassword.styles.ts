@@ -36,9 +36,9 @@ export default StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 18,
-    paddingVertical: 32,
-    paddingHorizontal: 24,
-    marginHorizontal: 16,
+    paddingVertical: 48,
+    paddingHorizontal: 40,
+    marginHorizontal: 32,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.12,
@@ -46,6 +46,12 @@ export default StyleSheet.create({
     elevation: 6,
     alignSelf: 'center',
     width: '100%',
-    maxWidth: 400,
+    maxWidth: 500,
+  },
+  input: {
+    fontSize: 18,
+    marginBottom: 18,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
   },
 });

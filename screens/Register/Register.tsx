@@ -47,6 +47,7 @@ export default function Register() {
   };
 
   const { width, height } = useWindowDimensions();
+  const isTablet = width > 600;
   const isLandscape = width > height;
 
   return (
@@ -68,14 +69,14 @@ export default function Register() {
             </Text>
 
             {/* Input fields for user details */}
-            <Input placeholder="Nome completo" value={nome} onChangeText={setNome} />
-            <Input placeholder="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" />
-            <Input placeholder="Senha" value={senha} onChangeText={setSenha} secureTextEntry />
-            <Input placeholder="Confirmar Senha" value={confirmarSenha} onChangeText={setConfirmarSenha} secureTextEntry />
+            <Input placeholder="Nome completo" value={nome} onChangeText={setNome} style={styles.input} />
+            <Input placeholder="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" style={styles.input} />
+            <Input placeholder="Senha" value={senha} onChangeText={setSenha} secureTextEntry style={styles.input} />
+            <Input placeholder="Confirmar Senha" value={confirmarSenha} onChangeText={setConfirmarSenha} secureTextEntry style={styles.input} />
 
             {/* Register button */}
             <PrimaryButton title="Registrar" onPress={handleRegister} />
-            <View style={{ height: 30 }}></View>
+            <View style={{ height: isTablet ? 48 : 30 }} />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

@@ -56,6 +56,7 @@ export default function ForgotPassword() {
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
+              style={styles.input}
             />
 
             <PrimaryButton title="Enviar código" onPress={handleEnviarLink} />

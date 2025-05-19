@@ -2,7 +2,10 @@
   "compilerOptions": {
     "target": "ES2021",
     "module": "esnext",
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -13,7 +16,10 @@
     "isolatedModules": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "react-native", // habilita jsx
-    "types": ["react-native", "expo"]
+    "jsx": "react-native",
+    "types": [
+      "react-native",
+      "expo"
+    ]
   }
 }
