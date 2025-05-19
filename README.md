@@ -6,7 +6,9 @@ Aplicativo de Gestão de Membros e Orçamentos — Comp Júnior
 
 ## 📋 Descrição
 
-O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript, com Expo, para facilitar a gestão de membros e orçamentos da Comp Júnior. O app oferece uma interface moderna, responsiva e acessível, permitindo o controle eficiente de usuários e processos financeiros.
+O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript, com Expo, projetado para facilitar a gestão de membros e orçamentos da Comp Júnior. Com um design autoral cuidadosamente elaborado, o app oferece uma interface moderna, responsiva e acessível, garantindo uma experiência de usuário única e alinhada à identidade visual da Comp Júnior. Além disso, o aplicativo permite o controle eficiente de usuários e processos financeiros, promovendo praticidade e organização.
+
+---
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -14,17 +16,26 @@ O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript
 - **Expo**
 - **TypeScript**
 
+---
+
 ## 📱 Funcionalidades Principais
 
-- Autenticação de usuários (login, cadastro, recuperação de senha)
-- Gerenciamento de membros (adição, edição, remoção)
-- Gerenciamento de orçamentos (adição, edição, remoção, aprovação/reprovação)
-- Interface responsiva para celulares e tablets
-- Acessibilidade aprimorada para leitores de tela
+1. **Autenticação de usuários:** Login, cadastro e recuperação de senha.
+2. **Gerenciamento de membros:**
+   - Adição, edição e remoção de membros.
+   - A data de nascimento deve ser anterior à data atual (checagem automática).
+   - Campos como e-mail são validados para garantir o formato correto (exemplo: x@x.x).
+3. **Gerenciamento de orçamentos:**
+   - Criação, edição, aprovação/reprovação e exclusão de orçamentos.
+   - Novos orçamentos são automaticamente criados com o status "em análise" (amarelo) e a data atual.
+4. **Confirmações de ações:**
+   - Antes de realizar ações críticas, como sair do dashboard, excluir um membro, aprovar/reprovar um orçamento ou cancelar a criação de um membro ou orçamento, o usuário é solicitado a confirmar a ação.
+5. **Interface responsiva:**
+   - Adaptada para celulares e tablets, com sidebar ativada automaticamente em tablets.
+6. **Acessibilidade aprimorada:**
+   - Todos os botões e elementos interativos possuem rótulos descritivos (`accessibilityLabel`) para navegação eficiente por leitores de tela.
 
-## ♿️ Acessibilidade
-
-Todos os botões e elementos interativos possuem rótulos descritivos (`accessibilityLabel`) para garantir navegação eficiente por leitores de tela, seguindo as melhores práticas de acessibilidade mobile.
+---
 
 ## 🛠️ Como Executar
 
@@ -58,6 +69,8 @@ Todos os botões e elementos interativos possuem rótulos descritivos (`accessib
    - **No emulador Android:** Com o terminal do Expo aberto, pressione a tecla **`a`** para abrir o app automaticamente no emulador Android configurado na sua máquina.
    - **Para finalizar a execução do Expo:** Pressione **Ctrl + C** no terminal.
 
+---
+
 ## 📁 Estrutura do Projeto
 
 ```
@@ -82,6 +95,8 @@ Todos os botões e elementos interativos possuem rótulos descritivos (`accessib
 - **screens/**: Telas principais do app
 - **types/**: Tipagens e definições globais
 
+---
+
 ## 📸 Telas do Aplicativo
 
 <!-- Exemplo de tela: Welcome -->
@@ -91,7 +106,7 @@ Todos os botões e elementos interativos possuem rótulos descritivos (`accessib
 
 **Descrição:**
 
-_Adicione aqui uma explicação sobre a tela de boas-vindas, funcionalidades e fluxo de navegação._
+_Primeira tela do aplicativo._
 
 <!-- Exemplo de tela: Login -->
 <p align="center">
@@ -100,7 +115,21 @@ _Adicione aqui uma explicação sobre a tela de boas-vindas, funcionalidades e f
 
 **Descrição:**
 
-_Adicione aqui uma explicação sobre a tela de boas-vindas, funcionalidades e fluxo de navegação._
+_A tela de login permite que o usuário acesse o aplicativo inserindo suas credenciais. Caso tenha esquecido a senha, é possível clicar na opção "Esqueci minha senha", onde será solicitado o código enviado por e-mail (123456). Além disso, é possível fazer login utilizando os dados "Teste@zeus.com" como e-mail e "Teste" como senha._
+
+<!-- Exemplo de tela: Dashboard -->
+<p align="center">
+  <img src="./assets/screenshots/dashboardTELA.jpeg" alt="Tela Dashboard" width="300" />
+</p>
+
+**Descrição:**
+
+_A tela de dashboard permite ao usuário acessar diversas funcionalidades do aplicativo. Ao clicar no ícone de menu, uma sidebar será exibida (em tablets, ela já fica ativada o tempo todo), permitindo a navegação entre as outras telas. Além disso, o dashboard exibe uma lista de funcionários com suas funções e um gráfico que apresenta os status dos orçamentos (em análise, aprovados e reprovados)._
+
+- **Tela de Membros:** Exibe uma lista de todos os membros. Clicando na seta ao lado de um membro, é possível visualizar suas informações, editá-las ou excluí-lo. Há também a opção de adicionar um novo membro.
+- **Tela de Orçamentos:** Exibe uma lista de orçamentos identificados por números. Clicando na seta de um card, é possível acessar suas informações. Caso o card esteja amarelo (em análise), o administrador pode aprovar ou reprovar o projeto. Além disso, é possível excluir qualquer projeto a qualquer momento, editar os campos dos orçamentos existentes e criar novos orçamentos, que são automaticamente criados com o status "em análise" (amarelo).
+
+---
 
 ## 📄 Licença
 
