@@ -42,7 +42,7 @@ export default function Login() {
   const handleLogin = () => {
     if (!validateInputs()) return;
 
-    if (email === 'Caio@zeus.com' && senha === 'Cedos') {
+    if (email === 'Teste@zeus.com' && senha === 'Teste') {
       // Reseta a pilha quando em login bem sucedido
       navigation.reset({
         index: 0,
