@@ -87,10 +87,10 @@ export default function Login() {
             />
 
             {/* Login button */}
-            <PrimaryButton title="Entrar" onPress={handleLogin} />
+            <PrimaryButton title="Entrar" onPress={handleLogin} accessibilityLabel="Entrar no aplicativo" />
 
             {/* Link to forgot password screen */}
-            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')} accessibilityLabel="Ir para tela de recuperação de senha">
               <Text style={styles.link}>Esqueci minha senha</Text>
             </TouchableOpacity>
           </View>

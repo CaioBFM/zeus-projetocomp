@@ -29,7 +29,7 @@ export default function Budget() {
         {/* Linha com título e botão à direita */}
         <View style={styles.headerRow}>
           <Text style={styles.text}>Orçamentos</Text>
-          <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('AddBudget')}>
+          <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('AddBudget')} accessibilityLabel="Adicionar novo orçamento">
             <Feather name="plus" size={26} color="#fff" />
           </TouchableOpacity>
         </View>

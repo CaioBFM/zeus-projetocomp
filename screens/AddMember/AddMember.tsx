@@ -123,7 +123,7 @@ export default function AddMember() {
           </View>
           <View style={styles.card}>
             <Text style={[styles.title, { fontSize: isLandscape ? 28 : 24, marginBottom: isLandscape ? 40 : 24 }]}>Adicionar Funcionário</Text>
-            <TouchableOpacity onPress={pickImage} style={styles.photoButton}>
+            <TouchableOpacity onPress={pickImage} style={styles.photoButton} accessibilityLabel="Selecionar ou tirar foto do funcionário">
               {imagem ? (
                 <Image source={{ uri: imagem }} style={styles.photo} />
               ) : (
@@ -154,11 +154,13 @@ export default function AddMember() {
                   );
                 }}
                 style={styles.cancelButton}
+                accessibilityLabel="Cancelar cadastro de funcionário"
               />
               <PrimaryButton
                 title="Adicionar"
                 onPress={handleAddMember}
                 style={styles.addButton}
+                accessibilityLabel="Adicionar novo funcionário"
               />
             </View>
             <View style={styles.bottomSpacing}></View>

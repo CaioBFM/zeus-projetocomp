@@ -75,7 +75,7 @@ export default function AddBudget() {
             <Input placeholder="Cliente" value={cliente} onChangeText={setCliente} />
             <TouchableOpacity
               onPress={() => setMembroModalVisible(true)}
-              accessibilityLabel="Selecionar membro"
+              accessibilityLabel="Selecionar membro responsável pelo orçamento"
               style={{ marginBottom: 16 }}
             >
               <Input
@@ -96,6 +96,7 @@ export default function AddBudget() {
                 style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' }}
                 activeOpacity={1}
                 onPressOut={() => setMembroModalVisible(false)}
+                accessibilityLabel="Fechar seleção de membro"
               >
                 <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#fff', borderTopLeftRadius: 18, borderTopRightRadius: 18, padding: 24, maxHeight: 400 }}>
                   <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 16, color: '#222' }}>Selecione o membro</Text>
@@ -135,8 +136,9 @@ export default function AddBudget() {
                   );
                 }}
                 style={styles.cancelButton}
+                accessibilityLabel="Cancelar criação de orçamento"
               />
-              <PrimaryButton title="Criar" onPress={handleAddBudget} style={styles.addButton} />
+              <PrimaryButton title="Criar" onPress={handleAddBudget} style={styles.addButton} accessibilityLabel="Criar novo orçamento" />
             </View>
             <View style={styles.bottomSpacing}></View>
           </View>

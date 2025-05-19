@@ -76,7 +76,7 @@ export default function VerifyCode() {
                 />
     
                 {/* Confirm button */}
-                <PrimaryButton title="Confirmar" onPress={handleVerificarCodigo} />
+                <PrimaryButton title="Confirmar" onPress={handleVerificarCodigo} accessibilityLabel="Confirmar código de verificação" />
               </View>
             </View>
           </ScrollView>

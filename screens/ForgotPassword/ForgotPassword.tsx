@@ -59,7 +59,7 @@ export default function ForgotPassword() {
               style={styles.input}
             />
 
-            <PrimaryButton title="Enviar código" onPress={handleEnviarLink} />
+            <PrimaryButton title="Enviar código" onPress={handleEnviarLink} accessibilityLabel="Enviar código de recuperação de senha" />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

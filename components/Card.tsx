@@ -111,7 +111,11 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
           {!hideImage && imagem && <Image source={{ uri: imagem }} style={styles.imagem} />}
           <Text style={styles.nome}>{mainTitle}</Text>
           {expandable && (
-            <TouchableOpacity onPress={() => setExpanded(!expanded)}>
+            <TouchableOpacity
+              onPress={() => setExpanded(!expanded)}
+              accessibilityLabel={expanded ? `Recolher detalhes do card ${mainTitle}` : `Expandir detalhes do card ${mainTitle}`}
+              accessibilityRole="button"
+            >
               <Icon name={expanded ? 'chevron-up' : 'chevron-down'} size={28} color="#222" style={styles.iconExpand} />
             </TouchableOpacity>
           )}
@@ -144,7 +148,12 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
                 ))}
                 <View style={{ height: 10 }} />
                 {onDelete && (
-                  <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
+                  <TouchableOpacity
+                    style={styles.deleteButton}
+                    onPress={handleDelete}
+                    accessibilityLabel={`Excluir ${mainTitle}`}
+                    accessibilityRole="button"
+                  >
                     <Icon name="trash" size={18} color="#fff" style={{ marginRight: 6 }} />
                     <Text style={styles.deleteButtonText}>Excluir</Text>
                   </TouchableOpacity>

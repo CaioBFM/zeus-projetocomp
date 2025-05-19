@@ -29,7 +29,7 @@ export default function Members() {
         {/* Linha com título e botão à direita */}
         <View style={styles.headerRow}>
           <Text style={styles.text}>Membros</Text>
-          <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('AddMember')}>
+          <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('AddMember')} accessibilityLabel="Adicionar novo membro">
             <Feather name="plus" size={26} color="#fff" />
           </TouchableOpacity>
         </View>

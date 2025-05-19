@@ -75,7 +75,7 @@ export default function Register() {
             <Input placeholder="Confirmar Senha" value={confirmarSenha} onChangeText={setConfirmarSenha} secureTextEntry style={styles.input} />
 
             {/* Register button */}
-            <PrimaryButton title="Registrar" onPress={handleRegister} />
+            <PrimaryButton title="Registrar" onPress={handleRegister} accessibilityLabel="Registrar nova conta" />
             <View style={{ height: isTablet ? 48 : 30 }} />
           </View>
         </ScrollView>

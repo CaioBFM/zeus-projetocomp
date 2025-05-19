@@ -9,9 +9,15 @@ interface PrimaryButtonProps extends TouchableOpacityProps {
 
 const { width } = Dimensions.get('window');
 
-export default function PrimaryButton({ title, style, textStyle, ...props }: PrimaryButtonProps) {
+export default function PrimaryButton({ title, style, textStyle, accessibilityLabel, ...props }: PrimaryButtonProps) {
   return (
-    <TouchableOpacity {...props} style={[styles.button, style]}>
+    <TouchableOpacity
+      {...props}
+      style={[styles.button, style]}
+      accessibilityLabel={accessibilityLabel || title}
+      accessible
+      accessibilityRole="button"
+    >
       <Text style={[styles.text, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );

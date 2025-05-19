@@ -47,12 +47,14 @@ export default function Welcome() {
                     onPress={() => navigateTo('Login')}
                     style={[styles.button, styles.buttonWhite]}
                     textStyle={styles.buttonTextBlack}
+                    accessibilityLabel="Ir para tela de login"
                   />
                   <PrimaryButton
                     title="Criar Conta"
                     onPress={() => navigateTo('Register')}
                     style={[styles.button, styles.buttonWhite]}
                     textStyle={styles.buttonTextBlack}
+                    accessibilityLabel="Ir para tela de cadastro"
                   />
                 </View>
               </View>

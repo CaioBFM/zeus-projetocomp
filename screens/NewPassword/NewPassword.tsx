@@ -80,7 +80,7 @@ export default function VerifyCode() {
                 onChangeText={setConfirmarSenha}
               />
 
-              <PrimaryButton title="Confirmar" onPress={HandleDefinePassword} />
+              <PrimaryButton title="Confirmar" onPress={HandleDefinePassword} accessibilityLabel="Confirmar nova senha" />
             </View>
           </View>
         </ScrollView>
