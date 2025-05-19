@@ -27,6 +27,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginTop: isTablet ? 40 : 32,
     alignSelf: 'flex-start',
+    marginLeft: isTablet ? 8 : 0,
   },
   cardOrcamento: {
     backgroundColor: '#fff',
@@ -154,5 +155,25 @@ export default StyleSheet.create({
     color: '#888',
     textAlign: 'center',
     marginTop: 12,
+  },
+  headerRow: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    marginBottom: isTablet ? 32 : 16,
+    paddingRight: isTablet ? 8 : 0,
+    paddingLeft: isTablet ? 8 : 2,
+    minHeight: isTablet ? 48 : 32,
+  },
+  linha: {
+    width: '100%',
+    height: isTablet ? 3 : 2,
+    backgroundColor: '#fff',
+    opacity: isTablet ? 0.6 : 0.7,
+    marginBottom: isTablet ? 24 : 12,
+    borderRadius: isTablet ? 3 : 2,
+    alignSelf: 'center',
+    maxWidth: isTablet ? 700 : '100%',
   },
 });

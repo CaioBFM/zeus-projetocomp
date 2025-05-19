@@ -36,7 +36,10 @@ export default function Dashboard() {
         <View style={styles.logoContainer}>
           <AppLogo variant="branca" />
         </View>
-        <Text style={styles.text}>Dashboard</Text>
+        <View style={styles.headerRow}>
+          <Text style={styles.text}>Dashboard</Text>
+        </View>
+        <View style={styles.linha} />
         {/* Gráfico de orçamentos */}
         <View style={styles.cardOrcamento}>
           <Text style={styles.cardOrcamentoTitulo}>Card de orçamentos</Text>
