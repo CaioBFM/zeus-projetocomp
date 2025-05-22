@@ -1,6 +1,6 @@
 export type RootStackParamList = {
     Welcome: undefined;
-    Login: undefined; //undefined porque nao estou passando dados entre elas ainda
+    Login: undefined; // undefined porque não estou passando dados entre telas, ainda
     Register: undefined;
     ForgotPassword: undefined;
     Dashboard: undefined;

@@ -12,9 +12,18 @@ O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript
 
 ## 🚀 Tecnologias Utilizadas
 
-- **React Native**
-- **Expo**
-- **TypeScript**
+- **React Native**: Framework para desenvolvimento mobile multiplataforma.
+- **Expo**: Ferramenta para facilitar o desenvolvimento, build e deploy de apps React Native.
+- **TypeScript**: Tipagem estática para maior segurança e produtividade.
+- **React Navigation**: Navegação entre telas no app.
+- **React Context API**: Gerenciamento de estado global.
+- **Styled Components**: Estilização dos componentes com CSS-in-JS.
+- **React Native Vector Icons**: Ícones customizáveis para React Native.
+- **React Native Gesture Handler**: Gestos e interações avançadas.
+- **React Native Safe Area Context**: Ajuste automático para áreas seguras de diferentes dispositivos.
+- **React Native Screens**: Otimização de performance na navegação.
+- **React Native Pie Chart**: Gráficos de pizza para visualização de dados.
+- **Expo Image Picker**: Seleção de imagens da galeria do dispositivo.
 
 ---
 
@@ -97,7 +106,7 @@ O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript
 
 ---
 
-## 📸 Telas do Aplicativo
+## 📸 Telas Principais do Aplicativo
 
 <!-- Exemplo de tela: Welcome -->
 
@@ -133,13 +142,35 @@ _A tela de login permite que o usuário acesse o aplicativo inserindo suas crede
 
 **Descrição:**
 
-_A tela de dashboard permite ao usuário acessar diversas funcionalidades do aplicativo. Ao clicar no ícone de menu, uma sidebar será exibida (em tablets, ela já fica ativada o tempo todo), permitindo a navegação entre as outras telas. Além disso, o dashboard exibe uma lista de funcionários com suas funções e um gráfico que apresenta os status dos orçamentos (em análise, aprovados e reprovados)._
+_A tela de dashboard permite ao usuário acessar diversas funcionalidades do aplicativo. Ao clicar no ícone de menu(≡), uma sidebar será exibida (em tablets, ela já fica ativada o tempo todo), permitindo a navegação entre as outras telas. Além disso, o dashboard exibe uma lista de funcionários com suas funções e um gráfico que apresenta os status dos orçamentos (em análise, aprovados e reprovados)._
 
-- **Tela de Membros:** Exibe uma lista de todos os membros. Clicando na seta ao lado de um membro, é possível visualizar suas informações, editá-las ou excluí-lo. Há também a opção de adicionar um novo membro.
-- **Tela de Orçamentos:** Exibe uma lista de orçamentos identificados por números. Clicando na seta de um card, é possível acessar suas informações. Caso o card esteja amarelo (em análise), o administrador pode aprovar ou reprovar o projeto. Além disso, é possível excluir qualquer projeto a qualquer momento, editar os campos dos orçamentos existentes e criar novos orçamentos, que são automaticamente criados com o status "em análise" (amarelo).
+<!-- Exemplo de tela: Dashboard -->
+
+### Tela Membros
+
+<p align="center">
+  <img src="./assets/screenshots/MembersTELA.jpeg" alt="Tela Membros" width="300" />
+</p>
+
+**Descrição:**
+
+_A tela de membros exibe uma lista de todos os membros. Clicando na seta ao lado de um membro, é possível visualizar suas informações, editá-las ou excluí-lo. Há também a opção de adicionar um novo membro (clicando no símbolo '+')._
+
+<!-- Exemplo de tela: Dashboard -->
+
+### Tela Membros
+
+<p align="center">
+  <img src="./assets/screenshots/BudgetTELA.jpeg" alt="Tela Membros" width="300" />
+</p>
+
+**Descrição:**
+
+_A tela de orçamentos exibe uma lista de orçamentos identificados por números. Clicando na seta de um card, é possível acessar suas informações. Caso o card esteja amarelo (em análise), o administrador pode aprovar ou reprovar o projeto. Além disso, é possível excluir qualquer projeto a qualquer momento, editar os campos dos orçamentos existentes e criar novos orçamentos (clicando no símbolo '+'), que são, automaticamente, criados com o status "em análise" (amarelo)._
 
 ---
 
-## 📄 Licença
+## ✉️ Feedback e Contato
 
-Este projeto está sob licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Para fornecer feedback ou entrar em contato, sinta-se à vontade para enviar um e-mail para
+caiofinocchio@outlook.com

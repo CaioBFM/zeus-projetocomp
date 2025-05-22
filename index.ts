@@ -1,10 +1,10 @@
-// Entry point for the app registration
-// Ensures the app is set up correctly for both Expo Go and native builds
+// Ponto de entrada do app
+// Garante que o app esteja configurado corretamente para o Expo Go e builds nativos
 import { registerRootComponent } from 'expo';
 
 import App from './App';
 
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
-// It also ensures that whether you load the app in Expo Go or in a native build,
-// the environment is set up appropriately
+// registerRootComponent chama AppRegistry.registerComponent('main', () => App);
+// Também garante que, ao carregar o app no Expo Go ou em uma build nativa,
+// o ambiente esteja configurado apropriadamente
 registerRootComponent(App);

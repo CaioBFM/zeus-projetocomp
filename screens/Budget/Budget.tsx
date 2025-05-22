@@ -1,6 +1,6 @@
-// Members screen component
-// Displays a welcome message and a header
-import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
+// Tela de orçamentos
+// Usuário pode criar, editar, aprovar/reprovar e excluir orçamentos.
+import { View, Text, ScrollView, TouchableOpacity, Alert, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import styles from './Budget.styles';
@@ -9,20 +9,19 @@ import Sidebar from '../../components/Sidebar';
 import { RootStackParamList } from '../../types/navigation';
 import Card from '../../components/Card';
 import Feather from 'react-native-vector-icons/Feather';
-import React, { useState } from 'react';
+import React from 'react';
 import { useBudget } from '../../components/BudgetContext';
 
 export default function Budget() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { Budget, addBudget, removeBudget, updateBudgetStatus } = useBudget();
+  const { Budget, removeBudget, updateBudgetStatus } = useBudget();
+  const { width } = Dimensions.get('window');
+  const isTablet = width > 600;
 
   return (
     <View style={styles.container}>
-      {/* Sidebar lateral (tablet/desktop) ou drawer (mobile) */}
       <Sidebar navigation={navigation} />
-      {/* Conteúdo principal centralizado */}
       <View style={styles.content}>
-        {/* Logo fixa no topo direito */}
         <View style={styles.logoContainer}>
           <AppLogo variant="branca" />
         </View>
@@ -30,7 +29,7 @@ export default function Budget() {
         <View style={styles.headerRow}>
           <Text style={styles.text}>Orçamentos</Text>
           <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('AddBudget')} accessibilityLabel="Adicionar novo orçamento">
-            <Feather name="plus" size={26} color="#fff" />
+            <Feather name="plus" size={isTablet ? 36 : 32} color="#fff" />
           </TouchableOpacity>
         </View>
         <Text style={styles.info}>🟡Em análise     🟢Aprovado     🔴Reprovado </Text>
@@ -51,7 +50,6 @@ export default function Budget() {
                 { key: 'CustosPrevistos', label: 'Custos previstos', value: Budget.custosPrevistos, editable: true },
                 { key: 'status', label: 'Status', value: Budget.status, editable: false }, 
               ]}
-              onFieldChange={(key, value) => {/* Poderia implementar açao global depois */}}
               onDelete={() => removeBudget(Budget.id)}
               cardSize="small"
               hideImage

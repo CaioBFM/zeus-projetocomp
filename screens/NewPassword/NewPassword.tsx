@@ -1,5 +1,5 @@
-// NewPassword screen component
-// Allows user to set a new password after verifying the code
+// Tela de Nova Senha
+// Depois de verificar se o códifo está correto, permite o usuário a criar nova senha
 import { useState } from 'react';
 import { View, Text, Alert, KeyboardAvoidingView, ScrollView, Platform, SafeAreaView, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -20,7 +20,6 @@ export default function VerifyCode() {
   const { width, height } = useWindowDimensions();
   const isLandscape = width > height;
 
-  // Validate password fields
   const ValidatePasswords = () => {
     if (!senha || !confirmarSenha) {
         Alert.alert('Erro', 'Preencha todos os campos para prosseguir.');
@@ -38,7 +37,6 @@ export default function VerifyCode() {
     return true;
   };
 
-  // Handle password reset
   const HandleDefinePassword = () => {
     if (!ValidatePasswords()) return;
 
@@ -56,11 +54,9 @@ export default function VerifyCode() {
           contentContainerStyle={styles.scroll}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Logo azul no topo direito */}
           <View style={styles.logoContainer}>
             <AppLogo variant="branca" />
           </View>
-          {/* Card branco centralizado */}
           <View style={styles.card}>
             <View style={styles.content}>
               <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>Nova Senha</Text>

@@ -1,5 +1,5 @@
-// Forgot Password screen component
-// Allows users to request a password recovery link
+// Tela de Esqueci a Senha
+// Permite que o usuário solicite um código enviado por email para alterar a senha
 import { View, Text, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, useWindowDimensions, Alert } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -41,11 +41,9 @@ export default function ForgotPassword() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          {/* Logo azul no topo direito */}
           <View style={styles.logoContainer}>
             <AppLogo variant="branca" />
           </View>
-          {/* Card branco centralizado */}
           <View style={styles.card}>
             <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
               Recuperar Senha

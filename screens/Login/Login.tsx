@@ -1,5 +1,5 @@
-// Login screen component
-// Handles user authentication and navigation to other screens
+// Tela de Login
+// Permite usuário logar com as credenciais corretas ou ir para a tela esqueci senha (caso tenha esquecido senha)
 import { useState } from 'react';
 import { View, Text, Alert, TouchableOpacity, KeyboardAvoidingView, ScrollView, Platform, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -18,7 +18,6 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  // Validate user inputs before login
   const validateInputs = () => {
     if (!email || !senha) {
       Alert.alert('Erro', 'Preencha todos os campos.');
@@ -38,7 +37,6 @@ export default function Login() {
     return true;
   };
 
-  // Handle login logic
   const handleLogin = () => {
     if (!validateInputs()) return;
 
@@ -63,15 +61,12 @@ export default function Login() {
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Logo azul no topo direito */}
           <View style={styles.logoContainer}>
             <AppLogo variant="branca" />
           </View>
-          {/* Card branco centralizado */}
           <View style={styles.card}>
             <Text style={styles.title}>Login</Text>
 
-            {/* Input fields for email and password */}
             <Input
               placeholder="E-mail"
               keyboardType="email-address"
@@ -86,10 +81,8 @@ export default function Login() {
               onChangeText={setSenha}
             />
 
-            {/* Login button */}
             <PrimaryButton title="Entrar" onPress={handleLogin} accessibilityLabel="Entrar no aplicativo" />
 
-            {/* Link to forgot password screen */}
             <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')} accessibilityLabel="Ir para tela de recuperação de senha">
               <Text style={styles.link}>Esqueci minha senha</Text>
             </TouchableOpacity>

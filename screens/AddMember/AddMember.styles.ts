@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 const isTablet = width > 600;
 
 export default StyleSheet.create({
@@ -15,7 +15,7 @@ export default StyleSheet.create({
   scroll: {
     flexGrow: 1,
     justifyContent: 'center',
-    paddingTop: isTablet ? 56 : 32, // espaço menor já que logo está no fluxo
+    paddingTop: isTablet ? 56 : 32,
     paddingBottom: isTablet ? 56 : 32,
   },
   logoContainer: {

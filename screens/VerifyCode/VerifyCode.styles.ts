@@ -19,7 +19,7 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#06213D', // ciano escuro sólido
+    backgroundColor: '#06213D',
   },
   scroll: {
     flexGrow: 1,

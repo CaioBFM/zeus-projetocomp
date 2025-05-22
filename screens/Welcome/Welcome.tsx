@@ -1,5 +1,5 @@
-// Welcome screen component
-// Provides navigation options for users to log in or register
+// Tela de boas-vindas
+// Usuário pode efetuar login ou registrar um nova conta
 import { View, Text, ImageBackground, ScrollView, SafeAreaView, Platform, KeyboardAvoidingView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -14,7 +14,6 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Welcome'>;
 export default function Welcome() {
   const navigation = useNavigation<NavigationProps>();
 
-  // Navigate to a specific screen
   const navigateTo = (screen: keyof RootStackParamList) => {
     navigation.navigate(screen);
   };
@@ -32,15 +31,11 @@ export default function Welcome() {
             style={styles.container}
           >
             <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-              {/* Logo posicionada no topo direito, mas um pouco mais para baixo */}
               <View style={styles.logoContainer}>
                 <AppLogo variant='branca'/>
               </View>
-              {/* Conteúdo centralizado permanece centralizado */}
               <View style={styles.centralContent}>
                 <Text style={styles.title}>Bem-vindo ao ZEUS</Text>
-
-                {/* Buttons for navigation */}
                 <View style={styles.buttonRow}>
                   <PrimaryButton
                     title="Entrar"

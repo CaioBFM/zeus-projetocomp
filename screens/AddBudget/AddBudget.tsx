@@ -1,6 +1,5 @@
-// AddMember screen component
-// Handles adding a new member (employee) and navigation to the Members screen
-import { View, Text, Alert, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView, useWindowDimensions } from 'react-native';
+// Tela de Adicionar orçamentos
+import { View, Text, Alert, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -49,7 +48,7 @@ export default function AddBudget() {
       membro,
       valorEstimado,
       custosPrevistos,
-      dataCriacaoOrcamento: dataFormatada,
+      dataCriacaoOrcamento: dataFormatada, // data de hoje adicionada automaticamente
       status: 'Em análise',
     });
     Alert.alert('Sucesso', 'Orçamento criado com sucesso!');
@@ -64,7 +63,6 @@ export default function AddBudget() {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          {/* Logo no topo do conteúdo, com espaçamento */}
           <View style={[styles.logoContainer]}> 
             <AppLogo variant="branca" />
           </View>
@@ -76,14 +74,14 @@ export default function AddBudget() {
             <TouchableOpacity
               onPress={() => setMembroModalVisible(true)}
               accessibilityLabel="Selecionar membro responsável pelo orçamento"
-              style={{ marginBottom: 16 }}
+              style={styles.memberSelectorButton}
             >
               <Input
                 placeholder='Membro'
                 value={membro}
                 editable={false}
                 pointerEvents="none"
-                style={{ backgroundColor: '#f3f4f6' }}
+                style={styles.memberInput}
               />
             </TouchableOpacity>
             <Modal
@@ -93,13 +91,13 @@ export default function AddBudget() {
               onRequestClose={() => setMembroModalVisible(false)}
             >
               <TouchableOpacity
-                style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' }}
+                style={styles.modalOverlay}
                 activeOpacity={1}
                 onPressOut={() => setMembroModalVisible(false)}
                 accessibilityLabel="Fechar seleção de membro"
               >
-                <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#fff', borderTopLeftRadius: 18, borderTopRightRadius: 18, padding: 24, maxHeight: 400 }}>
-                  <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 16, color: '#222' }}>Selecione o membro</Text>
+                <View style={styles.modalContainer}>
+                  <Text style={styles.modalTitle}>Selecione o membro</Text>
                   <FlatList
                     data={membros}
                     keyExtractor={item => item.id}
@@ -109,10 +107,10 @@ export default function AddBudget() {
                           setMembro(item.nome);
                           setMembroModalVisible(false);
                         }}
-                        style={{ paddingVertical: 14, borderBottomWidth: 1, borderColor: '#eee' }}
+                        style={styles.memberItem}
                         accessibilityLabel={`Selecionar membro ${item.nome}`}
                       >
-                        <Text style={{ fontSize: 17, color: '#222' }}>{item.nome}</Text>
+                        <Text style={styles.memberItemText}>{item.nome}</Text>
                       </TouchableOpacity>
                     )}
                   />

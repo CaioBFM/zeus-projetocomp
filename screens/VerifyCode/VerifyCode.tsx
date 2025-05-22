@@ -1,6 +1,6 @@
-// VerifyCode screen component
-// Handles verification of code sent to user email
-import React ,{ useState, useRef } from 'react';
+// Tela de verificação de código
+// Verifica o código enviado por email para o usuário
+import React , { useState } from 'react';
 import { View, Text, Alert, KeyboardAvoidingView, ScrollView, Platform, SafeAreaView, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -19,7 +19,6 @@ export default function VerifyCode() {
     const { width, height } = useWindowDimensions();
     const isLandscape = width > height;
   
-    // Validate the verification code
     const validateCode = () => {
       if (!codigo) {
         Alert.alert('Erro', 'Digite o código.');
@@ -34,7 +33,6 @@ export default function VerifyCode() {
       return true;
     };
   
-    // Handle code verification logic
     const handleVerificarCodigo = () => {
       if (!validateCode()) return;
   
@@ -56,17 +54,14 @@ export default function VerifyCode() {
             contentContainerStyle={styles.scroll}
             keyboardShouldPersistTaps="handled"
           >
-            {/* Logo azul no topo direito */}
             <View style={styles.logoContainer}>
               <AppLogo variant="branca" />
             </View>
-            {/* Card branco centralizado */}
             <View style={styles.card}>
               <View style={styles.content}>
                 <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>Verificação de e-mail</Text>
                 <Text style={styles.subtitle}>Digite o código de 6 dígitos que foi enviado para seu e-mail.</Text>
     
-                {/* Input for verification code */}
                 <Input
                   placeholder="Código"
                   keyboardType="numeric"
@@ -75,7 +70,6 @@ export default function VerifyCode() {
                   maxLength={6}
                 />
     
-                {/* Confirm button */}
                 <PrimaryButton title="Confirmar" onPress={handleVerificarCodigo} accessibilityLabel="Confirmar código de verificação" />
               </View>
             </View>
