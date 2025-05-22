@@ -1,5 +1,5 @@
-// Members screen component
-// Displays a welcome message and a header
+// Tela de orçamentos
+// Usuário pode criar, editar, aprovar/reprovar e excluir orçamentos.
 import { View, Text, ScrollView, TouchableOpacity, Alert, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -14,7 +14,7 @@ import { useBudget } from '../../components/BudgetContext';
 
 export default function Budget() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { Budget, addBudget, removeBudget, updateBudgetStatus } = useBudget();
+  const { Budget, removeBudget, updateBudgetStatus } = useBudget();
   const { width } = Dimensions.get('window');
   const isTablet = width > 600;
 

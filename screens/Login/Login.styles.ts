@@ -6,12 +6,12 @@ const isTablet = width > 600;
 export default StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#06213D', // ciano escuro sólido
+    backgroundColor: '#06213D',
   },
   container: {
     flex: 1,
-    paddingHorizontal: width * 0.06, // ~24px em celulares, aumenta suavemente em tablets
-    backgroundColor: '#06213D', // ciano escuro sólido
+    paddingHorizontal: width * 0.06,
+    backgroundColor: '#06213D',
   },
   scroll: {
     flexGrow: 1,
@@ -36,7 +36,7 @@ export default StyleSheet.create({
   },
   logoContainer: {
     position: 'absolute',
-    top: 32, // valor menor para subir a logo
+    top: 32,
     right: 16,
     zIndex: 10,
   },

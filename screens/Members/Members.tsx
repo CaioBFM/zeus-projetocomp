@@ -1,5 +1,5 @@
-// Members screen component
-// Displays a welcome message and a header
+// Tela de Membros da CompJR
+// Adição, edição e remoção de membros
 import { View, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -25,7 +25,6 @@ export default function Members() {
         <View style={styles.logoContainer}>
           <AppLogo variant="branca" />
         </View>
-        {/* Linha com título e botão à direita */}
         <View style={styles.headerRow}>
           <Text style={styles.text}>Membros</Text>
           <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('AddMember')} accessibilityLabel="Adicionar novo membro">

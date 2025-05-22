@@ -1,6 +1,6 @@
-// Dashboard screen component
-// Displays a welcome message and a header
-import { View, Text, useWindowDimensions, StyleSheet, ScrollView } from 'react-native';
+// Tela de Dashboard
+// Exibe um gráfico com o status de orçamentos e uma tabela de membros (atualizada em tempo real)
+import { View, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation';
@@ -16,12 +16,6 @@ export default function Dashboard() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { membros } = useMembers();
   const { Budget } = useBudget();
-
-  // Dados para o gráfico de orçamentos
-  const total = Budget.length;
-  const pendente = Budget.filter(b => b.status === 'Em análise').length;
-  const aprovado = Budget.filter(b => b.status === 'Aprovado').length;
-  const rejeitado = Budget.filter(b => b.status === 'Reprovado').length;
 
   return (
     <View style={styles.container}>
@@ -39,23 +33,24 @@ export default function Dashboard() {
         <ScrollView>
           <GenericPieChartCard
             title="Card de orçamentos"
-            totalText={`Total de orçamentos: ${total}`}
+            totalText={`Total de orçamentos: ${Budget.length}`}
             data={[
-              { value: pendente, color: '#FBBF24', label: 'Pendente' },
-              { value: aprovado, color: '#22C55E', label: 'Aprovado' },
-              { value: rejeitado, color: '#EF4444', label: 'Rejeitado' }
+              { value: Budget.filter(b => b.status === 'Em análise').length, color: '#FBBF24', label: 'Pendente' },
+              { value: Budget.filter(b => b.status === 'Em análise').length, color: '#22C55E', label: 'Aprovado' },
+              { value: Budget.filter(b => b.status === 'Em análise').length, color: '#EF4444', label: 'Rejeitado' }
             ]}
             legendPosition="right"
             style={{ marginBottom: 32 }}
           />
 
-          {/* Exemplo de implementação de gráfico de funcionários por gênero */}
+          {/* Exemplo de implementação de gráfico de membros por gênero */}
           {/* <GenericPieChartCard
-            title="Funcionários por Gênero"
+            title="Membros por Gênero"
             totalText={`Total: ${membros.length}`}
             data={[
               { value: membros.filter(m => m.genero === 'Masculino').length, color: '#3B82F6', label: 'Masculino' },
               { value: membros.filter(m => m.genero === 'Feminino').length, color: '#F472B6', label: 'Feminino' },
+              { value: membros.filter(m => m.genero === 'Outro').length, color: 'orange', label: 'Outro' },
             ]}
             legendPosition="right"
             style={{ marginBottom: 32 }}

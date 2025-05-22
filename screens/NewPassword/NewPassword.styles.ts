@@ -15,11 +15,11 @@ export const getResponsiveTitle = (isLandscape: boolean) => ({
 export default StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#06213D', // ciano escuro sólido
+    backgroundColor: '#06213D',
   },
   container: {
     flex: 1,
-    backgroundColor: '#06213D', // ciano escuro sólido
+    backgroundColor: '#06213D',
   },
   scroll: {
     flexGrow: 1,

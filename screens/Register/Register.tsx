@@ -1,5 +1,5 @@
-// Register screen component
-// Handles user registration and navigation to the Login screen
+// Tela de Registro
+// Permite o registro de um novo usuário e retorna para  a tela de login ao confirmar
 import { View, Text, Alert, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView, useWindowDimensions } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -9,7 +9,7 @@ import { RootStackParamList } from '../../types/navigation';
 import Input from '../../components/Input';
 import PrimaryButton from '../../components/PrimaryButton';
 import AppLogo from '../../components/Logo';
-import styles, { getResponsivePadding, getResponsiveTitle } from './Register.styles';
+import styles, { getResponsiveTitle } from './Register.styles';
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList, 'Register'>;
 
@@ -38,7 +38,6 @@ export default function Register() {
     return true;
   };
 
-  // Handle user registration logic
   const handleRegister = () => {
     if (!validateInputs()) return;
 
@@ -58,23 +57,19 @@ export default function Register() {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          {/* Logo azul no topo direito */}
           <View style={styles.logoContainer}>
             <AppLogo variant="branca" />
           </View>
-          {/* Card branco centralizado */}
           <View style={styles.card}>
             <Text style={[styles.title, getResponsiveTitle(isLandscape)]}>
               Criar Conta
             </Text>
 
-            {/* Input fields for user details */}
             <Input placeholder="Nome completo" value={nome} onChangeText={setNome} style={styles.input} />
             <Input placeholder="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" style={styles.input} />
             <Input placeholder="Senha" value={senha} onChangeText={setSenha} secureTextEntry style={styles.input} />
             <Input placeholder="Confirmar Senha" value={confirmarSenha} onChangeText={setConfirmarSenha} secureTextEntry style={styles.input} />
 
-            {/* Register button */}
             <PrimaryButton title="Registrar" onPress={handleRegister} accessibilityLabel="Registrar nova conta" />
             <View style={{ height: isTablet ? 48 : 30 }} />
           </View>

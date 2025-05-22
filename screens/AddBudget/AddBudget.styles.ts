@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 const isTablet = width > 600;
 
 export default StyleSheet.create({
@@ -15,7 +15,7 @@ export default StyleSheet.create({
   scroll: {
     flexGrow: 1,
     justifyContent: 'center',
-    paddingTop: isTablet ? 56 : 32, // espaço menor já que logo está no fluxo
+    paddingTop: isTablet ? 56 : 32,
     paddingBottom: isTablet ? 56 : 32,
   },
   logoContainer: {
@@ -62,5 +62,41 @@ export default StyleSheet.create({
   cancelButton: {
     flex: 1,
     backgroundColor: 'red',
+  },
+  memberSelectorButton: {
+    marginBottom: isTablet ? 22 : 16,
+  },
+  memberInput: {
+    backgroundColor: '#f3f4f6',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+  modalContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: isTablet ? 28 : 18,
+    borderTopRightRadius: isTablet ? 28 : 18,
+    padding: isTablet ? 36 : 24,
+    maxHeight: isTablet ? 520 : 400,
+  },
+  modalTitle: {
+    fontWeight: 'bold',
+    fontSize: isTablet ? 22 : 18,
+    marginBottom: isTablet ? 22 : 16,
+    color: '#222',
+  },
+  memberItem: {
+    paddingVertical: isTablet ? 18 : 14,
+    borderBottomWidth: 1,
+    borderColor: '#eee',
+  },
+  memberItemText: {
+    fontSize: isTablet ? 20 : 17,
+    color: '#222',
   },
 });

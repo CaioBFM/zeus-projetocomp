@@ -1,5 +1,4 @@
-// AddMember screen component
-// Handles adding a new member (employee) and navigation to the Members screen
+// Tela de Adicionar Membros
 import { View, Text, Alert, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView, useWindowDimensions } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -40,13 +39,13 @@ export default function AddMember() {
     });
     if (!result.canceled && result.assets && result.assets.length > 0) {
       const asset = result.assets[0];
-      // Verifica extensão
+      // Verifica extensão da imagem
       const ext = asset.uri.split('.').pop()?.toLowerCase();
       if (ext !== 'jpg' && ext !== 'jpeg' && ext !== 'png') {
         Alert.alert('Erro', 'Apenas imagens JPG, JPEG ou PNG são permitidas.');
         return;
       }
-      // Verifica tamanho (em bytes)
+      // Verifica tamanho (em bytes) da imagem
       if (asset.fileSize && asset.fileSize > 2 * 1024 * 1024) {
         Alert.alert('Erro', 'A imagem deve ter no máximo 2MB.');
         return;
@@ -117,7 +116,6 @@ export default function AddMember() {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          {/* Logo no topo do conteúdo, com espaçamento */}
           <View style={[styles.logoContainer, { marginBottom: 32 }]}> 
             <AppLogo variant="branca" />
           </View>

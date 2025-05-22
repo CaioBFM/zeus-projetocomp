@@ -31,7 +31,7 @@ export default StyleSheet.create({
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 16, // funciona com React Native 0.71+ ou use marginRight
+    gap: 16,
     marginTop: 24,
   },
   button: {
@@ -51,17 +51,17 @@ export default StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // escurece o fundo com transparência
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   logoContainer: {
     position: 'absolute',
-    top: height * 0.08, // 8% da altura da tela
-    right: width * 0.04, // 4% da largura da tela
+    top: height * 0.08,
+    right: width * 0.04,
     zIndex: 10,
   },
   centralContent: {
     width: '100%',
     alignItems: 'center',
-    marginTop: height * 0.08, // 8% da altura da tela
+    marginTop: height * 0.08,
   },
 });

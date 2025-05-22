@@ -14,7 +14,7 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: isTablet ? 28 : 22,
     fontWeight: 'bold',
-    marginBottom: 0, // removido, pois headerRow já tem marginBottom
+    marginBottom: 0,
     textAlign: 'left',
     alignSelf: 'flex-start',
   },
@@ -30,7 +30,7 @@ export default StyleSheet.create({
     flex: 1,
     paddingHorizontal: isTablet ? width * 0.08 : width * 0.04,
     paddingVertical: isTablet ? height * 0.04 : height * 0.03,
-    paddingTop: isTablet ? height * 0.11 : height * 0.15, // topo menor em tablet
+    paddingTop: isTablet ? height * 0.11 : height * 0.15,
     justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
@@ -71,7 +71,7 @@ export default StyleSheet.create({
     width: '100%',
     height: isTablet ? 3 : 2,
     backgroundColor: '#fff',
-    opacity: 0.7, // Mais visível e responsivo
+    opacity: 0.7,
     marginBottom: isTablet ? 18 : 10,
     borderRadius: 2,
   },
