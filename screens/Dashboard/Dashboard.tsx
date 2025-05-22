@@ -9,27 +9,19 @@ import Sidebar from '../../components/Sidebar';
 import { useMembers } from '../../components/MembersContext';
 import { useBudget } from '../../components/BudgetContext';
 import styles from './Dashboard.styles';
-import { DashboardLegend } from '../../components/DashboardLegend';
-import { DashboardPieChart } from '../../components/DashboardPieChart';
 import { DashboardEmployeesTable } from '../../components/MembersTable';
+import GenericPieChartCard from '../../components/GenericPieChartCard';
 
 export default function Dashboard() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { membros } = useMembers();
   const { Budget } = useBudget();
-  const { width } = useWindowDimensions();
-  const isTablet = width > 768;
 
   // Dados para o gráfico de orçamentos
   const total = Budget.length;
   const pendente = Budget.filter(b => b.status === 'Em análise').length;
   const aprovado = Budget.filter(b => b.status === 'Aprovado').length;
   const rejeitado = Budget.filter(b => b.status === 'Reprovado').length;
-  const chartSeries = [
-    { value: pendente, color: '#FBBF24' },
-    { value: aprovado, color: '#22C55E' },
-    { value: rejeitado, color: '#EF4444' },
-  ];
 
   return (
     <View style={styles.container}>
@@ -38,20 +30,24 @@ export default function Dashboard() {
         <View style={styles.logoContainer}>
           <AppLogo variant="branca" />
         </View>
-        {/* Linha com título e botão à direita */}
         <View style={styles.headerRow}>
           <Text style={styles.text}>Dashboard</Text>
         </View>
         <View style={styles.linha} />
+
         {/* Gráfico de orçamentos */}
-        <View style={styles.cardOrcamento}>
-          <Text style={styles.cardOrcamentoTitulo}>Card de orçamentos</Text>
-          <Text style={styles.cardOrcamentoTotal}>Total de orçamentos: {total}</Text>
-          <View style={styles.orcamentoRow}>
-            <DashboardLegend pendente={pendente} aprovado={aprovado} rejeitado={rejeitado} />
-            <DashboardPieChart pendente={pendente} aprovado={aprovado} rejeitado={rejeitado} isTablet={isTablet} />
-          </View>
-        </View>
+        <GenericPieChartCard
+          title="Card de orçamentos"
+          totalText={`Total de orçamentos: ${total}`}
+          data={[
+            { value: pendente, color: '#FBBF24', label: 'Pendente' },
+            { value: aprovado, color: '#22C55E', label: 'Aprovado' },
+            { value: rejeitado, color: '#EF4444', label: 'Rejeitado' }
+          ]}
+          legendPosition="right"
+          style={{ marginBottom: 32 }}
+        />
+
         {/* Tabela de funcionários */}
         <DashboardEmployeesTable
           membros={membros}
@@ -70,6 +66,7 @@ export default function Dashboard() {
             habilidades: item.habilidades,
           })}
         />
+
       </View>
     </View>
   );

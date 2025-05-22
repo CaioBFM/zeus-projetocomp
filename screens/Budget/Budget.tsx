@@ -9,7 +9,7 @@ import Sidebar from '../../components/Sidebar';
 import { RootStackParamList } from '../../types/navigation';
 import Card from '../../components/Card';
 import Feather from 'react-native-vector-icons/Feather';
-import React, { useState } from 'react';
+import React from 'react';
 import { useBudget } from '../../components/BudgetContext';
 
 export default function Budget() {
@@ -18,11 +18,8 @@ export default function Budget() {
 
   return (
     <View style={styles.container}>
-      {/* Sidebar lateral (tablet/desktop) ou drawer (mobile) */}
       <Sidebar navigation={navigation} />
-      {/* Conteúdo principal centralizado */}
       <View style={styles.content}>
-        {/* Logo fixa no topo direito */}
         <View style={styles.logoContainer}>
           <AppLogo variant="branca" />
         </View>
@@ -51,7 +48,6 @@ export default function Budget() {
                 { key: 'CustosPrevistos', label: 'Custos previstos', value: Budget.custosPrevistos, editable: true },
                 { key: 'status', label: 'Status', value: Budget.status, editable: false }, 
               ]}
-              onFieldChange={(key, value) => {/* Poderia implementar açao global depois */}}
               onDelete={() => removeBudget(Budget.id)}
               cardSize="small"
               hideImage
