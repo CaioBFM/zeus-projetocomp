@@ -12,9 +12,18 @@ O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript
 
 ## 🚀 Tecnologias Utilizadas
 
-- **React Native**
-- **Expo**
-- **TypeScript**
+- **React Native**: Framework para desenvolvimento mobile multiplataforma.
+- **Expo**: Ferramenta para facilitar o desenvolvimento, build e deploy de apps React Native.
+- **TypeScript**: Tipagem estática para maior segurança e produtividade.
+- **React Navigation**: Navegação entre telas no app.
+- **React Context API**: Gerenciamento de estado global.
+- **Styled Components**: Estilização dos componentes com CSS-in-JS.
+- **React Native Vector Icons**: Ícones customizáveis para React Native.
+- **React Native Gesture Handler**: Gestos e interações avançadas.
+- **React Native Safe Area Context**: Ajuste automático para áreas seguras de diferentes dispositivos.
+- **React Native Screens**: Otimização de performance na navegação.
+- **React Native Pie Chart**: Gráficos de pizza para visualização de dados.
+- **Expo Image Picker**: Seleção de imagens da galeria do dispositivo.
 
 ---
 
