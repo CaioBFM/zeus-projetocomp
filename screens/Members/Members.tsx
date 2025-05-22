@@ -14,15 +14,12 @@ import { useMembers } from '../../components/MembersContext';
 
 export default function Members() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { membros, addMember, removeMember } = useMembers();
+  const { membros, addMember, removeMember, updateMemberField } = useMembers();
 
   return (
     <View style={styles.container}>
-      {/* Sidebar lateral (tablet/desktop) ou drawer (mobile) */}
       <Sidebar navigation={navigation} />
-      {/* Conteúdo principal centralizado */}
       <View style={styles.content}>
-        {/* Logo fixa no topo direito */}
         <View style={styles.logoContainer}>
           <AppLogo variant="branca" />
         </View>
@@ -45,13 +42,13 @@ export default function Members() {
                 { key: 'nome', label: 'Nome', value: membro.nome, editable: true },
                 { key: 'dataNascimento', label: 'Data Nascimento', value: membro.dataNascimento, editable: true },
                 { key: 'email', label: 'Email', value: membro.email, editable: true, keyboardType: 'email-address' },
-                { key: 'cargo', label: 'Cargo', value: String(membro.cargo), editable: true, keyboardType: 'numeric' },
+                { key: 'cargo', label: 'Cargo', value: String(membro.cargo), editable: true },
                 { key: 'telefone', label: 'Telefone', value: membro.telefone, editable: true },
                 { key: 'genero', label: 'Genero', value: membro.genero, editable: true },
                 { key: 'dataIngresso', label: 'Data de Ingresso', value: membro.dataIngresso, editable: false },
                 { key: 'habilidades', label: 'Habilidades', value: membro.habilidades, editable: true },
               ]}
-              onFieldChange={(key, value) => {/* opcional: implementar edição global */}}
+              onFieldChange={(key, value) => updateMemberField(membro.id, key as keyof typeof membro, value)}
               onDelete={() => removeMember(membro.id)}
             />
           ))}

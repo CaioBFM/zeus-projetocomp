@@ -1,15 +1,17 @@
 // Dashboard screen component
 // Displays a welcome message and a header
-import { View, Text, useWindowDimensions, FlatList, ScrollView } from 'react-native';
+import { View, Text, useWindowDimensions, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation';
 import AppLogo from '../../components/Logo';
 import Sidebar from '../../components/Sidebar';
-import PieChart from 'react-native-pie-chart';
 import { useMembers } from '../../components/MembersContext';
 import { useBudget } from '../../components/BudgetContext';
 import styles from './Dashboard.styles';
+import { DashboardLegend } from '../../components/DashboardLegend';
+import { DashboardPieChart } from '../../components/DashboardPieChart';
+import { DashboardEmployeesTable } from '../../components/MembersTable';
 
 export default function Dashboard() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -36,6 +38,7 @@ export default function Dashboard() {
         <View style={styles.logoContainer}>
           <AppLogo variant="branca" />
         </View>
+        {/* Linha com título e botão à direita */}
         <View style={styles.headerRow}>
           <Text style={styles.text}>Dashboard</Text>
         </View>
@@ -43,53 +46,30 @@ export default function Dashboard() {
         {/* Gráfico de orçamentos */}
         <View style={styles.cardOrcamento}>
           <Text style={styles.cardOrcamentoTitulo}>Card de orçamentos</Text>
-          <Text style={styles.cardOrcamentoTotal}>{total} Total de orçamentos</Text>
+          <Text style={styles.cardOrcamentoTotal}>Total de orçamentos: {total}</Text>
           <View style={styles.orcamentoRow}>
-            <View style={styles.orcamentoLegenda}>
-              <View style={styles.orcamentoLegendaItem}>
-                <View style={[styles.orcamentoLegendaCor, styles.orcamentoLegendaCorPendente]} />
-                <Text style={styles.orcamentoLegendaTextoPendente}>{pendente}</Text>
-                <Text style={styles.orcamentoLegendaTexto}>Pendente</Text>
-              </View>
-              <View style={styles.orcamentoLegendaItem}>
-                <View style={[styles.orcamentoLegendaCor, styles.orcamentoLegendaCorAprovado]} />
-                <Text style={styles.orcamentoLegendaTextoAprovado}>{aprovado}</Text>
-                <Text style={styles.orcamentoLegendaTexto}>Aprovado</Text>
-              </View>
-              <View style={styles.orcamentoLegendaItem}>
-                <View style={[styles.orcamentoLegendaCor, styles.orcamentoLegendaCorRejeitado]} />
-                <Text style={styles.orcamentoLegendaTextoRejeitado}>{rejeitado}</Text>
-                <Text style={styles.orcamentoLegendaTexto}>Rejeitado</Text>
-              </View>
-            </View>
-            <View style={styles.orcamentoGraficoContainer}>
-              <PieChart
-                widthAndHeight={isTablet ? 160 : 120}
-                series={chartSeries}
-                cover={0.6}
-              />
-            </View>
+            <DashboardLegend pendente={pendente} aprovado={aprovado} rejeitado={rejeitado} />
+            <DashboardPieChart pendente={pendente} aprovado={aprovado} rejeitado={rejeitado} isTablet={isTablet} />
           </View>
         </View>
         {/* Tabela de funcionários */}
-        <View style={styles.funcionariosCard}>
-          <Text style={styles.funcionariosTitulo}>Funcionários cadastrados</Text>
-          <FlatList
-            data={membros}
-            keyExtractor={item => item.id}
-            renderItem={({ item }) => (
-              <View style={styles.funcionarioLinha}>
-                <ScrollView horizontal={true} style={styles.funcionarioScroll} contentContainerStyle={{ flexGrow: 1 }} showsHorizontalScrollIndicator={false}>
-                  <Text style={styles.funcionarioNome}>{item.nome}</Text>
-                  <Text style={styles.funcionarioCargo}>{item.cargo}</Text>
-                </ScrollView>
-              </View>
-            )}
-            ListEmptyComponent={<Text style={styles.funcionariosEmpty}>Nenhum funcionário cadastrado.</Text>}
-            style={{ flexGrow: 0 }}
-            contentContainerStyle={{ paddingBottom: 0 }}
-          />
-        </View>
+        <DashboardEmployeesTable
+          membros={membros}
+          title="Funcionários cadastrados"
+          emptyText="Nenhum funcionário cadastrado."
+          columns={[
+            { key: 'sn', label: 'S/N', width: 36, align: 'center' },
+            { key: 'nome', label: 'Nome', width: 120 },
+            { key: 'cargo', label: 'Cargo', width: 90 },
+            { key: 'habilidades', label: 'Habilidades', width: 120 }
+          ]}
+          getRowData={(item) => ({
+            sn: item.id,
+            nome: item.nome,
+            cargo: item.cargo,
+            habilidades: item.habilidades,
+          })}
+        />
       </View>
     </View>
   );

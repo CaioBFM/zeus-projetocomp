@@ -14,7 +14,7 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: isTablet ? 28 : 22,
     fontWeight: 'bold',
-    marginBottom: 0, // removido, pois headerRow já tem marginBottom
+    marginBottom: 0,
     textAlign: 'left',
     alignSelf: 'flex-start',
   },

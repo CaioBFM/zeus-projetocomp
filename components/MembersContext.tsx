@@ -18,6 +18,7 @@ interface MembersContextType {
   membros: Member[];
   addMember: (m: Member) => void;
   removeMember: (id: string) => void;
+  updateMemberField: (id: string, key: keyof Member, value: any) => void;
 }
 
 const MembersContext = createContext<MembersContextType | undefined>(undefined);
@@ -27,7 +28,7 @@ export function MembersProvider({ children }: { children: ReactNode }) {
     [
       {
         id: '1',
-        nome: 'Lady Gaga',
+        nome: 'Lady Gagaaaaaaaaaaaa',
         dataNascimento: '01/01/1990',
         email: 'gaga@zeus.com',
         cargo: 'Analista',
@@ -78,9 +79,12 @@ export function MembersProvider({ children }: { children: ReactNode }) {
 
   const addMember = (m: Member) => setMembros(prev => [...prev, m]);
   const removeMember = (id: string) => setMembros(prev => prev.filter(m => m.id !== id));
+  const updateMemberField = (id: string, key: keyof Member, value: any) => {
+    setMembros(prev => prev.map(m => m.id === id ? { ...m, [key]: value } : m));
+  };
 
   return (
-    <MembersContext.Provider value={{ membros, addMember, removeMember }}>
+    <MembersContext.Provider value={{ membros, addMember, removeMember, updateMemberField }}>
       {children}
     </MembersContext.Provider>
   );
