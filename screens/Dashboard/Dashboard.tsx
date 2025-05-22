@@ -36,37 +36,50 @@ export default function Dashboard() {
         <View style={styles.linha} />
 
         {/* Gráfico de orçamentos */}
-        <GenericPieChartCard
-          title="Card de orçamentos"
-          totalText={`Total de orçamentos: ${total}`}
-          data={[
-            { value: pendente, color: '#FBBF24', label: 'Pendente' },
-            { value: aprovado, color: '#22C55E', label: 'Aprovado' },
-            { value: rejeitado, color: '#EF4444', label: 'Rejeitado' }
-          ]}
-          legendPosition="right"
-          style={{ marginBottom: 32 }}
-        />
+        <ScrollView>
+          <GenericPieChartCard
+            title="Card de orçamentos"
+            totalText={`Total de orçamentos: ${total}`}
+            data={[
+              { value: pendente, color: '#FBBF24', label: 'Pendente' },
+              { value: aprovado, color: '#22C55E', label: 'Aprovado' },
+              { value: rejeitado, color: '#EF4444', label: 'Rejeitado' }
+            ]}
+            legendPosition="right"
+            style={{ marginBottom: 32 }}
+          />
 
-        {/* Tabela de funcionários */}
-        <DashboardEmployeesTable
-          membros={membros}
-          title="Funcionários cadastrados"
-          emptyText="Nenhum funcionário cadastrado."
-          columns={[
-            { key: 'sn', label: 'S/N', width: 36, align: 'center' },
-            { key: 'nome', label: 'Nome', width: 120 },
-            { key: 'cargo', label: 'Cargo', width: 90 },
-            { key: 'habilidades', label: 'Habilidades', width: 120 }
-          ]}
-          getRowData={(item) => ({
-            sn: item.id,
-            nome: item.nome,
-            cargo: item.cargo,
-            habilidades: item.habilidades,
-          })}
-        />
+          {/* Exemplo de implementação de gráfico de funcionários por gênero */}
+          {/* <GenericPieChartCard
+            title="Funcionários por Gênero"
+            totalText={`Total: ${membros.length}`}
+            data={[
+              { value: membros.filter(m => m.genero === 'Masculino').length, color: '#3B82F6', label: 'Masculino' },
+              { value: membros.filter(m => m.genero === 'Feminino').length, color: '#F472B6', label: 'Feminino' },
+            ]}
+            legendPosition="right"
+            style={{ marginBottom: 32 }}
+          /> */}
 
+          {/* Tabela de funcionários */}
+          <DashboardEmployeesTable
+            membros={membros}
+            title="Funcionários cadastrados"
+            emptyText="Nenhum funcionário cadastrado."
+            columns={[
+              { key: 'sn', label: 'S/N', width: 36, align: 'center' },
+              { key: 'nome', label: 'Nome', width: 120 },
+              { key: 'cargo', label: 'Cargo', width: 90 },
+              { key: 'habilidades', label: 'Habilidades', width: 120 }
+            ]}
+            getRowData={(item) => ({
+              sn: item.id,
+              nome: item.nome,
+              cargo: item.cargo,
+              habilidades: item.habilidades,
+            })}
+          />
+        </ScrollView>
       </View>
     </View>
   );

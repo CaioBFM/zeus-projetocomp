@@ -1,3 +1,4 @@
+// Componente de gráfico genérica
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle, Dimensions } from 'react-native';
 import PieChart from 'react-native-pie-chart';
