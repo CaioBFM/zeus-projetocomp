@@ -90,27 +90,6 @@ export default StyleSheet.create({
     minWidth: isTablet ? 180 : 120,
     marginLeft: isTablet ? 48 : 24,
   },
-  funcionarioLinha: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: '#f3f4f6',
-    paddingVertical: isTablet ? 10 : 8,
-    minHeight: isTablet ? 48 : 44,
-    maxHeight: isTablet ? 48 : 44,
-  },
-  funcionarioScroll: {
-    flex: 1,
-  },
-  funcionarioNome: {
-    fontSize: isTablet ? 18 : 16,
-    flexShrink: 1,
-  },
-  funcionarioCargo: {
-    color: '#64748b',
-    fontSize: isTablet ? 16 : 14,
-    marginLeft: isTablet ? 16 : 12,
-  },
   container: {
     flex: 1,
     backgroundColor: '#06213D',
@@ -129,7 +108,7 @@ export default StyleSheet.create({
     flex: 1,
     paddingHorizontal: isTablet ? width * 0.08 : width * 0.04,
     paddingVertical: isTablet ? height * 0.04 : height * 0.03,
-    paddingTop: isTablet ? height * 0.11 : height * 0.15, // topo menor em tablet
+    paddingTop: isTablet ? height * 0.11 : height * 0.15,
     justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
@@ -170,7 +149,7 @@ export default StyleSheet.create({
     width: '100%',
     height: isTablet ? 3 : 2,
     backgroundColor: '#fff',
-    opacity: 0.7, // Mais visível e responsivo
+    opacity: 0.7,
     marginBottom: isTablet ? 18 : 10,
     borderRadius: 2,
   },
