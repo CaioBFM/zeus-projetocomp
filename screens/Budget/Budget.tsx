@@ -1,6 +1,6 @@
 // Members screen component
 // Displays a welcome message and a header
-import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Alert, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import styles from './Budget.styles';
@@ -15,6 +15,8 @@ import { useBudget } from '../../components/BudgetContext';
 export default function Budget() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { Budget, addBudget, removeBudget, updateBudgetStatus } = useBudget();
+  const { width } = Dimensions.get('window');
+  const isTablet = width > 600;
 
   return (
     <View style={styles.container}>
@@ -27,7 +29,7 @@ export default function Budget() {
         <View style={styles.headerRow}>
           <Text style={styles.text}>Orçamentos</Text>
           <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('AddBudget')} accessibilityLabel="Adicionar novo orçamento">
-            <Feather name="plus" size={26} color="#fff" />
+            <Feather name="plus" size={isTablet ? 36 : 32} color="#fff" />
           </TouchableOpacity>
         </View>
         <Text style={styles.info}>🟡Em análise     🟢Aprovado     🔴Reprovado </Text>

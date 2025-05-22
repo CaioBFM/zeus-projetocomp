@@ -61,10 +61,10 @@ export default StyleSheet.create({
     paddingLeft: 2,
   },
   headerButton: {
-    padding: 8,
-    borderRadius: 20,
+    padding: isTablet ? 18 : 14,
+    borderRadius: isTablet ? 28 : 20,
     backgroundColor: 'transparent',
-    marginTop: -5,
+    marginTop: isTablet ? -2 : -5,
     alignSelf: 'flex-start',
   },
   linha: {
