@@ -63,11 +63,7 @@ export default function Sidebar({ navigation }: SidebarProps) {
       </TouchableOpacity>
     </View>
   );
-
-  if (isTablet) {
-    return <SidebarContent />;
-  }
-
+  
   // Mobile: botão de menu + drawer
   return (
     <>
