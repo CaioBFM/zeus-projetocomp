@@ -29,8 +29,8 @@ export default function Login() {
       return false;
     }
 
-    if (senha.length < 5) {
-      Alert.alert('Erro', 'A senha deve ter no mínimo 5 caracteres.');
+    if (senha.length < 6) {
+      Alert.alert('Erro', 'A senha deve ter no mínimo 6 caracteres.');
       return false;
     }
 
@@ -40,7 +40,7 @@ export default function Login() {
   const handleLogin = () => {
     if (!validateInputs()) return;
 
-    if (email === 'Teste@zeus.com' && senha === 'Teste') {
+    if (email === 'Teste@zeus.com' && senha === 'Testes') {
       // Reseta a pilha quando em login bem sucedido
       navigation.reset({
         index: 0,

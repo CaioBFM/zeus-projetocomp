@@ -34,6 +34,10 @@ export default function Register() {
       Alert.alert('Erro', 'As senhas não coincidem.');
       return false;
     }
+    if (senha.length < 6) {
+        Alert.alert('Erro', 'A senha deve ter no mínimo 6 caracteres.');
+        return false;
+    }
 
     return true;
   };

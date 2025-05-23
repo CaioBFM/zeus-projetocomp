@@ -25,8 +25,8 @@ export default function VerifyCode() {
         Alert.alert('Erro', 'Preencha todos os campos para prosseguir.');
         return false;
     }
-    if (senha.length < 5) {
-        Alert.alert('Erro', 'A senha deve ter no mínimo 5 caracteres.');
+    if (senha.length < 6) {
+        Alert.alert('Erro', 'A senha deve ter no mínimo 6 caracteres.');
         return false;
     }
     if (senha !== confirmarSenha) {

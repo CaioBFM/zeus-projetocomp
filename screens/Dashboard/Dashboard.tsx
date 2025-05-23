@@ -36,8 +36,8 @@ export default function Dashboard() {
             totalText={`Total de orçamentos: ${Budget.length}`}
             data={[
               { value: Budget.filter(b => b.status === 'Em análise').length, color: '#FBBF24', label: 'Pendente' },
-              { value: Budget.filter(b => b.status === 'Em análise').length, color: '#22C55E', label: 'Aprovado' },
-              { value: Budget.filter(b => b.status === 'Em análise').length, color: '#EF4444', label: 'Rejeitado' }
+              { value: Budget.filter(b => b.status === 'Aprovado').length, color: '#22C55E', label: 'Aprovado' },
+              { value: Budget.filter(b => b.status === 'Reprovado').length, color: '#EF4444', label: 'Rejeitado' }
             ]}
             legendPosition="right"
             style={{ marginBottom: 32 }}
