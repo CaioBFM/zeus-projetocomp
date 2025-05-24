@@ -71,11 +71,12 @@ O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript
    ```bash
    npx expo start
    ```
-4. **Abrindo o app no seu dispositivo ou emulador:**
-   - **No Android:** Escaneie o QR Code exibido no terminal do Expo usando o aplicativo Expo Go.
-   - **No iOS:** Escaneie o QR Code usando o app de câmera nativo do iPhone (ou o Expo Go, se preferir).
-   - **No emulador Android:** Com o terminal do Expo aberto, pressione a tecla **`a`** para abrir o app automaticamente no emulador Android configurado na sua máquina.
-   - **Para finalizar a execução do Expo:** Pressione **Ctrl + C** no terminal.
+4. **Baixe o app Expo Go na App Store (iOS) ou Google Play (Android).**
+5. **Atenção:**
+   - O app NÃO funciona escaneando o QR Code diretamente pelo app de câmera padrão do iOS. Abra o app Expo Go e use a opção de escanear QR Code dentro do próprio Expo Go.
+   - O computador e o celular DEVEM estar conectados na mesma rede Wi-Fi para o carregamento funcionar.
+6. **Escaneie o QR Code exibido no terminal ou navegador usando o Expo Go.**
+7. **O app será carregado no seu dispositivo.**
 
 ---
 
