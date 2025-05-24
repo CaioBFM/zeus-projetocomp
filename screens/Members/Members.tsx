@@ -33,7 +33,14 @@ export default function Members() {
         </View>
         <View style={styles.linha} />
         {/* Lista de cards centralizada */}
-        <ScrollView contentContainerStyle={styles.cardsContainer}>
+        <ScrollView
+          contentContainerStyle={[styles.cardsContainer, { flexGrow: 1 }]}
+          keyboardShouldPersistTaps="handled"
+          horizontal={false}
+          showsHorizontalScrollIndicator={false}
+          alwaysBounceHorizontal={false}
+          directionalLockEnabled={true}
+        >
           {membros.map(membro => (
             <Card
               key={membro.id}
