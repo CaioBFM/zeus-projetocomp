@@ -40,18 +40,6 @@ export function MembersProvider({ children }: { children: ReactNode }) {
       },
       {
         id: '2',
-        nome: 'Satoru Gojo',
-        dataNascimento: '15/05/1985',
-        email: 'satoru@zeus.com',
-        cargo: 'Desenvolvedor',
-        telefone: '11988888888',
-        genero: 'Masculino',
-        dataIngresso: '10/03/2021',
-        habilidades: 'React, Node.js',
-        imagem: 'https://cdn.pfps.gg/pfps/5051-gojo-manga.png',
-      },
-      {
-        id: '3',
         nome: 'Batman',
         dataNascimento: '01/02/1975',
         email: 'batman@wayne.com',
@@ -63,7 +51,7 @@ export function MembersProvider({ children }: { children: ReactNode }) {
         imagem: 'https://preview.redd.it/batman-profile-pics-v0-qrz10k9s6fid1.jpg?width=542&format=pjpg&auto=webp&s=2f848b2d6644cbb03e0116e28755cd7e0a63319a',
       },
       {
-        id: '4',
+        id: '3',
         nome: 'Thomas Shelby',
         dataNascimento: '10/06/1890',
         email: 'thomas.shelby@peakyblinders.com',
@@ -74,6 +62,7 @@ export function MembersProvider({ children }: { children: ReactNode }) {
         habilidades: 'Liderança, Negociação',
         imagem: 'https://rollingstone.com.br/media/uploads/ciliian_murphy.jpg',
       },
+      
     ]
   );
 

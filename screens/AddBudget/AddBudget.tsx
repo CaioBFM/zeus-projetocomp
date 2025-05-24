@@ -117,8 +117,8 @@ export default function AddBudget() {
                 </View>
               </TouchableOpacity>
             </Modal>
-            <Input placeholder='Valor estimado' value={valorEstimado} onChangeText={setValorEstimado} />
-            <Input placeholder='Custos previstos' value={custosPrevistos} onChangeText={setCustosPrevistos} />
+            <Input placeholder='Valor estimado' value={valorEstimado} onChangeText={setValorEstimado} keyboardType='numeric'/>
+            <Input placeholder='Custos previstos' value={custosPrevistos} onChangeText={setCustosPrevistos} keyboardType='numeric'/>
             <View style={styles.buttonRow}>
               <PrimaryButton 
                 title="Cancelar" 

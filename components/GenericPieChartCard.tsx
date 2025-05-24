@@ -120,6 +120,18 @@ export default function GenericPieChartCard({
   legendPosition = 'right',
   style
 }: GenericPieChartCardProps) {
+  if (data.every(item => item.value === 0)) {
+    return (
+      <View style={[styles.card, style, { alignItems: 'center', justifyContent: 'center', minHeight: 120 }]}> 
+        <Text style={styles.title}>{title}</Text>
+        {totalText && <Text style={styles.total}>{totalText}</Text>}
+        <Text style={{ color: '#888', fontSize: 16, marginTop: 16, textAlign: 'center' }}>
+          Nenhum orçamento cadastrado. Adicione orçamentos para visualizar o gráfico.
+        </Text>
+      </View>
+    );
+  }
+
   return (
     <View style={[styles.card, style]}>
       <Text style={styles.title}>{title}</Text>

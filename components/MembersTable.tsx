@@ -82,12 +82,6 @@ export function DashboardEmployeesTable({ membros, title = 'Funcionários cadast
     { key: 'habilidades', label: 'Habilidades', width: 120 }
   ];
   const cols = columns || defaultColumns;
-  const getData = getRowData || ((item: Member) => ({
-    sn: item.id,
-    nome: item.nome,
-    cargo: item.cargo,
-    habilidades: item.habilidades,
-  }));
 
   return (
     <View style={styles.funcionariosCard}>
@@ -114,8 +108,16 @@ export function DashboardEmployeesTable({ membros, title = 'Funcionários cadast
           <FlatList
             data={membros}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => {
-              const row = getData(item);
+            renderItem={({ item, index }) => {
+              // S/N global
+              const row = getRowData
+                ? getRowData(item)
+                : {
+                    sn: (index + 1).toString(),
+                    nome: item.nome,
+                    cargo: item.cargo,
+                    habilidades: item.habilidades,
+                  };
               return (
                 <View style={styles.funcionarioLinha}>
                   {cols.map((col) => (

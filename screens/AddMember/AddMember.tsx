@@ -134,7 +134,7 @@ export default function AddMember() {
             <Input placeholder='Data de nascimento DD/MM/YYYY' value={dataNascimento} onChangeText={setDataNascimento} />
             <Input placeholder="E-mail" value={email} onChangeText={setEmail} keyboardType="email-address" />
             <Input placeholder='Cargo' value={cargo} onChangeText={setCargo} />
-            <Input placeholder='Telefone' value={telefone} onChangeText={setTelefone} />
+            <Input placeholder='Telefone' value={telefone} onChangeText={setTelefone} keyboardType='phone-pad'/>
             <Input placeholder='Gênero' value={genero} onChangeText={setGenero} />
             <Input placeholder='Habilidades' value={habilidades} onChangeText={setHabilidades} />
             <View style={styles.buttonRow}>

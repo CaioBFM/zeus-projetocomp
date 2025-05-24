@@ -56,11 +56,11 @@ export default function Dashboard() {
             style={{ marginBottom: 32 }}
           /> */}
 
-          {/* Tabela de funcionários */}
+          {/* Tabela de Membros */}
           <DashboardEmployeesTable
             membros={membros}
-            title="Funcionários cadastrados"
-            emptyText="Nenhum funcionário cadastrado."
+            title="Membros cadastrados"
+            emptyText="Nenhum membro cadastrado."
             columns={[
               { key: 'sn', label: 'S/N', width: 36, align: 'center' },
               { key: 'nome', label: 'Nome', width: 120 },
