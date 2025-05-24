@@ -191,35 +191,41 @@ const Card: React.FC<Props> = ({ imagem, fields, onFieldChange, onDelete, title,
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.modalOverlay}>
-            <View style={styles.modalContent}>
-              <Text style={styles.modalLabel}>{modalField?.label}</Text>
-              <TextInput
-                value={modalField ? editValues[modalField.key] : ''}
-                onChangeText={v => modalField && handleChange(modalField.key, v)}
-                autoFocus
-                style={styles.modalInput}
-                keyboardType={modalField?.keyboardType || 'default'}
-                placeholder={modalField?.label}
-                returnKeyType="done"
-                onSubmitEditing={handleModalSave}
-                accessibilityLabel={`Campo de edição para ${modalField?.label}`}
-                accessible
-              />
-              <View style={{ flexDirection: 'row', marginTop: 18 }}>
-                <PrimaryButton
-                  title="Cancelar"
-                  onPress={handleModalCancel}
-                  style={{ flex: 1, backgroundColor: 'red', marginRight: 8 }}
-                  accessibilityLabel="Cancelar edição"
+            <KeyboardAvoidingView
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+              style={{ flex: 1, justifyContent: 'flex-end' }}
+            >
+              <View style={styles.modalContent}>
+                <Text style={styles.modalLabel}>{modalField?.label}</Text>
+                <TextInput
+                  value={modalField ? editValues[modalField.key] : ''}
+                  onChangeText={v => modalField && handleChange(modalField.key, v)}
+                  autoFocus
+                  style={styles.modalInput}
+                  keyboardType={modalField?.keyboardType || 'default'}
+                  placeholder={modalField?.label}
+                  returnKeyType="done"
+                  onSubmitEditing={handleModalSave}
+                  accessibilityLabel={`Campo de edição para ${modalField?.label}`}
+                  accessible
                 />
-                <PrimaryButton
-                  title="Salvar"
-                  onPress={handleModalSave}
-                  style={{ flex: 1, backgroundColor: '#2563eb' }}
-                  accessibilityLabel="Salvar edição"
-                />
+                <View style={{ flexDirection: 'row', marginTop: 18 }}>
+                  <PrimaryButton
+                    title="Cancelar"
+                    onPress={handleModalCancel}
+                    style={{ flex: 1, backgroundColor: 'red', marginRight: 8 }}
+                    accessibilityLabel="Cancelar edição"
+                  />
+                  <PrimaryButton
+                    title="Salvar"
+                    onPress={handleModalSave}
+                    style={{ flex: 1, backgroundColor: '#2563eb' }}
+                    accessibilityLabel="Salvar edição"
+                  />
+                </View>
               </View>
-            </View>
+            </KeyboardAvoidingView>
           </View>
         </TouchableWithoutFeedback>
       </Modal>

@@ -126,7 +126,7 @@ export default function AddMember() {
                 <Image source={{ uri: imagem }} style={styles.photo} />
               ) : (
                 <View style={styles.photoPlaceholder}>
-                  <Text>Carregar foto</Text>
+                  <Text style={{ textAlign: 'center', width: '100%' }}>Carregar foto</Text>
                 </View>
               )}
             </TouchableOpacity>
