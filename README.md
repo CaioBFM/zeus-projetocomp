@@ -17,9 +17,8 @@ O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript
 - **TypeScript**: Tipagem estática para maior segurança e produtividade.
 - **React Navigation**: Navegação entre telas no app.
 - **React Context API**: Gerenciamento de estado global.
-- **Styled Components**: Estilização dos componentes com CSS-in-JS.
+- **Styled Components**: Estilização dos componentes com CSS-in-TS.
 - **React Native Vector Icons**: Ícones customizáveis para React Native.
-- **React Native Gesture Handler**: Gestos e interações avançadas.
 - **React Native Safe Area Context**: Ajuste automático para áreas seguras de diferentes dispositivos.
 - **React Native Screens**: Otimização de performance na navegação.
 - **React Native Pie Chart**: Gráficos de pizza para visualização de dados.
@@ -40,7 +39,7 @@ O **ZEUS-APP** é um aplicativo mobile desenvolvido em React Native e TypeScript
 4. **Confirmações de ações:**
    - Antes de realizar ações críticas, como sair do dashboard, excluir um membro, aprovar/reprovar um orçamento ou cancelar a criação de um membro ou orçamento, o usuário é solicitado a confirmar a ação.
 5. **Interface responsiva:**
-   - Adaptada para celulares e tablets, com sidebar ativada automaticamente em tablets.
+   - Adaptada para celulares e tablets.
 6. **Acessibilidade aprimorada:**
    - Todos os botões e elementos interativos possuem rótulos descritivos (`accessibilityLabel`) para navegação eficiente por leitores de tela.
 

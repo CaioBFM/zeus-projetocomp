@@ -64,7 +64,7 @@ export default function Sidebar({ navigation }: SidebarProps) {
     </View>
   );
   
-  // Mobile: botão de menu + drawer
+  // Botão de menu + drawer
   return (
     <>
       <TouchableOpacity
