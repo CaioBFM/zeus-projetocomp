@@ -35,40 +35,48 @@ export default function Budget() {
         <Text style={styles.info}>🟡Em análise     🟢Aprovado     🔴Reprovado </Text>
         <View style={styles.linha} />
         {/* Lista de cards centralizada */}
-        <ScrollView contentContainerStyle={styles.cardsContainer}>
-          {Budget.map(Budget => (
-            <Card
-              key={Budget.id}
-              title={Budget.numero}
-              fields={[
-                { key: 'numero', label: 'Número', value: Budget.numero, editable: true , keyboardType: 'numeric' },
-                { key: 'descricao', label: 'Descrição', value: Budget.descricao, editable: true },
-                { key: 'cliente', label: 'Cliente', value: Budget.cliente, editable: true },
-                { key: 'membro', label: 'Membro', value: Budget.membro, editable: true },
-                { key: 'valorEstimado', label: 'Valor estimado', value: String(Budget.valorEstimado), editable: true, keyboardType: 'numeric' },
-                { key: 'DataCriacao', label: 'Data de criação', value: Budget.dataCriacaoOrcamento, editable: false },
-                { key: 'CustosPrevistos', label: 'Custos previstos', value: Budget.custosPrevistos, editable: true },
-                { key: 'status', label: 'Status', value: Budget.status, editable: false }, 
-              ]}
-              onDelete={() => removeBudget(Budget.id)}
-              cardSize="small"
-              hideImage
-              isBudgetCard
-              status={Budget.status}
-              onStatusChange={status => {
-                Alert.alert(
-                  status === 'Aprovado' ? 'Aprovar orçamento' : 'Reprovar orçamento',
-                  `Tem certeza que deseja ${status === 'Aprovado' ? 'aprovar' : 'reprovar'} este orçamento?`,
-                  [
-                    { text: 'Cancelar', style: 'cancel' },
-                    { text: status === 'Aprovado' ? 'Aprovar' : 'Reprovar', style: status === 'Aprovado' ? 'default' : 'destructive', onPress: () => updateBudgetStatus(Budget.id, status) },
-                  ],
-                  { cancelable: true }
-                );
-              }}
-            />
-          ))}
-        </ScrollView>
+        {Budget.length === 0 ? (
+          <View style={{ alignItems: 'center', marginTop: 32 }}>
+            <Text style={{ color: '#fff', fontSize: 18, textAlign: 'center' }}>
+              Nenhum orçamento cadastrado. Adicione orçamentos para visualizar aqui.
+            </Text>
+          </View>
+        ) : (
+          <ScrollView contentContainerStyle={styles.cardsContainer}>
+            {Budget.map(Budget => (
+              <Card
+                key={Budget.id}
+                title={Budget.numero}
+                fields={[
+                  { key: 'numero', label: 'Número', value: Budget.numero, editable: true , keyboardType: 'numeric' },
+                  { key: 'descricao', label: 'Descrição', value: Budget.descricao, editable: true },
+                  { key: 'cliente', label: 'Cliente', value: Budget.cliente, editable: true },
+                  { key: 'membro', label: 'Membro', value: Budget.membro, editable: true },
+                  { key: 'valorEstimado', label: 'Valor estimado', value: String(Budget.valorEstimado), editable: true, keyboardType: 'numeric' },
+                  { key: 'DataCriacao', label: 'Data de criação', value: Budget.dataCriacaoOrcamento, editable: false },
+                  { key: 'CustosPrevistos', label: 'Custos previstos', value: Budget.custosPrevistos, editable: true },
+                  { key: 'status', label: 'Status', value: Budget.status, editable: false }, 
+                ]}
+                onDelete={() => removeBudget(Budget.id)}
+                cardSize="small"
+                hideImage
+                isBudgetCard
+                status={Budget.status}
+                onStatusChange={status => {
+                  Alert.alert(
+                    status === 'Aprovado' ? 'Aprovar orçamento' : 'Reprovar orçamento',
+                    `Tem certeza que deseja ${status === 'Aprovado' ? 'aprovar' : 'reprovar'} este orçamento?`,
+                    [
+                      { text: 'Cancelar', style: 'cancel' },
+                      { text: status === 'Aprovado' ? 'Aprovar' : 'Reprovar', style: status === 'Aprovado' ? 'default' : 'destructive', onPress: () => updateBudgetStatus(Budget.id, status) },
+                    ],
+                    { cancelable: true }
+                  );
+                }}
+              />
+            ))}
+          </ScrollView>
+        )}
       </View>
     </View>
   );

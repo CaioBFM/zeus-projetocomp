@@ -67,12 +67,6 @@ export default function Dashboard() {
               { key: 'cargo', label: 'Cargo', width: 90 },
               { key: 'habilidades', label: 'Habilidades', width: 120 }
             ]}
-            getRowData={(item) => ({
-              sn: item.id,
-              nome: item.nome,
-              cargo: item.cargo,
-              habilidades: item.habilidades,
-            })}
           />
         </ScrollView>
       </View>
