@@ -2,7 +2,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle, Dimensions } from 'react-native';
 import PieChart from 'react-native-pie-chart';
-import type { Slice } from 'react-native-pie-chart';
 
 export interface PieChartLegendItem {
   value: number;
@@ -83,21 +82,21 @@ const styles = StyleSheet.create({
   },
 });
 
-function PieChartWithLegend({ data, widthAndHeight = 120, cover = 0.6, legendPosition = 'right', style }: {
+function PieChartWithLegend({ data, widthAndHeight = 120, legendPosition = 'right', style }: {
   data: PieChartLegendItem[];
   widthAndHeight?: number;
-  cover?: number;
   legendPosition?: 'right';
   style?: object;
 }) {
-  const chartSeries: Slice[] = data.map(item => ({ value: item.value, color: item.color }));
+  const chartSeries: number[] = data.map(item => item.value);
+  const sliceColors: string[] = data.map(item => item.color);
   const legendStyle = legendPosition === 'right' ? styles.legend : styles.legendBottom;
   return (
     <View style={legendPosition === 'right' ? styles.chartRow : styles.chartColumn}>
       <PieChart
         widthAndHeight={widthAndHeight}
         series={chartSeries}
-        cover={cover}
+        sliceColor={sliceColors}
         style={{ alignSelf: 'center' }}
       />
       <View style={legendStyle}>
