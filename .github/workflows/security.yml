@@ -1,0 +1,25 @@
+name: Security checks
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.19.4'
+      - name: Install
+        run: npm ci
+      - name: Expo Doctor
+        run: npx expo-doctor@latest
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Audit (high)
+        run: npm audit --audit-level=high

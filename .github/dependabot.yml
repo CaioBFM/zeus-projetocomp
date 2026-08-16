@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 6
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+    groups:
+      expo-react-native:
+        patterns:
+          - "expo*"
+          - "react-native*"
+          - "@expo/*"
+          - "react*"
+        labels:
+          - "dependencies:expo"
+      dev-tools:
+        patterns:
+          - "typescript"
+          - "@babel/*"
+          - "eslint*"
+        labels:
+          - "dependencies:dev"
